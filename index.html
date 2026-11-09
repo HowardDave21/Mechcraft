@@ -64,7 +64,24 @@ header b.logo{
 nav.tabs{display:flex;flex-direction:column;gap:4px;padding:10px;background:var(--panel);border-right:1px solid var(--line);min-width:150px;overflow-y:auto}
 nav.tabs button{text-align:left;border-radius:2px}
 nav.tabs button.on{border-left:3px solid var(--cyan)}
-main{flex:1;overflow-y:auto;padding:16px}
+main{flex:1;overflow-y:auto;padding:16px;min-width:0}
+@media (max-width:820px){
+  .body{flex-direction:column}
+  nav.tabs{flex-direction:row;min-width:0;overflow-x:auto;overflow-y:hidden;border-right:none;border-bottom:1px solid var(--line);padding:6px 8px;flex:0 0 auto}
+  nav.tabs button{white-space:nowrap;flex:0 0 auto}
+  nav.tabs button.on{border-left:1px solid var(--amber)}
+  main{padding:10px}
+  header{gap:8px 12px;padding:8px 10px}
+  header .stat{min-width:0}
+  .speedbar{margin-left:0;width:100%;flex-wrap:wrap}
+  .grid{grid-template-columns:1fr !important}
+  .mx-kpis{grid-template-columns:repeat(2,1fr) !important}
+  .mx-kpi .v{font-size:18px}
+  .mx-diagram{height:440px}
+  .mx-sync .chips{margin-left:0}
+  .atc-left{display:none}
+  .toast-wrap{left:12px;right:12px;max-width:none}
+}
 .card{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:3px;padding:12px 14px;margin-bottom:10px}
 .card h3{margin:0 0 6px;font-size:13px;color:var(--amber);font-family:var(--headfont);letter-spacing:1px;text-transform:uppercase}
 .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
@@ -87,7 +104,8 @@ button.btn.danger{border-color:var(--bad);color:var(--bad)}
 .log div{padding:2px 0;border-bottom:1px solid var(--line)}
 .log .bad{color:var(--bad)} .log .good{color:var(--good)} .log .warn{color:var(--amber)}
 select,input[type=text],input[type=number]{background:var(--panel2);border:1px solid var(--line);color:var(--text);padding:5px;border-radius:2px}
-.toast-wrap{position:fixed;top:10px;right:10px;z-index:50;display:flex;flex-direction:column;gap:6px;max-width:300px}
+.toast-wrap{position:fixed;bottom:12px;right:12px;z-index:50;display:flex;flex-direction:column-reverse;gap:6px;max-width:300px;pointer-events:none}
+.toast-wrap .toast:nth-child(n+5){display:none}
 .toast{background:var(--panel2);border:1px solid var(--line);border-left:4px solid var(--cyan);padding:8px 10px;border-radius:2px;font-size:12.5px;animation:in .2s}
 .toast.bad{border-left-color:var(--bad)} .toast.good{border-left-color:var(--good)} .toast.warn{border-left-color:var(--amber)}
 @keyframes in{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:translateX(0)}}
@@ -346,7 +364,7 @@ details .step b{color:var(--text)}
 .mx-diagram .mx-svgwrap{position:absolute;inset:34px 0 30px 0;transition:transform .34s cubic-bezier(.3,.7,.2,1),opacity .34s}
 .mx-diagram .mx-svgwrap.zooming{opacity:.15}
 .mx-diagram .mx-svgwrap.enter{animation:mxEnter .38s cubic-bezier(.2,.8,.2,1)}
-@keyframes mxEnter{from{transform:scale(.82);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes mxEnter{from{transform:scale(.96);opacity:.55}to{transform:scale(1);opacity:1}}
 .mx-crumbs{position:absolute;top:10px;left:12px;z-index:2;display:flex;gap:6px;align-items:center;font-family:Consolas,monospace;font-size:11px;color:var(--muted)}
 .mx-crumbs button{background:var(--panel);border:1px solid var(--line);color:var(--cyan);padding:4px 8px;border-radius:2px;cursor:pointer;font-family:Consolas,monospace;font-size:11px}
 .mx-crumbs b{color:var(--text)}
@@ -446,7 +464,18 @@ details .step b{color:var(--text)}
 .mx-tool{text-align:left;background:var(--panel2);border:1px solid var(--line);border-radius:3px;padding:7px 8px;color:var(--text);cursor:pointer;font:11.5px 'Segoe UI',system-ui,sans-serif}
 .mx-tool:hover:not(:disabled){border-color:var(--cyan)}
 .mx-tool:disabled{opacity:.45;cursor:not-allowed}
-.mx-tool .ti{font-family:Consolas,monospace;font-size:9px;color:var(--muted);display:block}
+.mx-tool.hint{border-color:var(--amber);box-shadow:0 0 0 1px var(--amber) inset}
+.mx-hintbtn{float:right;background:none;border:1px solid var(--line);color:var(--muted);font:10px Consolas,monospace;padding:1px 6px;border-radius:3px;cursor:pointer;text-transform:none;letter-spacing:0}
+.mx-hintbtn:hover:not(:disabled){border-color:var(--amber);color:var(--amber)}
+.mx-ipc,.mx-f1,.mx-plate{border:1px solid var(--line);border-radius:3px;padding:8px;font-family:Consolas,monospace;font-size:10.5px;background:var(--panel2);margin-bottom:6px}
+.mx-ipc .h,.mx-f1 .h,.mx-plate .h{color:var(--cyan);font-weight:700;letter-spacing:.5px;margin-bottom:5px}
+.mx-ipc table{width:100%;border-collapse:collapse}.mx-ipc td{padding:3px 4px;border-top:1px solid var(--line);vertical-align:top}.mx-ipc td:first-child{white-space:nowrap;font-weight:700}
+.mx-ipc .st{margin-top:5px;color:var(--amber)}
+.mx-plate{border-style:dashed}
+.mx-f1 .g{display:grid;grid-template-columns:auto 1fr;gap:2px 8px}.mx-f1 .g span{color:var(--muted)}.mx-f1 i{color:var(--bad)}
+.mx-order{display:grid;grid-template-columns:1fr 1fr;gap:6px}.mx-order select{grid-column:1/-1}
+.mx-order .btn small{display:block;font-size:10px;opacity:.75}
+.st-tbl{overflow-x:auto}.st-tbl table{width:100%;border-collapse:collapse;font-size:12px}.st-tbl th,.st-tbl td{text-align:left;padding:5px 6px;border-bottom:1px solid var(--line)}
 .mx-crs{border:1px dashed var(--good);border-radius:3px;padding:10px;margin-top:10px;font-family:Consolas,monospace;font-size:11px;color:var(--text)}
 .mx-crs .h{color:var(--good);font-weight:700;letter-spacing:1px;margin-bottom:5px}
 .mx-signbtn{width:100%;margin-top:12px;padding:11px}
@@ -614,12 +643,7 @@ details .step b{color:var(--text)}
 .atcx .ac-tagtxt.muted{fill:var(--muted)}
 .atcx .ac.attn .ac-tagtxt.st{fill:var(--amber)}
 .atcx .ac.held .ac-tagtxt.st{fill:var(--bad)}
-/* ---------- dev panel (Ctrl+Shift+D), testing only ---------- */
-#dev-panel{position:fixed;bottom:14px;right:14px;z-index:300;background:var(--panel);border:1px solid var(--amber);border-radius:6px;padding:10px;width:200px;box-shadow:0 8px 30px rgba(0,0,0,.5);display:none}
-#dev-panel.show{display:block}
-#dev-panel .dp-title{font-family:var(--headfont);color:var(--amber);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
-#dev-panel button{display:block;width:100%;margin-bottom:6px;padding:7px;font-size:11px;text-align:left}
-#dev-panel button:last-child{margin-bottom:0}
+
 </style>
 </head>
 <body>
@@ -649,17 +673,7 @@ details .step b{color:var(--text)}
   </div>
 </div>
 <div class="toast-wrap" id="toasts"></div>
-<div id="dev-panel">
-  <div class="dp-title">Dev tools (Esc to hide)</div>
-  <button data-dev="cash">+£2,000,000 cash</button>
-  <button data-dev="rep">Reputation to 100</button>
-  <button data-dev="atc">Spawn ATC Traffic</button>
-  <button data-dev="upgrades">Unlock all hangar upgrades</button>
-  <button data-dev="bay">Add a free bay</button>
-  <button data-dev="resolve">Finish WOs to sign-off</button>
-  <button data-dev="rank">Max rank + promotions</button>
-  <button data-dev="close">Close panel</button>
-</div>
+
 <div class="menu-overlay" id="account-overlay">
   <div class="menu-card">
     <div class="menu-dwg">DWG MC-001</div>
@@ -678,6 +692,7 @@ details .step b{color:var(--text)}
       <input type="password" id="acctPass" placeholder="At least 4 characters" maxlength="64" autocomplete="off">
     </div>
     <button class="btn primary menu-btn" id="acctGo">Log in</button>
+    <button class="btn menu-btn" id="acctGuest">Play as guest</button>
     <div class="menu-err" id="acctErr"></div>
     <div class="menu-note">Just a username and a password. <a href="#" class="acct-link" id="acct-privacy-link">How your account data is handled</a></div>
   </div>
@@ -706,21 +721,24 @@ details .step b{color:var(--text)}
     <div class="menu-tag">Aircraft MRO Manager</div>
     <button class="btn primary menu-btn" id="m-continue">Continue</button>
     <button class="btn menu-btn" id="m-new">New Game</button>
+    <div id="mp-block">
     <div class="menu-divider">Multiplayer</div>
     <button class="btn menu-btn" id="m-create-room">Create a room</button>
     <button class="btn menu-btn" id="m-join-room">Join a room</button>
+    </div>
     <div class="menu-sub" id="menu-sub"></div>
     <div class="menu-note" id="menu-note"></div>
   </div>
 </div>
 <script>
-const RANKS = ["Apprentice AME","Licensed AME","Senior AME","Chief Inspector","Station Manager","Director of Maintenance"];
+const RANKS = ["Licensed Engineer (B1.1)","Certifying Shift Lead","Base Maintenance Manager","Quality Manager","Accountable Manager","Group Director of Maintenance"];
+const APPROVAL_NAME = {airframe:"A1 airframe and systems", powerplant:"engine work (B1 engine rating)", avionics:"avionics scope"};
 const MILESTONES = [
-  {jobs:8,  rep:52, bonus:15000,  text:"Eight clean sign offs and no comebacks. The chief inspector trusts your stamp now."},
-  {jobs:25, rep:62, bonus:50000,  unlock:"powerplant", text:"Powerplant rating approved. Engine work is yours to take on."},
-  {jobs:55, rep:70, bonus:150000, unlock:"avionics", wideBay:true, text:"Avionics rating signed off, and the hangar's been cleared for wide body C checks."},
-  {jobs:110,rep:78, bonus:400000, text:"Full MRO capability across the fleet types you see. The regulator has stopped sending surprise visits."},
-  {jobs:220,rep:85, bonus:1000000,text:"You run the station now. The name on the hangar door might as well be yours."}
+  {jobs:8,  rep:52, bonus:15000,  text:"Eight clean releases to service and no comebacks. You now lead the certifying staff on shift."},
+  {jobs:25, rep:62, bonus:50000,  unlock:"powerplant", text:"The CAA has extended your Part-145 approval to cover engine work. Engine work orders will now come in."},
+  {jobs:55, rep:70, bonus:150000, unlock:"avionics", wideBay:true, text:"Your approval scope now includes avionics, and the hangar is cleared for wide body base maintenance."},
+  {jobs:110,rep:78, bonus:400000, text:"Quality system audit closed with zero findings. You hold the Quality Manager post."},
+  {jobs:220,rep:85, bonus:1000000,text:"You are the Accountable Manager: the approval, the hangar and the name on the door."}
 ];
 const ACHIEVEMENTS = [
   {id:"first", title:"First Wrench Turn", desc:"Sign off your first check.", reward:500, cond:s=>s.jobsDone>=1},
@@ -857,8 +875,8 @@ function newState(){
     certs:{airframe:true, powerplant:false, avionics:false},
     wideBay:false,
     bays:[1,2,3,4].map(id=>({id,job:null,mech:null,progress:0,broken:false,repairIn:0,grounded:false})),
-    mechanics:[mkMech(3,["airframe"])],
-    candidates:[],
+    mechanics:[mkMech(3,"B1.1",["A320","B737"])],
+    candidates:[genCandidate("B1.1"), genCandidate("B2"), genCandidate()],
     queue:[],
     parts:60, partsBlocked:0,
     weatherSlow:0,
@@ -888,20 +906,55 @@ function newState(){
     log:[]
   };
 }
-function mkMech(skill, certs){
+/* UK Part-66 licensing: each engineer holds one licence category plus
+   aircraft type ratings. A job needs the right category AND the type. */
+const TYPE_NAME = { A320:"A320 family", B737:"B737 NG/MAX" };
+const LIC_NAME = { "B1.1":"B1.1 mechanical", "B2":"B2 avionics", "A":"Cat A line" };
+const TYPE_COURSE = { cost:12000, days:2 };
+function mkMech(skill, lic, types){
   const name = pick(FIRST)+" "+pick(LAST);
-  const wage = Math.round((400+skill*180)*(1+certs.length*0.25));
-  return {id:Math.random().toString(36).slice(2,9), name, skill, certs, wage, fatigue:0, sick:false, sickDays:0, xp:0};
+  const lm = lic==="A" ? 0.8 : lic==="B2" ? 1.2 : 1.25;
+  const wage = Math.round((400+skill*180)*lm*(1+0.12*(types.length-1)));
+  return {id:Math.random().toString(36).slice(2,9), name, skill, lic, types:types.slice(), wage, fatigue:0, sick:false, sickDays:0, xp:0};
+}
+function famType(fam){ return fam==="BOEING" ? "B737" : "A320"; }
+function licNeeded(job){ return job.tier==="AVI" ? "B2" : job.tier==="LINE" ? "A" : "B1.1"; }
+function qualProblem(m, job){
+  const need = licNeeded(job);
+  if(need==="B2" && m.lic!=="B2") return `${m.name} holds ${m.lic}; this is B2 avionics work`;
+  if(need==="B1.1" && m.lic!=="B1.1") return `${m.name} holds ${m.lic}; this needs a B1.1 licence`;
+  if(job.family){ const ty = famType(job.family); if(!(m.types||[]).includes(ty)) return `${m.name} has no ${TYPE_NAME[ty]} type rating`; }
+  return null;
+}
+function canCertify(m, job){ return !qualProblem(m, job); }
+function busyOff(m){ return m.sick || !!m.training; }
+function migrateMech(m){
+  if(!m.lic){
+    const c = m.certs||[];
+    m.lic = (c.includes("airframe")||c.includes("powerplant")) ? "B1.1" : c.includes("avionics") ? "B2" : "B1.1";
+    m.types = m.skill>=4 || m.contractor ? ["A320","B737"] : [m.name.length%2 ? "A320" : "B737"];
+    delete m.certs;
+  }
+  if(!m.types) m.types = ["A320"];
+}
+function genCandidate(lic){
+  const r = Math.random();
+  lic = lic || (r<0.2 ? "A" : r<0.65 ? "B1.1" : "B2");
+  const skill = lic==="A" ? rnd(1,3) : rnd(2,5);
+  const types = Math.random()<0.3 ? ["A320","B737"] : [pick(["A320","B737"])];
+  return mkMech(skill, lic, types);
+}
+function migrateState(){
+  s.mechanics.forEach(migrateMech);
+  (s.candidates||[]).forEach(migrateMech);
+  if(!s.candidates || !s.candidates.length) refreshCandidates();
 }
 function mkRival(name,bays,rep){
   return {id:Math.random().toString(36).slice(2,9), name, bays, rep, cash:40000+rnd(0,80000), jobsDone:rnd(5,80), partsMul:0.8+Math.random()*0.5};
 }
 function refreshCandidates(){
-  s.candidates = [1,2,3].map(()=>{
-    const skill = rnd(1,5);
-    const pool=["airframe","powerplant","avionics"].filter(()=>Math.random()<0.35);
-    return mkMech(skill, pool);
-  });
+  // always at least one B1.1 and one B2 on the list
+  s.candidates = [genCandidate("B1.1"), genCandidate("B2"), genCandidate()];
 }
 refreshCandidates();
 
@@ -949,10 +1002,11 @@ function tryAssign(jobId, bayId, mechId){
   if(bay.broken){toast("bad","That bay is out of service."); return;}
   if(bay.job){toast("bad","That bay is occupied."); return;}
   if(mech.sick){toast("bad",mech.name+" is off sick."); return;}
+  if(mech.training){toast("bad",mech.name+" is away on a type rating course."); return;}
   if(mech.job){toast("bad",mech.name+" is already on a job."); return;}
   if(job.wide && !s.wideBay){toast("bad","No wide body bay yet."); return;}
-  if(job.cert && !mech.certs.includes(job.cert)){toast("bad",mech.name+" is not rated for that check."); return;}
-  if(s.parts < job.parts){toast("bad","Not enough parts in stock for this job."); return;}
+  { const q = qualProblem(mech, job); if(q){ toast("bad", q+"."); return; } }
+  if(s.parts < job.parts){toast("bad",`Not enough consumables (seals, lockwire, fasteners): need ${job.parts}, have ${s.parts}.`); return;}
   s.parts -= job.parts;
   s.queue = s.queue.filter(j=>j.id!==jobId);
   bay.job = job; bay.progress = 0; bay.mech = mech.id; bay.awaitingAction = false;
@@ -999,6 +1053,7 @@ function tick(){
   for(const m of s.mechanics){
     if(!m.job){ m.fatigue = Math.max(0, m.fatigue-(s.upgrades&&s.upgrades.breakRoom?9:5)); }
     if(m.sick){ m.sickDays--; if(m.sickDays<=0){m.sick=false; addLog("good", m.name+" is back on shift.");} }
+    if(m.training){ m.training.hours--; if(m.training.hours<=0){ if(!m.types.includes(m.training.type)) m.types.push(m.training.type); notify("email","good",`Type rating issued: ${m.name}`,`${m.name} passed the ${TYPE_NAME[m.training.type]} type course and can now certify work on it.`); m.training=null; } }
   }
   const now = s.day*24+s.hour;
   s.queue = s.queue.filter(j=>{
@@ -1210,7 +1265,7 @@ function hireContractor(rivalId){
   const fee=2500+rnd(0,1500);
   if(s.cash<fee){toast("bad","Not enough cash.");return;}
   s.cash-=fee; ledgerAdd("trade",-fee);
-  const m=mkMech(rnd(2,4),["airframe"]); m.contractor=true; m.contractDaysLeft=1; m.name+=" (contractor)";
+  const m=mkMech(rnd(2,4),"B1.1",["A320","B737"]); m.contractor=true; m.contractDaysLeft=1; m.name+=" (contractor)";
   s.mechanics.push(m);
   addLog("info",`Hired a day contractor from ${r.name}: ${m.name}.`);
 }
@@ -1301,7 +1356,7 @@ function setListing(qty,price){
 }
 
 // ---------- rendering ----------
-const TABS = [["hangar","Hangar"],["mechanics","Mechanics"],["jobs","Job Queue"],["parts","Parts"],["map","Map"],["atc","ATC Tower"],["rivals","Rivals"],["network","Network"],["finance","Finance"],["bank","Bank"],["stats","Stats"],["career","Career"],["inbox","Inbox"]];
+const TABS = [["hangar","Hangar"],["mechanics","Mechanics"],["jobs","Job Queue"],["parts","Stores"],["map","Map"],["atc","ATC Tower"],["rivals","Rivals"],["network","Network"],["finance","Finance"],["bank","Bank"],["stats","Stats"],["career","Career"],["inbox","Inbox"]];
 function unreadCount(){ return s.inbox.filter(i=>!i.read).length; }
 function renderTabs(){
   document.getElementById("tabs").innerHTML = TABS.map(([id,name])=>
@@ -1373,9 +1428,11 @@ function renderHangar(){
 function renderMechanics(){
   const rows = s.mechanics.map(m=>`
     <div class="card"><div class="row between">
-      <span><b>${m.name}</b> ${stars(m.skill)} ${m.sick?'<span class="pill bad">sick</span>':m.job?'<span class="pill cyan">on job</span>':'<span class="pill good">idle</span>'}</span>
+      <span><b>${m.name}</b> ${stars(m.skill)} ${m.sick?'<span class="pill bad">sick</span>':m.training?'<span class="pill warn">on course</span>':m.job?'<span class="pill cyan">on job</span>':'<span class="pill good">idle</span>'}</span>
       <span class="muted">${money(m.wage)}/day</span></div>
-      <div class="row">${m.certs.map(c=>`<span class="pill cert">${c}</span>`).join("")||'<span class="muted">no ratings</span>'}</div>
+      <div class="row"><span class="pill cert">Part-66 ${LIC_NAME[m.lic]||m.lic}</span>${(m.types||[]).map(t=>`<span class="pill">${TYPE_NAME[t]}</span>`).join("")}</div>
+      ${m.training?`<div class="muted">On ${TYPE_NAME[m.training.type]} type course, back in ${Math.ceil(m.training.hours/24)} day(s).</div>`:""}
+      ${!m.contractor && !m.training ? Object.keys(TYPE_NAME).filter(t=>!(m.types||[]).includes(t)).map(t=>`<button class="btn" data-typecourse="${m.id}:${t}" ${m.job?'disabled title="Finish the current work order first"':''}>${TYPE_NAME[t]} type course (${money(TYPE_COURSE.cost)}, ${TYPE_COURSE.days} days)</button>`).join("") : ""}
       <div class="muted">Fatigue: ${m.fatigue}${m.fatigue>80?' (mistakes likely)':''}</div>
       <div class="bar ${m.fatigue>80?'red':m.fatigue>50?'amber':''}"><i style="width:${m.fatigue}%"></i></div>
       ${!m.contractor?`<div class="muted">Experience: ${m.skill>=5?'maxed out':Math.round((m.xp||0)/(m.skill*50)*100)+'% to '+(m.skill+1)+' stars'}</div><div class="bar good"><i style="width:${m.skill>=5?100:Math.min(100,(m.xp||0)/(m.skill*50)*100)}%"></i></div>`:''}
@@ -1384,23 +1441,28 @@ function renderMechanics(){
   const cand = s.candidates.map(c=>`
     <div class="card"><div class="row between">
       <span><b>${c.name}</b> ${stars(c.skill)}</span><span class="muted">${money(c.wage)}/day</span></div>
-      <div class="row">${c.certs.map(x=>`<span class="pill cert">${x}</span>`).join("")||'<span class="muted">no ratings yet</span>'}</div>
+      <div class="row"><span class="pill cert">Part-66 ${LIC_NAME[c.lic]||c.lic}</span>${(c.types||[]).map(t=>`<span class="pill">${TYPE_NAME[t]}</span>`).join("")}</div>
       <button class="btn primary" data-hire="${c.id}">Hire</button>
     </div>`).join("");
-  return `<h2 class="title">Mechanics (${s.mechanics.length})</h2><div class="grid">${rows}</div>
+  return `<h2 class="title">Certifying staff (${s.mechanics.length})</h2>
+  <p class="muted">UK Part-66: B1.1 engineers certify mechanical, engine and line work, B2 engineers certify avionics, Cat A covers simple line tasks. Every release also needs a type rating for the aircraft family.</p>
+  <div class="grid">${rows}</div>
   <h2 class="title">Candidates</h2><div class="grid">${cand}</div>`;
 }
 function renderParts(){
-  return `<h2 class="title">Parts Inventory</h2>
-  <div class="card"><div class="row between"><b>On the shelf</b><span>${s.parts} units</span></div>
-  <div class="bar ${s.parts<15?'red':''}"><i style="width:${Math.min(100,s.parts)}%"></i></div>
+  const lo = s.rivals&&s.rivals.length ? Math.min(...s.rivals.map(rivalPartsPrice)) : 152;
+  return `<div id="stRoot"><h2 class="title">Stores</h2>
+  <div class="card"><div class="row between"><b>Consumables</b><span>${s.parts} kits</span></div>
+  <div class="bar ${s.parts<10?'red':''}"><i style="width:${Math.min(100,s.parts)}%"></i></div>
   ${s.partsBlocked>0?`<p class="warn">Shipment delayed, restocking blocked for ${s.partsBlocked}h.</p>`:""}
+  <p class="muted" style="margin:6px 0">Seals, O-rings, lockwire, fasteners and sealant. A rack swap takes 1 kit, hydraulic, engine accessory and flight control jobs take 3. Rotable parts (the actual units) are tracked by P/N and S/N below.</p>
   <div class="row" style="margin-top:8px">
-    <button class="btn" data-buy="10">+10 (£${10*180})</button>
-    <button class="btn" data-buy="50">+50 (£${50*170})</button>
-    <button class="btn" data-buy="150">+150 (£${150*160})</button>
-  </div></div>
-  <p class="muted">Each job consumes parts on assignment. Run dry and you cannot take on work. Rivals and live companies (Rivals / Network tabs) sometimes sell cheaper.</p>`;
+    <button class="btn" data-buy="10">Buy 10 · ${money(1500)} (£150 ea)</button>
+    <button class="btn" data-buy="50">Buy 50 · ${money(6900)} (£138 ea)</button>
+    <button class="btn" data-buy="150">Buy 150 · ${money(18750)} (£125 ea)</button>
+  </div>
+  <p class="muted" style="font-size:11px">Cheapest rival right now: £${lo} a kit (Rivals tab).</p></div>
+  ${mxStoresHtml()}</div>`;
 }
 /* =========================================================
    UK NETWORK MAP -- vector console.
@@ -1870,8 +1932,9 @@ window.mapRateOf = rateOf;
    kept in a private map and patched every frame, and the tab is
    NOT rebuilt by the hourly render() so clicks never race a
    rebuild. Movement runs on the game's own Pause/1x/2x/4x speed
-   while the ATC tab is open. Every completed movement pays a
-   handling fee into revenue and nudges reputation.
+   while the ATC tab is open. It is a free-play mini-game: NATS
+   controls Heathrow, not the MRO, so movements earn no cash or
+   reputation. The tower clock shows the game clock.
    Westerly ops: 27R (north) arrivals, 27L (south) departures.
    Headings in SVG degrees: 0 east, 90 south, 180 west, 270 north.
    ========================================================= */
@@ -2049,10 +2112,10 @@ function spawnDeparture(){
   return f;
 }
 function pay(f, what){
-  const fee = rnd(150,420);
-  s.cash += fee; ledgerAdd("revenue", fee); s.rep = Math.min(100, s.rep+0.3); s.atcMov++;
-  addLog("good", `ATC: ${f.call} ${what} at Heathrow. Handling fee ${money(fee)}.`);
+  // free play: count the movement, no money or reputation
+  s.atcMov++;
 }
+function gameClock(){ const t = s.hour + Math.min(0.999, (s.tickAcc||0)/(6000/(s.speed||1))), hr = Math.floor(t)%24, mi = Math.floor((t%1)*60); return `D${s.day} ${String(hr).padStart(2,"0")}:${String(mi).padStart(2,"0")}`; }
 
 /* ---------- runway protection ---------- */
 function rollOnRunway(f){ return others(f).some(o=> o.state==="TAKEOFF_ROLL" || (o.state==="LINEUP" && o.autoRoll)); }
@@ -2475,7 +2538,7 @@ function renderDrawer(force){
 
 /* ---------- tower log ---------- */
 function log(level, call, text){
-  s.atcLog.unshift({t:fmtClock(s.atcTime), level, call, text});
+  s.atcLog.unshift({t:gameClock(), level, call, text});
   if(s.atcLog.length>80) s.atcLog.length=80;
   if(!logOpen) unread++;
   renderLog();
@@ -2570,7 +2633,8 @@ window.renderAtc = function(){
     <div class="atc-bar">
       <div class="atc-brand">EGLL<span> TOWER</span></div>
       <div class="atc-sub">LONDON HEATHROW &#183; GROUND RADAR</div>
-      <div class="atc-clock" id="atcClock">${fmtClock(s.atcTime)}</div>
+      <div class="atc-clock" id="atcClock">${gameClock()}</div>
+      <div class="atc-rb" title="NATS runs Heathrow. This tower is a free-play mini-game: no money or reputation."><span>FREE PLAY</span></div>
       <div class="atc-rb dep" id="atcBadgeDep"><span class="dot"></span><span id="atcBadgeDepTxt">27L &#183; DEPARTURES ACTIVE</span></div>
       <div class="atc-rb arr" id="atcBadgeArr"><span class="dot"></span><span id="atcBadgeArrTxt">27R &#183; ARRIVALS ACTIVE</span></div>
       <div class="atc-stats" id="atcStats"></div>
@@ -2620,7 +2684,7 @@ window.atcPaint = function(now){
   renderDrawer(false);
   if(now-lastSlow > 250){
     lastSlow = now;
-    $("atcClock").textContent = fmtClock(s.atcTime);
+    $("atcClock").textContent = gameClock();
     $("atcStats").innerHTML = `MVTS <b>${s.atcMov}</b> &#183; GA <b>${s.atcGA}</b>`;
     const depBusy = FL().some(o=>o.state==="TAKEOFF_ROLL"||o.state==="CROSSING"||(o.state==="LINEUP"&&o.autoRoll));
     const luw = FL().some(o=>o.state==="LINED_UP");
@@ -2878,40 +2942,251 @@ function diagFor(comp){
   return { evidence:T.ev, options, correct:options.indexOf(T.ok) };
 }
 
-/* ---------- tools and timed procedure ---------- */
-const TOOLS = ["CB collars and tags","Panel removal kit","Gear safety pins","Connector pliers","Socket set","Torque wrench","Safety wire pliers","Hydraulic ground cart","MCDU (Airbus CFDS)","CDU BITE (737)"];
-const TOOL_INFO = { "CB collars and tags":"isolation", "Panel removal kit":"access", "Gear safety pins":"gear access", "Connector pliers":"electrical",
-  "Socket set":"fasteners", "Torque wrench":"installation", "Safety wire pliers":"locking", "Hydraulic ground cart":"pressure", "MCDU (Airbus CFDS)":"Airbus test", "CDU BITE (737)":"Boeing test" };
+/* ---------- tools and per-family procedures (step h = game hours) ---------- */
+const TOOLS = ["CB collars and tags","Panel removal kit","Gear safety pins","ESD wrist strap","Hand-tight (no tool)","Connector pliers",
+  "Socket set","Torque wrench","Safety wire pliers","Hydraulic ground cart","Jacks (axle / aircraft)","Oil service cart",
+  "Rigging pins and protractor","Pitot-static test set","Feeler gauges","Engine run (idle)","MCDU (Airbus CFDS)","CDU BITE (737)"];
+const TOOL_HINT_COST = 75, INSPECTOR_FEE = 650;
 const TORQUE = { lru:3.4, pump:26, valve:14, actuator:85, sensor:4, probe:6, wear:60, gen:13, chip:34, accum:120 };
-const HOURS = { lru:1.5, sensor:1.5, probe:1.5, valve:2.5, pump:3, actuator:3, wear:2, gen:3.5, chip:3.5, accum:2.5 };
+const RACK_KEYS = ["GEARIND","BRAKECOMP","FLAPCOMP"];
+const PF_NAME = { rack:"Rack-mounted avionics LRU", englru:"Engine-mounted LRU", engmech:"Engine accessory", hyd:"Hydraulic component",
+  flight:"Flight control (independent inspection)", brake:"Wheel and brake", sensor:"Sensor / probe" };
+const PF_CONSUM = { rack:1, sensor:1, brake:2, englru:2, hyd:3, engmech:3, flight:3 };
+function procFamily(comp){
+  const eng = comp.zone==="ENG1"||comp.zone==="ENG2";
+  if(comp.kind==="lru" && (comp.zone==="CKPT" || RACK_KEYS.includes(comp.key))) return "rack";
+  if(comp.zone==="FLT") return "flight";
+  if(eng) return comp.key==="ECU" ? "englru" : (comp.key==="FFT"||comp.key==="EGT") ? "sensor" : "engmech";
+  if(comp.key==="BRAKE"||comp.key==="TACH") return "brake";
+  if(comp.key==="PITOT"||comp.key==="PROX") return "sensor";
+  return "hyd";
+}
+/* AMM chapter-section per component key, by family */
+const AMMSEC = {
+  AIRBUS:{ CDU:"22-82", FMS:"22-83", WARN:"31-52", DAQ:"31-54", ADIRU:"34-13", PITOT:"34-11", FCTLCOMP:"27-93", SPLCOMP:"27-94",
+    EMP1:"29-12", EMP2:"29-12", PTU:"29-23", PTX:"29-32", PRIO:"29-14", ACC:"32-44", FSOV:"29-11", RAT:"29-22", LMV:"29-11",
+    GEARIND:"32-69", BRAKECOMP:"32-42", STEER:"32-51", MLGACT:"32-31", BRAKE:"32-42", TACH:"32-42", PROX:"32-69", BRKVLV:"32-42", UPLOCK:"32-31",
+    FLAPCOMP:"27-51", AIL:"27-14", ELEV:"27-34", SPL:"27-64", STAB:"27-44", RUD:"27-24", FLAPDRV:"27-54", WTB:"27-84", RUDTRIM:"27-22",
+    ECU:"73-21", HMU:"73-21", FFT:"73-31", SAV:"80-11", STARTER:"80-11", EDP:"29-11", IDG:"24-21", EGT:"77-21", BLEED:"36-11" },
+  BOEING:{ CDU:"34-61", FMS:"34-61", WARN:"31-62", DAQ:"31-31", ADIRU:"34-21", PITOT:"34-11", FCTLCOMP:"22-11", SPLCOMP:"27-32",
+    EMP1:"29-11", EMP2:"29-11", PTU:"29-22", PTX:"29-31", STBYP:"29-21", ACC:"32-44", FSOV:"29-11", LGTU:"29-22", PTXB:"29-31",
+    GEARIND:"32-09", BRAKECOMP:"32-42", STEER:"32-51", MLGACT:"32-31", BRAKE:"32-42", TACH:"32-42", PROX:"32-09", BRKVLV:"32-42", UPLOCK:"32-31",
+    FLAPCOMP:"27-58", AIL:"27-11", ELEV:"27-31", SPL:"27-61", STAB:"27-41", RUD:"27-21", FLAPDRV:"27-51", STBYRUD:"27-21", APAIL:"22-11",
+    ECU:"73-21", HMU:"73-21", FFT:"73-31", SAV:"80-11", STARTER:"80-11", EDP:"29-11", IDG:"24-11", EGT:"77-21", BLEED:"36-11" }
+};
+function ammFor(fam, comp){
+  const sec = (AMMSEC[fam]||{})[comp.key] || `${comp.ata}-00`;
+  const sub = p2(11 + hh(fam+comp.key)%38);
+  return { rem:`${sec}-${sub}-000-801`, ins:`${sec}-${sub}-400-801`, sec };
+}
 function procFor(model, comp, zd){
   const M = MODELS[model], A = M.family==="AIRBUS";
-  const elec = ["lru","sensor","probe"].includes(comp.kind);
-  const hyd = ["pump","valve","actuator","accum","wear","chip"].includes(comp.kind) && comp.zone!=="ENG1" && comp.zone!=="ENG2";
-  const eng = comp.zone==="ENG1"||comp.zone==="ENG2";
+  const pf = procFamily(comp), N = comp.name;
   const cb = A ? `${1+hh(comp.id)%9}${comp.code.replace(/^FIN /,"").replace(/[^A-Z0-9]/g,"").slice(-3)}` : `P${6+hh(comp.id)%3}-${1+hh(comp.id)%5} ${String.fromCharCode(65+hh(comp.name)%8)}${1+hh(comp.key)%20}`;
-  const tq = TORQUE[comp.kind];
-  const test = A ? "MCDU (Airbus CFDS)" : "CDU BITE (737)";
-  return [
-    { ph:"Removal", tool:"CB collars and tags", dur:2.5,
-      text: eng ? `Fit DO NOT OPERATE tags, pull ${comp.name} CB ${cb}` : hyd ? `Depressurise the hydraulic system, pull CB ${cb}, tag the controls` : `Pull CB ${cb} and fit a CB collar` },
-    { ph:"Removal", tool: comp.zone==="GEAR" ? "Gear safety pins" : "Panel removal kit", dur:3, text: zd.access },
-    { ph:"Removal", tool: elec ? "Connector pliers" : "Socket set", dur:3,
-      text: elec ? `Disconnect the ${comp.name} connectors and fit dust caps` : `Disconnect and cap the ${comp.kind==="wear"?"brake lines and wear sensor":"lines"}, drain residual fluid` },
-    { ph:"Removal", tool:"Socket set", dur:4, text: comp.kind==="lru" ? `Release the rack hold-downs and remove the ${comp.name}` : `Remove the ${comp.name} mounting bolts and lift the unit out` },
-    { ph:"Installation", tool:"Torque wrench", dur:4, text:`Install the new ${comp.name}, torque the mountings to ${tq} Nm` },
-    { ph:"Installation", tool: elec ? "Connector pliers" : "Torque wrench", dur:3,
-      text: elec ? `Reconnect the connectors and check pin engagement` : `Reconnect the lines, torque the B-nuts to ${Math.round(tq*0.6+8)} Nm` },
-    { ph:"Installation", tool:"Safety wire pliers", dur:3, text:`Lockwire the fasteners and connectors per standard practices` },
-    { ph:"Installation", tool: hyd ? "Hydraulic ground cart" : (eng ? "Panel removal kit" : "CB collars and tags"), dur:3.5,
-      text: hyd ? `Pressurise from the ground cart and leak check for 5 minutes` : eng ? `Close the cowls, remove the tags, reset CB ${cb}` : `Remove the CB collar and restore power` },
-    { ph:"Test", tool:test, dur:4.5,
-      text: A ? `Run the ${comp.name} system test through the MCDU CFDS menu` : `Run the ${comp.name} BITE test from the CDU maintenance pages` }
-  ];
+  const tq = TORQUE[comp.kind], tb = Math.round(tq*0.6+8);
+  const T = A ? "MCDU (Airbus CFDS)" : "CDU BITE (737)", tn = A ? "MCDU CFDS" : "CDU maintenance pages";
+  const sysN = comp.sys ? (A ? {G:"Green",B:"Blue",Y:"Yellow"}[comp.sys] : {A:"System A",BB:"System B",S:"Standby"}[comp.sys]) : (A?"Green":"System A");
+  const S = (ph, tool, h, text, extra)=>Object.assign({ ph, tool, h, dur:+(h*6).toFixed(2), text }, extra||{});
+  let st;
+  if(pf==="rack"){
+    const bay = ZD[M.family].CKPT.access, rack = A ? `${80+hh(comp.key)%20}VU` : `E${1+hh(comp.key)%4}-${1+hh(comp.id)%5}`;
+    st = [
+      S("Removal","CB collars and tags",0.1,`Open CB ${cb}, fit a CB collar and tag the cockpit`),
+      S("Removal","Panel removal kit",0.2,`${bay}. The ${N} lives in rack ${rack}, not in the ${comp.zone==="CKPT"?"cockpit":ZONE_LABEL[comp.zone].toLowerCase()}`),
+      S("Removal","ESD wrist strap",0.1,`Put on the ESD wrist strap and clip it to the rack ground stud before touching the unit`),
+      S("Removal","Hand-tight (no tool)",0.2,`Undo the knurled hold-down nuts by hand, slide the ${N} out and cap the rear connector`),
+      S("Installation","Hand-tight (no tool)",0.2,`Slide the new unit in to seat the rear connector, tighten the hold-downs hand-tight only`),
+      S("Installation","CB collars and tags",0.1,`Remove the collar and close CB ${cb}`),
+      S("Test",T,0.6,`Check the software P/N on the ${tn}, then run the ${N} BITE / system test`)
+    ];
+  } else if(pf==="englru"){
+    st = [
+      S("Removal","CB collars and tags",0.2,`Pull the ${A?"FADEC":"EEC"} CBs ${cb}, fit DO NOT OPERATE tags on the engine master / start lever`),
+      S("Removal","Panel removal kit",0.4,zd.access),
+      S("Removal","ESD wrist strap",0.1,`Wear the ESD wrist strap, the ${N} is ESD sensitive`),
+      S("Removal","Connector pliers",0.4,`Disconnect the harness connectors J1 to J10 and fit dust caps`),
+      S("Removal","Socket set",0.4,`Remove the isolator mount bolts and lift off the ${N}`),
+      S("Installation","Torque wrench",0.5,`Install the new unit, torque the mount bolts to ${tq} Nm`),
+      S("Installation","Connector pliers",0.4,`Reconnect the harness, check pin engagement and backshell security`),
+      S("Installation","Panel removal kit",0.3,`Close the fan cowls and check every latch is engaged`),
+      S("Test",T,0.8,`Load and confirm the software, run the ${A?"FADEC":"EEC"} test and a dry motor through the ${tn}`)
+    ];
+  } else if(pf==="engmech"){
+    const fluid = { HMU:"fuel", SAV:"air", BLEED:"air", STARTER:"oil", IDG:"oil", EDP:"hydraulic" }[comp.key] || "fuel";
+    st = [
+      S("Removal","CB collars and tags",0.2,`Fit DO NOT OPERATE tags, pull CB ${cb}`),
+      S("Removal","Panel removal kit",0.4,zd.access),
+      S("Removal","Socket set",0.5, fluid==="air" ? `Undo the duct V-band clamps and disconnect the electrical connector` : fluid==="oil" ? `Drain the oil, disconnect and cap the oil lines` : `Disconnect and cap the ${fluid} lines, catch the residual fluid, discard the O-rings`),
+      S("Removal","Socket set",0.5,`Remove the ${N} (${comp.key==="IDG"||comp.key==="STARTER"?"QAD ring":"mount bolts"})`),
+      S("Installation","Torque wrench",0.6,`Install the new ${N} with a new ${fluid==="air"?"gasket":"set of O-rings"}, torque to ${tq} Nm`),
+      S("Installation","Torque wrench",0.4,`Reconnect the ${fluid==="air"?"ducts, torque the V-band clamps":"lines, torque the B-nuts"} to ${tb} Nm`)
+    ];
+    if(fluid!=="air") st.push(S("Installation","Safety wire pliers",0.2,`Lockwire the ${fluid} line B-nuts (engine fluid lines are lockwired)`));
+    if(fluid==="oil") st.push(S("Installation","Oil service cart",0.3,`Service the ${N} with oil to the full mark`));
+    st.push(S("Installation","Panel removal kit",0.3,`Close the fan cowls and check the latches`));
+    st.push(S("Test","Engine run (idle)",0.8,`Ground run at idle, leak check the ${N} and confirm parameters on the ${tn}`));
+  } else if(pf==="hyd"){
+    const gear = comp.zone==="GEAR", swing = ["MLGACT","UPLOCK"].includes(comp.key);
+    st = [
+      S("Removal","CB collars and tags",0.3,`Pull CB ${cb}, depressurise the ${sysN} system and tag the pump switches`),
+      S("Removal",gear?"Gear safety pins":"Panel removal kit",0.3,gear?`Install the landing gear safety pins, open the wheel well access`:zd.access),
+      S("Removal","Socket set",0.4,`Disconnect the hydraulic lines, fit blanking caps, catch the residual fluid`),
+      S("Removal","Socket set",0.4,`Remove the mounting bolts and the ${N}`),
+      S("Installation","Torque wrench",0.5,`Fit new O-rings, install the new unit, torque the mountings to ${tq} Nm`),
+      S("Installation","Torque wrench",0.3,`Reconnect the lines, torque the B-nuts to ${tb} Nm and torque-stripe them`),
+      S("Installation","Hydraulic ground cart",0.6,`Pressurise ${sysN} from the ground cart to 3,000 psi, bleed the air, leak check the fittings for 5 minutes`)
+    ];
+    if(swing) st.push(S("Test","Jacks (axle / aircraft)",0.8,`Jack the aircraft and do a gear retraction and extension test`));
+    st.push(S("Test",T,0.4,`Run the ${N} system test on the ${tn} and check the ${sysN} reservoir level`));
+  } else if(pf==="flight"){
+    const hydU = comp.sys && comp.kind!=="lru";
+    st = [
+      S("Removal","CB collars and tags",0.3,`Pull CB ${cb}${hydU?`, depressurise ${sysN}`:""}, tag the controls DO NOT OPERATE`),
+      S("Removal","Panel removal kit",0.4,zd.access),
+      S("Removal",hydU?"Socket set":"Connector pliers",0.3,hydU?`Disconnect and cap the hydraulic lines`:`Disconnect the electrical connector and fit a dust cap`),
+      S("Removal","Socket set",0.6,`Remove the attach bolts and the ${N}`),
+      S("Installation","Torque wrench",0.6,`Install the new unit, torque the attach bolts to ${tq} Nm`),
+      S("Installation",hydU?"Torque wrench":"Connector pliers",0.3,hydU?`Reconnect the lines, torque the B-nuts to ${tb} Nm`:`Reconnect the connector`),
+      S("Installation","Safety wire pliers",0.2,`Lockwire the rod-end jam nut and the attach bolt`)
+    ];
+    if(hydU) st.push(S("Installation","Hydraulic ground cart",0.5,`Pressurise ${sysN}, bleed and leak check the unit`));
+    st.push(S("Test","Rigging pins and protractor",0.8,`Rig the surface: neutral with the rigging pins, then full range of travel with the protractor`));
+    st.push(S("Test","INSPECT",0.4,`Independent inspection: a second qualified person checks full and free movement, sense, range and locking`, { insp:true }));
+    st.push(S("Test",T,0.4,`Run the flight control system test on the ${tn}`));
+  } else if(pf==="brake"){
+    const brk = comp.key==="BRAKE";
+    st = [
+      S("Removal","CB collars and tags",0.2,`Chock the other wheels, park brake OFF, pull CB ${cb}${brk?", depressurise the brakes":""}`),
+      S("Removal","Gear safety pins",0.1,`Install the landing gear safety pins`),
+      S("Removal","Jacks (axle / aircraft)",0.3,`Jack the axle until the tyre clears the ground`),
+      S("Removal","Socket set",0.4,brk?`Remove the axle nut lock bolt and the axle nut, roll off the wheel`:`Remove the hubcap and the tacho drive coupling`),
+      S("Removal",brk?"Socket set":"Connector pliers",0.3,brk?`Disconnect and cap the brake line, remove the brake assembly`:`Disconnect the connector and withdraw the tachometer`),
+      S("Installation",brk?"Torque wrench":"Socket set",0.3,brk?`Install the new brake, torque the attach bolts to ${tq} Nm`:`Install the new tachometer and the drive coupling`)
+    ];
+    if(brk) st.push(S("Installation","Torque wrench",0.3,`Refit the wheel, torque the axle nut while rotating, back off to final torque`));
+    st.push(S("Installation","Safety wire pliers",0.1,brk?`Fit the axle nut lock bolt and safety it`:`Lockwire the hubcap screws`));
+    if(brk) st.push(S("Installation","Hydraulic ground cart",0.3,`Bleed the brake and leak check the line`));
+    st.push(S("Installation","Jacks (axle / aircraft)",0.1,`Lower the axle and remove the jack`));
+    st.push(S("Test",T,0.3,`Run the brake and anti-skid test on the ${tn}`));
+  } else {
+    const k = comp.key, eng = comp.zone==="ENG1"||comp.zone==="ENG2";
+    if(k==="PITOT") st = [
+      S("Removal","CB collars and tags",0.2,`Pull probe heat CB ${cb} and let the probe cool`),
+      S("Removal","Socket set",0.3,`Remove the probe attach screws, disconnect the pneumatic lines and the connector`),
+      S("Installation","Torque wrench",0.2,`Install the new probe, torque the screws to ${tq} Nm`),
+      S("Installation","Connector pliers",0.1,`Reconnect the heater connector`),
+      S("Test","Pitot-static test set",0.5,`Connect the pitot-static test set and leak check the system`),
+      S("Test",T,0.2,`Run the probe heat test on the ${tn}`)];
+    else if(k==="PROX") st = [
+      S("Removal","CB collars and tags",0.1,`Pull CB ${cb} and tag it`),
+      S("Removal","Gear safety pins",0.1,`Install the landing gear safety pins`),
+      S("Removal","Connector pliers",0.2,`Disconnect the sensor connector`),
+      S("Removal","Socket set",0.2,`Remove the sensor from its bracket`),
+      S("Installation","Torque wrench",0.2,`Install the new sensor, torque the jam nut to ${tq} Nm`),
+      S("Installation","Feeler gauges",0.3,`Set the target gap to ${(1.8+hh(comp.id)%6/10).toFixed(1)} mm with the feeler gauges`),
+      S("Installation","Connector pliers",0.1,`Reconnect the connector`),
+      S("Test",T,0.3,`Run the ${A?"LGCIU":"PSEU"} test on the ${tn}`)];
+    else st = [
+      S("Removal","CB collars and tags",0.2,`Fit DO NOT OPERATE tags, pull CB ${cb}`),
+      S("Removal","Panel removal kit",0.4,eng?zd.access:`Open the access panel`),
+      S("Removal","Connector pliers",0.2,`Disconnect the ${N} connector`),
+      S("Removal","Socket set",0.3,k==="FFT"?`Disconnect and cap the fuel lines, remove the transmitter`:`Remove the ${N} attach hardware`),
+      S("Installation","Torque wrench",0.3,`Install the new unit, torque to ${tq} Nm`),
+      S("Installation","Safety wire pliers",0.2,k==="FFT"?`Lockwire the fuel line B-nuts`:`Lockwire the harness connectors`),
+      S("Installation","Panel removal kit",0.3,eng?`Close the fan cowls`:`Close the access panel`),
+      S("Test",eng&&k==="FFT"?"Engine run (idle)":T,0.5,eng&&k==="FFT"?`Ground run at idle, leak check and confirm fuel flow`:`Confirm the indication on the ${tn}`)];
+  }
+  return st;
 }
+function procHours(proc){ return +proc.reduce((a,x)=>a+x.h,0).toFixed(1); }
+
+/* ---------- IPC, stores inventory, Form 1 and ordering ---------- */
+const PRICE = { lru:6500, pump:9000, valve:4200, actuator:11000, sensor:1200, probe:2800, wear:5200, gen:14000, chip:9500, accum:4800 };
+const SOURCES = {
+  OEM:   { name:"OEM direct",    lead:36, mult:1.0,  bogus:0 },
+  POOL:  { name:"Pool exchange", lead:12, mult:1.2,  bogus:0.03 },
+  BROKER:{ name:"Parts broker",  lead:8,  mult:0.75, bogus:0.30 },
+  AOG:   { name:"AOG desk",      lead:3,  mult:2.6,  bogus:0 }
+};
+const VENDORS = [["Hangar Components Ltd","UK.145.01287"],["Northfield Aero Spares","UK.145.00912"],["Severn Avionics Ltd","UK.145.01544"],
+  ["Kestrel Aerospace Repair","UK.145.00377"],["Thames Rotables","UK.145.01802"],["Pennine Hydraulics","UK.145.00641"]];
+const SIGNERS = ["J. Rowe","A. Patel","M. Okafor","S. Lindqvist","R. Hughes","K. Brennan","D. Moss"];
+function rid(){ return Math.random().toString(36).slice(2,9); }
+function rsn(){ return `${String.fromCharCode(65+Math.floor(Math.random()*26))}${String.fromCharCode(65+Math.floor(Math.random()*26))}${10000+Math.floor(Math.random()*89999)}`; }
+function stemOf(pn){ const m = pn.match(/^(.*?)(\d\d)$/); return m ? m[1] : pn; }
+function ipcFor(fam, comp, grp){
+  const stem = stemOf(pnFor(fam, comp, grp)), h = hh(stem);
+  const mod = fam==="AIRBUS" ? `MOD ${30000+h%9999}` : `SB 737-${comp.ata}-${1000+h%899}`;
+  return { stem, mod, fig:`IPC ${ammFor(fam,comp).sec}-${p2(10+h%80)} FIG ${1+h%9} ITEM ${10*(1+(h>>>4)%20)}`,
+    rows:[ { dash:"03", rem:`Superseded by -05. Do not install.` },
+           { dash:"04", rem:`Pre-${mod} aircraft only.` },
+           { dash:"05", rem:`Current standard. Replaces -03 and -04 (one-way).` } ] };
+}
+function modEmbodied(tail, stem){ return hh(tail+"|"+stem)%100 < 55; }
+function mkItem(fam, comp, grp, dash, o){
+  o = o || {};
+  const ipc = ipcFor(fam, comp, grp), pn = ipc.stem+dash, sn = rsn(), v = VENDORS[Math.floor(Math.random()*VENDORS.length)];
+  const status = o.src==="OEM direct" ? "NEW" : ["OVERHAULED","REPAIRED","INSPECTED/TESTED"][Math.floor(Math.random()*3)];
+  const it = { id:rid(), pn, sn, fam, key:comp.key, kind:comp.kind, grp, name:comp.name, dash, mod:ipc.mod,
+    cost: Math.round(PRICE[comp.kind]*(dash==="04"?0.85:dash==="03"?0.7:1)*(o.mult||1)), paid:!!o.paid, src:o.src||"Stores stock", loc:"shelf", bogus:null,
+    f1:{ trk:`${v[1].slice(-5)}-${1000+Math.floor(Math.random()*8999)}`, org:v[0], appr:v[1], desc:comp.name.toUpperCase(), pn, sn, status,
+      rem: dash==="05" ? `${ipc.mod} EMBODIED` : "NIL", sign:SIGNERS[Math.floor(Math.random()*SIGNERS.length)], date:`DAY ${Math.max(1,(s.day||1)-Math.floor(Math.random()*40))}` } };
+  if(Math.random() < (o.bogus||0)) makeBogus(it);
+  return it;
+}
+function makeBogus(it){
+  const r = Math.floor(Math.random()*5);
+  if(r===0){ it.f1.pn = it.pn.slice(0,-2)+(it.dash==="05"?"04":"05"); it.bogus = "Form 1 block 8 P/N does not match the data plate"; }
+  else if(r===1){ it.f1.sn = rsn(); it.bogus = "Form 1 block 10 S/N does not match the data plate"; }
+  else if(r===2){ it.f1.appr = ""; it.bogus = "No approval reference in block 14c"; }
+  else if(r===3){ it.f1.sign = ""; it.bogus = "The Form 1 is not signed"; }
+  else { it.f1.status = "AS REMOVED"; it.bogus = "Block 11 says AS REMOVED, which is not a release to service"; }
+}
+function randDash(){ const r = Math.random(); return r<0.22 ? "03" : r<0.52 ? "04" : "05"; }
+function seedStores(n){
+  for(let i=0;i<n;i++){
+    const [tail, model] = FLEET[Math.floor(Math.random()*FLEET.length)];
+    const zd = zoneData(model, ZONES[Math.floor(Math.random()*ZONES.length)]);
+    const c = zd.comps[Math.floor(Math.random()*zd.comps.length)];
+    s.stores.push(mkItem(MODELS[model].family, c, groupOf(model, c), randDash(), { bogus:0.12 }));
+  }
+}
+function seedForJob(job, comp){
+  // what the stores system already holds under this description: sometimes the right unit, often a near miss
+  const fam = job.family, sib = { CFM5B:"V2500", V2500:"CFM5B", CFM7B:"LEAP1B", LEAP1B:"CFM7B", A320G:"A321G", A321G:"A320G" }[job.grp];
+  if(Math.random()<0.5) s.stores.push(mkItem(fam, comp, job.grp, randDash(), { bogus:0.12 }));
+  if(sib && Math.random()<0.4) s.stores.push(mkItem(fam, comp, sib, "05", { bogus:0.05 }));
+  if(Math.random()<0.3){
+    const om = fam==="AIRBUS" ? "737-800" : "A320", oz = zoneData(om, comp.zone), oc = oz && oz.comps.find(c=>c.key===comp.key);
+    if(oc) s.stores.push(mkItem(MODELS[om].family, oc, groupOf(om, oc), "05", { bogus:0.05 }));
+  }
+  const shelf = s.stores.filter(x=>x.loc==="shelf");
+  if(shelf.length>45){ const drop = shelf.slice(0, shelf.length-45).map(x=>x.id); s.stores = s.stores.filter(x=>!drop.includes(x.id)); }
+}
+function shelfFor(job){ const comp = compOf(job.model, job.zone, job.comp); return s.stores.filter(x=>x.loc==="shelf" && x.key===comp.key); }
+function fillJob(job, comp, zd){
+  const M = MODELS[job.model], amm = ammFor(M.family, comp), ipc = ipcFor(M.family, comp, job.grp);
+  job.pf = procFamily(comp);
+  job.proc = procFor(job.model, comp, zd);
+  if(s.upgrades && s.upgrades.diagRig) job.proc.forEach(x=>{ x.dur = +(x.dur*0.9).toFixed(2); });
+  job.hours = procHours(job.proc);
+  job.parts = Math.max(1, Math.round(PF_CONSUM[job.pf]*(s.upgrades&&s.upgrades.toolCrib?0.85:1)));
+  job.taskNo = amm.rem; job.taskIns = amm.ins;
+  job.stem = ipc.stem; job.mod = ipc.mod; job.ipcFig = ipc.fig; job.modEmb = modEmbodied(job.tail, ipc.stem);
+  job.pnOff = ipc.stem + (job.modEmb ? "05" : (hh(job.tail+comp.id)%2 ? "03" : "04"));
+  job.partCost = job.partCost || 0;
+  delete job.tray;
+}
+function upgradeJob(j){
+  const comp = compOf(j.model, j.zone, j.comp); if(!comp) return;
+  fillJob(j, comp, zoneData(j.model, j.zone));
+  const p = j.prog;
+  if(p.stage!=="diagnose" && p.stage!=="signoff"){ p.stage = "part"; p.stepIdx = 0; p.stepT = 0; p.running = false; p.pnOn = null; p.snOn = null; }
+}
+function orderCost(job, dash, src){ const comp = compOf(job.model, job.zone, job.comp); return Math.round(PRICE[comp.kind]*(dash==="04"?0.85:1)*SOURCES[src].mult); }
 
 /* ---------- state ---------- */
-const ui = { sel:null, view:"aircraft", comp:null, flash:null, zooming:false };
+const ui = { sel:null, view:"aircraft", comp:null, flash:null, zooming:false, item:null };
 let lastSig = {}, lastSlow = 0;
 function allJobs(){ return s.queue.concat(s.bays.filter(b=>b.job).map(b=>b.job)); }
 function bayOf(job){ return s.bays.find(b=>b.job && b.job.id===job.id) || null; }
@@ -2923,28 +3198,34 @@ function availability(extraClosed){
   return Math.round((FLEET.length-Object.keys(open).length)/FLEET.length*100);
 }
 function ensure(){
-  if(s.mx && s.mx.v===1) return;
-  // first run, or a save from the old task-card system: convert to model-matched work orders
-  let refund = 0;
-  s.queue = (s.queue||[]).filter(j=>j && j.mxv===1);
-  for(const b of s.bays){
-    if(b.job && b.job.mxv!==1){
-      refund += b.job.parts||0;
-      const m = s.mechanics.find(x=>x.id===b.mech); if(m) m.job = null;
-      b.job = null; b.mech = null; b.progress = 0; b.awaitingAction = false;
+  if(s.mx && s.mx.v===2) return;
+  s.stores = s.stores || []; s.orders = s.orders || [];
+  if(!s.mx){
+    // first run, or a save from the old task-card system: convert to model-matched work orders
+    let refund = 0;
+    s.queue = (s.queue||[]).filter(j=>j && j.mxv===1);
+    for(const b of s.bays){
+      if(b.job && b.job.mxv!==1){
+        refund += b.job.parts||0;
+        const m = s.mechanics.find(x=>x.id===b.mech); if(m) m.job = null;
+        b.job = null; b.mech = null; b.progress = 0; b.awaitingAction = false;
+      }
     }
+    s.parts += refund;
+    s.repairUI = null;
+    s.mx = { v:1, woSeq:24051, signoffs:0, clean:0, misdiag:0, mispick:0, toolErr:0 };
+    s.crs = s.crs || [];
   }
-  s.parts += refund;
-  s.repairUI = null;
-  s.mx = { v:1, woSeq:24051, signoffs:0, clean:0, misdiag:0, mispick:0, toolErr:0 };
-  s.crs = s.crs || [];
-  for(const z of ["GEAR","HYD","FLT"]){ const j = buildJob(null, 1, z); if(j) s.queue.push(j); }
+  if(!s.stores.length) seedStores(14);
+  for(const j of allJobs()) if(!j.pf) upgradeJob(j);
+  Object.assign(s.mx, { v:2, bogusFit:s.mx.bogusFit||0, bogusCaught:s.mx.bogusCaught||0, hints:s.mx.hints||0, insp:s.mx.insp||0 });
+  if(!allJobs().length) for(const z of ["GEAR","HYD","FLT"]){ const j = buildJob(null, 1, z); if(j) s.queue.push(j); }
 }
 
 /* ---------- work order generation (strictly per airframe) ---------- */
 const TIER_PAY = { LINE:1100, A:4300, AVI:5200, ENG:7400 };
 function tierFor(zone, comp){
-  if(zone==="CKPT") return "AVI";
+  if(zone==="CKPT") return comp.kind==="probe" ? "A" : "AVI";
   if(zone==="ENG1"||zone==="ENG2") return "ENG";
   if(["probe","sensor","wear"].includes(comp.kind)) return "LINE";
   return "A";
@@ -2973,7 +3254,6 @@ function buildJob(tierOverride, payMult, zoneOverride){
     }
     const h = hh(comp.id+model);
     const grp = groupOf(model, comp);
-    const hours = +(HOURS[comp.kind]*(s.upgrades&&s.upgrades.diagRig?0.9:1)).toFixed(2);
     const id = Math.random().toString(36).slice(2,9);
     const meta = TIER_META[tier] || {};
     const job = {
@@ -2981,8 +3261,8 @@ function buildJob(tierOverride, payMult, zoneOverride){
       key: aog ? "AOG" : tier, tier,
       taskNo:`${comp.ata}-${p2(10+h%80)}-${p2(1+(h>>>6)%60)}`,
       name:`${comp.name} defect`, trade: tier==="AVI"?"Avionics":tier==="ENG"?"Powerplant":tier==="LINE"?"General":"Systems",
-      hours, pay: Math.round(TIER_PAY[tier]*(0.9+Math.random()*0.3)*locMult*payMult*(aog?1.8:1)),
-      cert: meta.cert || null, parts: parts_for_hours(hours), wide:false,
+      hours:0, pay: Math.round(TIER_PAY[tier]*(0.9+Math.random()*0.3)*locMult*payMult*(aog?1.8:1)),
+      cert: meta.cert || null, parts:1, wide:false,
       errorCode: comp.msg, location: locLabel==="home station" ? "Hangar input" : `Line station ${locLabel}`,
       aircraft:`${model} ${tail} · ${airline} · ${locLabel}`, tail, airline, model, family:M.family,
       zone, comp:comp.id, ata:comp.ata, grp,
@@ -2990,33 +3270,15 @@ function buildJob(tierOverride, payMult, zoneOverride){
       spawnedAt: s.day*24+s.hour,
       deadline: aog ? s.day*24+s.hour+16 : null,
       diag: diagFor(comp),
-      proc: procFor(model, comp, zd),
-      tray: buildTray(model, comp, grp),
-      pnOff: pnFor(M.family, comp, grp), snOff: `${String.fromCharCode(65+h%26)}${String.fromCharCode(65+(h>>>5)%26)}${10000+(h>>>9)%89999}`,
-      prog:{ stage:"diagnose", stepIdx:0, stepT:0, running:false, pnOn:null, snOn:null, errors:0, finding:null }
+      snOff: `${String.fromCharCode(65+h%26)}${String.fromCharCode(65+(h>>>5)%26)}${10000+(h>>>9)%89999}`,
+      prog:{ stage:"diagnose", stepIdx:0, stepT:0, running:false, pnOn:null, snOn:null, errors:0, finding:null, hint:-1, inspector:null }
     };
+    fillJob(job, comp, zd);
+    seedForJob(job, comp);
     return job;
   }
   return null;
 }
-function buildTray(model, comp, grp){
-  const M = MODELS[model], fam = M.family, other = fam==="AIRBUS" ? "BOEING" : "AIRBUS";
-  const items = [];
-  const add = (f, c, g)=>{ const pn = pnFor(f, c, g); if(items.some(i=>i.pn===pn)) return; items.push({ pn, fam:f, key:c.key, grp:g, name:c.name, eff: modelsInGroup(f, c, g).join(" / ") || GRPL[g] }); };
-  add(fam, comp, grp);
-  const sib = { CFM5B:"V2500", V2500:"CFM5B", CFM7B:"LEAP1B", LEAP1B:"CFM7B", A320G:"A321G", A321G:"A320G" }[grp];
-  if(sib) add(fam, comp, sib);
-  const otherModel = other==="AIRBUS" ? "A320" : "737-800";
-  const oz = zoneData(otherModel, comp.zone);
-  const analog = oz.comps.find(c=>c.key===comp.key) || oz.comps[Math.floor(Math.random()*oz.comps.length)];
-  add(other, analog, groupOf(otherModel, analog));
-  const own = zoneData(model, comp.zone).comps.filter(c=>c.id!==comp.id);
-  const adj = shuffle(own);
-  add(fam, adj[0], groupOf(model, adj[0]));
-  if(items.length<4) add(fam, adj[1], groupOf(model, adj[1]));
-  return shuffle(items);
-}
-
 /* ---------- integrity check: never draw a mismatched airframe ---------- */
 function integrity(job){
   const M = MODELS[job.model];
@@ -3164,13 +3426,15 @@ function schematicSvg(job, zone, selId){
     const isF = c.id===job.comp;
     const cls = ["mx-comp", isF && !fixed ? "fault" : "", isF && fixed ? "fixed" : "", c.id===selId ? "sel" : ""].join(" ");
     const sysDot = c.sys ? `<circle cx="${c.x+56}" cy="${c.y-15}" r="3.5" fill="${SYSCOL[c.sys]}"/>` : "";
-    const nm = c.name.length>21 ? c.name.slice(0,20).replace(/[ ,(]+$/,"")+"…" : c.name;
+    const words = c.name.split(" "); let l1 = "", l2 = "";
+    for(const w of words){ if(!l2 && (l1+" "+w).trim().length<=19) l1 = (l1+" "+w).trim(); else l2 = (l2+" "+w).trim(); }
+    if(l2.length>21) l2 = l2.slice(0,20).replace(/[ ,(]+$/,"")+"…";
     o += `<g class="${cls}" data-mxcomp="${c.id}" transform="translate(0,${off})">
       ${isF && !fixed ? `<rect class="ring" x="${c.x-66}" y="${c.y-25}" width="132" height="50" rx="4"/>` : ""}
       <rect class="box" x="${c.x-64}" y="${c.y-23}" width="128" height="46" rx="3"/>
       <g transform="translate(${c.x-49},${c.y})">${GLYPH[c.kind]}</g>
-      <text class="n" x="${c.x-36}" y="${c.y-4}">${esc(nm)}</text>
-      <text class="c" x="${c.x-36}" y="${c.y+10}">${esc(c.code)} · ATA ${c.ata}</text>
+      <text class="n" x="${c.x-36}" y="${l2?c.y-8:c.y-4}">${esc(l1)}${l2?`<tspan x="${c.x-36}" dy="10">${esc(l2)}</tspan>`:""}</text>
+      <text class="c" x="${c.x-36}" y="${l2?c.y+14:c.y+10}">${esc(c.code)} · ATA ${c.ata}</text>
       ${sysDot}
       ${isF ? `<rect class="tagbg" x="${c.x+22}" y="${c.y-31}" width="${fixed?26:30}" height="12" rx="2" ${fixed?'style="fill:var(--good)"':""}/><text class="tag" x="${c.x+25}" y="${c.y-22}">${fixed?"RTS":"FAULT"}</text>` : ""}
     </g>`;
@@ -3206,7 +3470,7 @@ function kpiHtml(){
     <div class="mx-kpi"><div class="k">Serviceable tails</div><div class="v">${FLEET.length-Object.keys(openTails()).length}<small> / ${FLEET.length}</small></div></div>
     <div class="mx-kpi ${aog?"bad":""}"><div class="k">Open work orders</div><div class="v">${jobs.length}<small>${aog?` · ${aog} AOG`:""}</small></div></div>
     <div class="mx-kpi warn"><div class="k">In work</div><div class="v">${inWork}<small> / ${s.bays.length} bays</small></div></div>
-    <div class="mx-kpi ${s.parts<15?"bad":""}"><div class="k">Parts stock</div><div class="v">${s.parts}<small> units</small></div></div>
+    <div class="mx-kpi ${s.parts<10?"bad":""}"><div class="k">Consumables</div><div class="v">${s.parts}<small> · ${s.stores.filter(x=>x.loc==="shelf").length} rotables</small></div></div>
     <div class="mx-kpi good"><div class="k">CRS sign-offs</div><div class="v">${s.mx.signoffs}<small> · ${ftf}% first-time fix</small></div></div>`;
 }
 function woHtml(j){
@@ -3216,19 +3480,19 @@ function woHtml(j){
   let assign = "";
   if(!bay){
     const freeBays = s.bays.filter(b=>!b.job&&!b.broken);
-    const freeMechs = s.mechanics.filter(m=>!m.job&&!m.sick&&(!j.cert||m.certs.includes(j.cert)));
+    const freeMechs = s.mechanics.filter(m=>!m.job&&!busyOff(m)&&canCertify(m, j));
     assign = freeBays.length && freeMechs.length
       ? `<div class="mx-assign"><select id="mxB-${j.id}">${freeBays.map(b=>`<option value="${b.id}">Bay ${b.id}</option>`).join("")}</select>
          <select id="mxM-${j.id}">${freeMechs.map(m=>`<option value="${m.id}">${esc(m.name)}</option>`).join("")}</select>
          <button class="btn primary" data-mxassign="${j.id}">Assign</button></div>`
-      : `<div class="meta">${!freeBays.length?"No free bay.":"No free technician"}${j.cert&&freeBays.length?` rated ${j.cert}`:""}${!freeBays.length||!freeMechs.length?"":""}</div>`;
+      : `<div class="meta">${!freeBays.length?"No free bay.":`No free ${licNeeded(j)} engineer with a ${TYPE_NAME[famType(j.family)]} type rating.`}</div>`;
   }
   return `<div class="${cls}" data-mxsel="${j.id}">
     <div class="r1"><span class="wo">${j.wo}</span>${j.deadline?`<span class="dl" id="mxdl-${j.id}">AOG ${Math.max(0,j.deadline-now)}h</span>`:""}<span class="pay">${money(j.pay)}</span></div>
     <div class="ac">${esc(j.model)} ${esc(j.tail)} <span>${esc(M?M.engine:"")} · ${esc(j.airline)}</span></div>
     <div class="msg">${esc(j.errorCode)}</div>
     <div class="desc"><span class="ata">ATA ${j.ata}</span><span class="ata">AMM ${j.taskNo}</span>${esc(compOf(j.model,j.zone,j.comp)?.name||j.comp)}</div>
-    <div class="meta"><span>Bay <b>${bay?bay.id:"unassigned"}</b></span><span>Tech <b>${mech?esc(mech.name):"none"}</b></span><span>${j.hours}h · ${j.parts} parts${j.cert?` · ${j.cert}`:""}</span></div>
+    <div class="meta"><span>Bay <b>${bay?bay.id:"unassigned"}</b></span><span>Tech <b>${mech?esc(mech.name):"none"}</b></span><span>${j.hours}h card · ${licNeeded(j)} · ${famType(j.family)}</span></div>
     <div class="stage">${stageLabel(j)}</div>
     ${assign}
   </div>`;
@@ -3271,6 +3535,14 @@ function stepperHtml(job){
   return `<div class="mx-steps">${names.map((n,k)=>`<div class="${k<cur?"ok":k===cur?"on":""}">${n}</div>`).join("")}</div>`;
 }
 function flashHtml(){ return ui.flash ? `<div class="mx-flash ${ui.flash.lvl}">${esc(ui.flash.text)}</div>` : ""; }
+function inspectors(job, mech){ return s.mechanics.filter(m=>m!==mech && !busyOff(m) && m.lic==="B1.1" && (m.types||[]).includes(famType(job.family))); }
+function inspHtml(job, mech){
+  const list = inspectors(job, mech);
+  return `<div class="mx-sec">Independent inspection required</div>
+    <p class="muted" style="margin:0 0 8px">Flight control work needs a second, independent check by someone who did not do the job. ${mech?esc(mech.name):"The certifying engineer"} cannot inspect their own work.</p>
+    <div class="mx-opts">${list.map(m=>`<button class="mx-opt" data-mxinsp="${m.id}">${esc(m.name)} · ${m.lic} · ${m.job?"pulled off their bay for 25 min":"free"}</button>`).join("")}
+      <button class="mx-opt" data-mxinsp="contract">Call a contract inspector (${money(INSPECTOR_FEE)})</button></div>`;
+}
 function panelHtml(job){
   if(!job) return `<div class="mx-panel"><h4>Technician workspace</h4><p class="muted">Pick a work order. The workspace loads that tail's exact airframe, schematics and parts.</p></div>`;
   if(integrity(job)) return `<div class="mx-panel"><h4>Workspace locked</h4><p class="muted">This work order failed the configuration check and cannot be worked.</p></div>`;
@@ -3280,7 +3552,9 @@ function panelHtml(job){
   const head = `<h4>${esc(comp.name)}</h4><div class="code">${esc(comp.code)} · ATA ${comp.ata} · AMM ${job.taskNo}</div>
     <div class="mx-kv"><span>Effectivity</span><b>${esc(GRPL[job.grp])}</b></div>
     <div class="mx-kv"><span>Installed P/N</span><b>${esc(job.pnOff)}</b></div>
-    <div class="mx-kv"><span>Installed S/N</span><b>${esc(job.snOff)}</b></div>`;
+    <div class="mx-kv"><span>Installed S/N</span><b>${esc(job.snOff)}</b></div>
+    <div class="mx-kv"><span>${esc(job.mod)}</span><b>${job.modEmb?"Embodied":"Not embodied"}</b></div>
+    <div class="mx-kv"><span>Task card</span><b>${esc(PF_NAME[job.pf])} · ${job.hours}h</b></div>`;
   // a serviceable component was opened instead of the defective one
   if(ui.comp && ui.comp!==job.comp){
     const c = compOf(job.model, ui.view, ui.comp);
@@ -3294,15 +3568,16 @@ function panelHtml(job){
   }
   if(!bay){
     const freeBays = s.bays.filter(b=>!b.job&&!b.broken);
-    const freeMechs = s.mechanics.filter(m=>!m.job&&!m.sick&&(!job.cert||m.certs.includes(job.cert)));
+    const freeMechs = s.mechanics.filter(m=>!m.job&&!busyOff(m)&&canCertify(m, job));
+    const need = `${licNeeded(job)} engineer with a ${TYPE_NAME[famType(job.family)]} type rating`;
     return `<div class="mx-panel">${head}
       <div class="mx-sec">Defect</div><div class="mx-ecam ${boeing?"boeing":""}">${esc(job.errorCode)}</div>
       <div class="mx-sec">Start work</div>
-      ${freeBays.length && freeMechs.length ? `<p class="muted">Assign a bay and a ${job.cert?job.cert+"-rated ":""}technician to open the workspace. Assigning draws ${job.parts} parts from stores.</p>
+      ${freeBays.length && freeMechs.length ? `<p class="muted">${esc(PF_NAME[job.pf])} task, ${job.hours}h on the card. Needs a ${need}. Assigning draws ${job.parts} consumables (seals, lockwire, fasteners).</p>
         <div class="mx-assign"><select id="mxB-${job.id}">${freeBays.map(b=>`<option value="${b.id}">Bay ${b.id}</option>`).join("")}</select>
         <select id="mxM-${job.id}">${freeMechs.map(m=>`<option value="${m.id}">${esc(m.name)}</option>`).join("")}</select>
         <button class="btn primary" data-mxassign="${job.id}">Assign</button></div>`
-        : `<p class="muted">${!freeBays.length?"Every bay is busy or out of service.":`No free technician${job.cert?` holds the ${job.cert} rating`:""}. Hire or free one up in the Mechanics tab.`}</p>`}
+        : `<p class="muted">${!freeBays.length?"Every bay is busy or out of service.":`No free ${need}. Hire, train or free one up in the Mechanics tab.`}</p>`}
       ${flashHtml()}</div>`;
   }
   if(!ui.comp && p.stage!=="signoff"){
@@ -3321,10 +3596,38 @@ function panelHtml(job){
       <div class="mx-sec">Your finding</div>
       <div class="mx-opts">${job.diag.options.map((o,k)=>`<button class="mx-opt" data-mxdiag="${k}">${esc(o)}</button>`).join("")}</div>`;
   } else if(p.stage==="part"){
-    body = `<div class="mx-sec">2 · Select the replacement part</div>
-      <p class="muted" style="margin:0 0 8px">Stores kitted these units for ${job.wo}. Fit only the P/N effective on ${esc(job.tail)} (${esc(M.variant)}, ${esc(M.engine)}).</p>
-      <div class="mx-tray">${job.tray.map(t=>`<button class="mx-part" data-mxpart="${esc(t.pn)}">
-        <div class="pn"><span class="box3d"></span>${esc(t.pn)}</div><div class="pd">${esc(t.name)}</div><div class="pe">EFF: ${esc(t.eff)}</div></button>`).join("")}</div>`;
+    const nowH = s.day*24+s.hour;
+    const ipc = `<div class="mx-sec">2 · Parts: IPC, stores and Form 1</div>
+      <div class="mx-ipc"><div class="h">${esc(job.ipcFig)} · ${esc(comp.name)} · EFF ${esc(job.tail)}</div>
+        <table>${ipcFor(job.family, comp, job.grp).rows.map(r=>`<tr><td>${esc(job.stem+r.dash)}</td><td>${esc(r.rem)}</td></tr>`).join("")}</table>
+        <div class="st">${esc(job.tail)}: ${esc(job.mod)} <b>${job.modEmb?"EMBODIED":"NOT EMBODIED"}</b></div></div>`;
+    const it = ui.item ? s.stores.find(x=>x.id===ui.item && x.loc==="shelf") : null;
+    if(it){
+      const f = it.f1, blank = v => v ? esc(v) : `<i>(blank)</i>`;
+      body = `${ipc}<div class="mx-sec">Pre-fit check · ${esc(it.pn)}</div>
+        <div class="mx-plate"><div class="h">DATA PLATE</div><div>${esc(it.name.toUpperCase())}</div>
+          <div>P/N <b>${esc(it.pn)}</b> &nbsp; S/N <b>${esc(it.sn)}</b></div><div>${esc(it.mod)} ${it.dash==="05"?"EMBODIED":"NOT EMBODIED"}</div></div>
+        <div class="mx-f1"><div class="h">UK CAA FORM 1 · AUTHORISED RELEASE CERTIFICATE</div><div class="g">
+          <span>3 Tracking no.</span><b>${esc(f.trk)}</b><span>4 Organisation</span><b>${esc(f.org)}</b>
+          <span>7 Description</span><b>${esc(f.desc)}</b><span>8 Part no.</span><b>${esc(f.pn)}</b>
+          <span>9 Qty</span><b>1</b><span>10 Serial no.</span><b>${esc(f.sn)}</b>
+          <span>11 Status/work</span><b>${esc(f.status)}</b><span>12 Remarks</span><b>${esc(f.rem)}</b>
+          <span>14b Signature</span><b>${blank(f.sign)}</b><span>14c Approval ref</span><b>${blank(f.appr)}</b>
+          <span>14e Date</span><b>${esc(f.date)}</b></div></div>
+        <p class="muted" style="margin:6px 0">Check the P/N against the IPC and the tail's mod status, then the Form 1 against the data plate.</p>
+        <div class="mx-assign"><button class="btn primary" data-mxaccept="${it.id}">Accept and fit</button><button class="btn" data-mxquar="${it.id}">Quarantine</button><button class="btn" data-mxitemback="1">Back</button></div>`;
+    } else {
+      const shelf = shelfFor(job), orders = (s.orders||[]).filter(o=>o.job===job.id);
+      body = `${ipc}<div class="mx-sec">Stores: units under "${esc(comp.name)}"</div>
+        ${shelf.length ? `<div class="mx-tray">${shelf.map(t=>`<button class="mx-part" data-mxitem="${t.id}">
+          <div class="pn"><span class="box3d"></span>${esc(t.pn)}</div><div class="pd">${esc(t.name)}</div><div class="pe">${esc(t.f1.status)} · ${esc(t.src)}</div></button>`).join("")}</div>`
+          : `<p class="muted" style="margin:0">Nothing on the shelf under this description.</p>`}
+        ${orders.length ? `<div class="mx-sec">On order</div>${orders.map(o=>`<div class="mx-kv"><span>${esc(o.pn)} · ${esc(SOURCES[o.src].name)}</span><b>${Math.max(0,o.due-nowH)}h</b></div>`).join("")}` : ""}
+        <div class="mx-sec">Order for ${esc(job.tail)}</div>
+        <div class="mx-order"><select id="mxOrdDash">${["05","04"].map(d=>`<option value="${d}">${esc(job.stem+d)}</option>`).join("")}</select>
+          ${Object.keys(SOURCES).map(k=>`<button class="btn" data-mxorder="${k}">${SOURCES[k].name}<small>${SOURCES[k].lead}h · ${money(orderCost(job,"05",k))}</small></button>`).join("")}</div>
+        <p class="muted" style="font-size:11px;margin-top:6px">Brokers are cheap and fast but carry a real chance of bogus paperwork. -03 is not procurable. The fitted part is recharged to ${esc(job.airline)} at list price plus 15% on the CRS, whatever you paid for it.</p>`;
+    }
   } else if(p.stage==="work"){
     const st = job.proc[p.stepIdx];
     const rate = techRate(mech);
@@ -3333,18 +3636,23 @@ function panelHtml(job){
       ${p.running
         ? `<div class="mx-run"><div class="lbl"><span>${esc(st.text)}</span><span id="mxRunT"></span></div><div class="bar"><i id="mxRunBar"></i></div>
            <div class="muted" style="font-size:11px;margin-top:5px">${mech?esc(mech.name):"Tech"} working at ${Math.round(rate*100)}% pace${s.paused?" · game paused":""}</div></div>`
-        : `<div class="mx-sec">Pick the tool for this step</div>
-           <div class="mx-tools">${TOOLS.map(t=>`<button class="mx-tool" data-mxtool="${esc(t)}"><span class="ti">${TOOL_INFO[t]}</span>${esc(t)}</button>`).join("")}</div>`}`;
+        : st.insp ? inspHtml(job, mech)
+        : `<div class="mx-sec">Pick the tool for this step <button class="mx-hintbtn" data-mxhint="1" ${p.hint===p.stepIdx?"disabled":""}>${p.hint===p.stepIdx?"Hint shown":`Hint (${money(TOOL_HINT_COST)})`}</button></div>
+           <div class="mx-tools">${TOOLS.map(t=>`<button class="mx-tool ${p.hint===p.stepIdx&&t===st.tool?"hint":""}" data-mxtool="${esc(t)}">${esc(t)}</button>`).join("")}</div>`}`;
   } else if(p.stage==="signoff"){
-    const lic = mech && mech.certs.includes("avionics") && job.tier==="AVI" ? "B2" : "B1";
+    const lic = mech ? mech.lic : "?";
+    const rech = Math.round((job.partCost||0)*1.15);
     body = `<div class="mx-sec">Certificate of release to service</div>
       <div class="mx-crs"><div class="h">CRS · ${job.wo}</div>
         ${esc(job.tail)} ${esc(M.variant)} · ATA ${job.ata} · AMM ${job.taskNo}<br>
         Finding: ${esc(p.finding||"")}<br>
         P/N OFF ${esc(job.pnOff)} S/N ${esc(job.snOff)}<br>
         P/N ON ${esc(p.pnOn)} S/N ${esc(p.snOn)}<br>
+        AMM ${esc(job.taskNo)} / ${esc(job.taskIns)}<br>
         ${boeing?"CDU BITE":"CFDS system test"}: PASSED<br>
-        Certifying technician: ${mech?esc(mech.name):"?"} (${lic})</div>
+        ${p.inspector?`Independent inspection: ${esc(p.inspector)}<br>`:""}
+        Certifying engineer: ${mech?esc(mech.name):"?"} (Part-66 ${lic}, ${TYPE_NAME[famType(job.family)]})<br>
+        Labour ${money(job.pay)}${rech?` + parts recharge ${money(rech)}`:""}</div>
       <button class="btn primary mx-signbtn" data-mxsign="1">Sign CRS and release ${esc(job.tail)} to service</button>`;
   }
   return `<div class="mx-panel">${head}${stepperHtml(job)}${body}${flashHtml()}</div>`;
@@ -3362,25 +3670,25 @@ function crsHtml(){
   return `<div class="mx-col-h">Maintenance sign-off log <span>${(s.crs||[]).length} CRS</span></div><div class="mx-crslog">${rows.length ? `<table>
     <tr><th>Time</th><th>WO</th><th>Aircraft</th><th>ATA</th><th>Item</th><th>P/N off / on</th><th>Tech</th></tr>
     ${rows.map(r=>`<tr><td>${esc(r.t)}</td><td>${esc(r.wo)}</td><td>${esc(r.tail)} ${esc(r.model)}</td><td>${r.ata}</td><td>${esc(r.item)}</td>
-      <td>${esc(r.pnOff)}<br><span class="g" style="color:var(--good)">${esc(r.pnOn)}</span></td><td class="g">${esc(r.tech)} (${r.lic})</td></tr>`).join("")}</table>`
+      <td>${esc(r.pnOff)}<br><span class="g" style="color:var(--good)">${esc(r.pnOn)}</span></td><td class="g">${esc(r.tech)} (${r.lic})${r.insp?`<br><span class="muted">II: ${esc(r.insp)}</span>`:""}</td></tr>`).join("")}</table>`
     : `<p class="muted">No releases signed yet.</p>`}</div>`;
 }
 
 /* ---------- refresh with per-section dirty checking ---------- */
-function selJob(){ const j = ui.sel ? findJob(ui.sel) : null; if(!j && ui.sel){ ui.sel = null; } return j; }
+function selJob(){ const j = ui.sel ? findJob(ui.sel) : null; if(!j && ui.sel){ ui.sel = null; ui.item = null; } return j; }
 function refresh(force){
   if(!$("mxRoot")) return;
   ensure();
   if(!ui.sel){ const first = allJobs().find(j=>bayOf(j)) || allJobs()[0]; if(first){ ui.sel = first.id; ui.view = "aircraft"; ui.comp = null; } }
   const job = selJob();
-  const free = s.bays.filter(b=>!b.job&&!b.broken).map(b=>b.id).join(".")+"|"+s.mechanics.filter(m=>!m.job&&!m.sick).map(m=>m.id+(m.certs||[]).join("")).join(".");
+  const free = s.bays.filter(b=>!b.job&&!b.broken).map(b=>b.id).join(".")+"|"+s.mechanics.filter(m=>!m.job&&!busyOff(m)).map(m=>m.id+m.lic+(m.types||[]).join("")).join(".");
   const jobsSig = allJobs().map(j=>[j.id,bayOf(j)?.id||0,j.prog.stage,j.prog.stepIdx,j.prog.running?1:0].join(":")).join(",");
   const parts = {
-    mxKpi:  [jobsSig, s.parts, s.mx.signoffs, s.bays.length].join("|"),
+    mxKpi:  [jobsSig, s.parts, s.mx.signoffs, s.bays.length, s.stores.length].join("|"),
     mxQueue:[jobsSig, ui.sel, free].join("|"),
     mxSync: job ? [job.id, bayOf(job)?.id||0, mechOf(bayOf(job))?.id||""].join("|") : "none",
     mxDiagram: job ? [job.id, ui.view, ui.comp, job.prog.stage==="signoff"?1:0].join("|") : "none",
-    mxPanel: job ? [job.id, ui.view, ui.comp, job.prog.stage, job.prog.stepIdx, job.prog.running?1:0, bayOf(job)?.id||0, ui.flash?ui.flash.text:"", free, s.paused?1:0].join("|") : "none",
+    mxPanel: job ? [job.id, ui.view, ui.comp, job.prog.stage, job.prog.stepIdx, job.prog.running?1:0, bayOf(job)?.id||0, ui.flash?ui.flash.text:"", free, s.paused?1:0, ui.item||"", s.stores.length, s.stores.filter(x=>x.loc==="shelf").length, (s.orders||[]).length, job.prog.hint, Math.floor(s.day*24+s.hour)].join("|") : "none",
     mxFleet:[jobsSig].join("|"),
     mxCrs: String((s.crs||[]).length)
   };
@@ -3419,35 +3727,104 @@ function correctFinding(job){
   const ref = diagFor(c);
   return ref.options[ref.correct];
 }
-function doPart(pn){
+function doAccept(id){
   act(selJob(), (job)=>{
     if(job.prog.stage!=="part") return;
-    const t = job.tray.find(x=>x.pn===pn); if(!t) return;
-    const comp = compOf(job.model, job.zone, job.comp), M = MODELS[job.model];
+    const it = s.stores.find(x=>x.id===id && x.loc==="shelf"); if(!it) return;
+    const M = MODELS[job.model];
+    if(it.bogus){
+      job.prog.errors++; s.mx.bogusFit++;
+      s.stores = s.stores.filter(x=>x!==it);
+      s.cash -= 1500; ledgerAdd("misc",-1500); s.rep = Math.max(0, s.rep-8); s.todayFault = true;
+      ui.item = null;
+      setFlash("bad", `Quality caught it at the duplicate inspection: ${it.bogus}. A suspected unapproved part was fitted. Removed, reported to the CAA, fine ${money(1500)}, reputation -8.`);
+      addLog("bad", `${job.wo}: suspected unapproved part ${it.pn} S/N ${it.sn} fitted to ${job.tail}. Reported, fine ${money(1500)}.`);
+      return;
+    }
     let why = null;
-    if(t.fam!==job.family) why = `${t.pn} is ${FAM_NAME[t.fam]} hardware (effective ${t.eff}). Effectivity check failed for ${job.tail}, ${an(M.variant)}.`;
-    else if(t.key!==comp.key) why = `${t.pn} is a ${t.name}. ${job.wo} calls for a ${comp.name}.`;
-    else if(t.grp!==job.grp) why = `${t.pn} is effective on ${t.eff} only. ${job.tail} is ${an(M.variant)} with ${M.engine}.`;
+    if(it.fam!==job.family) why = `${it.pn} is ${FAM_NAME[it.fam]} hardware. ${job.tail} is ${an(M.variant)}.`;
+    else if(stemOf(it.pn)!==job.stem) why = `${it.pn} is not listed in ${job.ipcFig} for ${job.tail}. It is the ${GRPL[it.grp]} part, and ${job.tail} has ${M.engine}${it.grp.endsWith("G")?" and "+GRPL[job.grp]+" gear":""}.`;
+    else if(it.dash==="03") why = `${it.pn} is superseded. The IPC says do not install, fit -05.`;
+    else if(it.dash==="04" && job.modEmb) why = `${it.pn} is pre-${job.mod} only and ${job.tail} has ${job.mod} embodied.`;
     if(why){
       job.prog.errors++; s.mx.mispick++;
       s.cash -= 250; ledgerAdd("parts",-250);
-      setFlash("bad", `Rejected at the effectivity check. ${why} Restocking fee £250.`);
+      ui.item = null;
+      setFlash("bad", `Wrong part, caught before fitting. ${why} Handling fee ${money(250)}, unit back on the shelf.`);
       return;
     }
-    job.prog.pnOn = t.pn;
-    job.prog.snOn = `${String.fromCharCode(65+Math.floor(Math.random()*26))}${String.fromCharCode(65+Math.floor(Math.random()*26))}${10000+Math.floor(Math.random()*89999)}`;
-    job.prog.stage = "work"; job.prog.stepIdx = 0; job.prog.stepT = 0; job.prog.running = false;
-    setFlash("good", `${t.pn} confirmed effective on ${job.tail}. Start the removal.`);
+    if(!it.paid){ s.cash -= it.cost; ledgerAdd("parts",-it.cost); }
+    job.partCost = Math.round(PRICE[it.kind]*(it.dash=="04"?0.85:1));
+    s.stores = s.stores.filter(x=>x!==it);
+    job.prog.pnOn = it.pn; job.prog.snOn = it.sn;
+    job.prog.stage = "work"; job.prog.stepIdx = 0; job.prog.stepT = 0; job.prog.running = false; job.prog.hint = -1;
+    ui.item = null;
+    setFlash("good", `${it.pn} S/N ${it.sn} accepted: effective on ${job.tail}, Form 1 matches the data plate. Issued from stores at ${money(it.cost)}. Start the removal.`);
+  });
+}
+function doQuarantine(id){
+  act(selJob(), (job)=>{
+    const it = s.stores.find(x=>x.id===id && x.loc==="shelf"); if(!it) return;
+    ui.item = null;
+    if(it.bogus){
+      s.stores = s.stores.filter(x=>x!==it); s.mx.bogusCaught++;
+      s.rep = Math.min(100, s.rep+1);
+      setFlash("good", `Good catch: ${it.bogus}. Unit quarantined and reported to the CAA as a suspected unapproved part. Reputation +1.`);
+      addLog("good", `${job.wo}: suspected unapproved part ${it.pn} S/N ${it.sn} quarantined and reported.`);
+    } else {
+      it.loc = "quarantine";
+      setFlash("warn", `Nothing wrong with that paperwork. ${it.pn} is in quarantine now; release it from the Stores tab if you need it.`);
+    }
+  });
+}
+function doOrder(src){
+  act(selJob(), (job)=>{
+    if(job.prog.stage!=="part") return;
+    const sel = $("mxOrdDash"), dash = sel ? sel.value : "05", S = SOURCES[src]; if(!S) return;
+    const cost = orderCost(job, dash, src);
+    if(s.cash < cost){ setFlash("bad", `Not enough cash for ${money(cost)}.`); return; }
+    s.cash -= cost; ledgerAdd("parts",-cost);
+    const due = s.day*24+s.hour+S.lead;
+    s.orders.push({ id:rid(), job:job.id, wo:job.wo, model:job.model, zone:job.zone, comp:job.comp, grp:job.grp, dash, pn:job.stem+dash, src, cost, due });
+    setFlash("info", `Ordered ${job.stem+dash} from ${S.name} for ${money(cost)}. Due in ${S.lead}h. Check the Form 1 when it lands.`);
+    addLog("info", `${job.wo}: ordered ${job.stem+dash} from ${S.name} (${money(cost)}, ${S.lead}h).`);
+  });
+}
+function doHint(){
+  act(selJob(), (job)=>{
+    const p = job.prog; if(p.stage!=="work" || p.running || p.hint===p.stepIdx) return;
+    if(s.cash < TOOL_HINT_COST) return;
+    s.cash -= TOOL_HINT_COST; ledgerAdd("misc",-TOOL_HINT_COST); s.mx.hints++;
+    p.hint = p.stepIdx;
+  });
+}
+function doInsp(v){
+  act(selJob(), (job, bay, mech)=>{
+    const p = job.prog, st = job.proc[p.stepIdx]; if(p.stage!=="work" || p.running || !st.insp) return;
+    if(v==="contract"){
+      if(s.cash < INSPECTOR_FEE){ setFlash("bad", "Not enough cash for a contract inspector."); return; }
+      s.cash -= INSPECTOR_FEE; ledgerAdd("wages",-INSPECTOR_FEE);
+      p.inspector = `Contract inspector (${pick(SIGNERS)}, B1.1)`;
+    } else {
+      const m = inspectors(job, mech).find(x=>x.id===v); if(!m) return;
+      p.inspector = `${m.name} (${m.lic})`;
+      m.fatigue = Math.min(100, m.fatigue+3);
+    }
+    s.mx.insp++;
+    p.running = true; p.stepT = 0; ui.flash = null;
   });
 }
 function doTool(tool){
   act(selJob(), (job)=>{
     const p = job.prog; if(p.stage!=="work" || p.running) return;
     const st = job.proc[p.stepIdx];
+    if(st.insp) return;
     if(tool===st.tool){ p.running = true; p.stepT = 0; ui.flash = null; return; }
     p.errors++; s.mx.toolErr++;
     const M = MODELS[job.model];
-    let why = `${tool} is not the tool for this step.`;
+    let why = `${tool} is not the tool for this step. Read the step again.`;
+    if(tool==="Torque wrench" && st.tool==="Hand-tight (no tool)") why = "Rack hold-downs are hand-tight. Torquing them cracks the knurled nuts.";
+    if(st.tool==="ESD wrist strap") why = "Before you touch an ESD-sensitive unit, ground yourself first.";
     if(tool==="MCDU (Airbus CFDS)" && M.family==="BOEING") why = `The MCDU/CFDS is Airbus test equipment. ${job.tail} is a 737, test it from the CDU.`;
     if(tool==="CDU BITE (737)" && M.family==="AIRBUS") why = `CDU BITE pages are for the 737. ${job.tail} is ${an(M.variant)}, test it through the MCDU CFDS.`;
     setFlash("bad", why);
@@ -3459,14 +3836,16 @@ function doSign(){
   if(!bay || !mech || job.prog.stage!=="signoff") return;
   const before = availability(), after = availability(job.tail);
   const M = MODELS[job.model], comp = compOf(job.model, job.zone, job.comp);
-  const lic = mech.certs.includes("avionics") && job.tier==="AVI" ? "B2" : "B1";
+  const lic = mech.lic;
+  const rech = Math.round((job.partCost||0)*1.15);
+  if(rech){ job.pay += rech; }
   s.crs = s.crs || [];
   s.crs.unshift({ t:`D${s.day} ${hhmm(s.hour)}`, wo:job.wo, tail:job.tail, model:M.variant, ata:job.ata, item:comp.name,
-    pnOff:job.pnOff, snOff:job.snOff, pnOn:job.prog.pnOn, snOn:job.prog.snOn, tech:mech.name, lic, finding:job.prog.finding });
+    pnOff:job.pnOff, snOff:job.snOff, pnOn:job.prog.pnOn, snOn:job.prog.snOn, tech:mech.name, lic, insp:job.prog.inspector||"", finding:job.prog.finding });
   if(s.crs.length>80) s.crs.length = 80;
   s.mx.signoffs++; if(!job.prog.errors) s.mx.clean++;
   completeJob(bay, mech);
-  addLog("good", `CRS signed for ${job.wo}: ${job.tail} ${M.variant} released to service by ${mech.name} (${lic}). Fleet availability ${before}% to ${after}%.`);
+  addLog("good", `CRS signed for ${job.wo}: ${job.tail} ${M.variant} released to service by ${mech.name} (${lic})${rech?`, parts recharged ${money(rech)}`:""}. Fleet availability ${before}% to ${after}%.`);
   toast("good", `${job.tail} back in service. Fleet availability ${before}% to ${after}%.`);
   ui.sel = null; ui.view = "aircraft"; ui.comp = null; ui.flash = null;
   render();
@@ -3494,6 +3873,19 @@ window.mxMount = function(){ refresh(true); };
 window.mxSync = function(){ refresh(false); };
 window.mxSim = function(dt){
   if(!s.mx) return;
+  if(s.orders && s.orders.length){
+    const nowH = s.day*24+s.hour;
+    for(const o of s.orders.filter(x=>x.due<=nowH)){
+      const c = compOf(o.model, o.zone, o.comp);
+      if(c){
+        const it = mkItem(MODELS[o.model].family, c, o.grp, o.dash, { paid:true, src:SOURCES[o.src].name, mult:SOURCES[o.src].mult, bogus:SOURCES[o.src].bogus });
+        it.cost = o.cost; s.stores.push(it);
+        toast("info", `Part arrived: ${o.pn} for ${o.wo}. Check the Form 1 before fitting.`);
+        addLog("info", `Stores received ${o.pn} S/N ${it.sn} from ${SOURCES[o.src].name} for ${o.wo}.`);
+      }
+    }
+    s.orders = s.orders.filter(x=>x.due>nowH);
+  }
   for(const b of s.bays){
     const job = b.job; if(!job || job.mxv!==1) continue;
     const p = job.prog; if(p.stage!=="work" || !p.running) continue;
@@ -3550,10 +3942,29 @@ window.mxDevFinish = function(){
   ensure(); let n = 0;
   for(const b of s.bays){ const j = b.job; if(j && j.mxv===1 && j.prog.stage!=="signoff"){
     j.prog.finding = j.prog.finding || correctFinding(j);
-    const ok = j.tray.find(t=>t.fam===j.family && t.grp===j.grp && t.key===compOf(j.model,j.zone,j.comp).key);
-    j.prog.pnOn = j.prog.pnOn || (ok?ok.pn:j.pnOff); j.prog.snOn = j.prog.snOn || "DV00001";
+    j.prog.pnOn = j.prog.pnOn || j.stem+"05"; j.prog.snOn = j.prog.snOn || "DV00001";
     j.prog.stage = "signoff"; j.prog.running = false; n++; } }
   toast("good", n ? `${n} work order(s) jumped to CRS sign-off.` : "No work orders in a bay.");
+};
+window.mxStoresHtml = function(){
+  ensure();
+  const nowH = s.day*24+s.hour;
+  const shelf = s.stores.filter(x=>x.loc==="shelf"), q = s.stores.filter(x=>x.loc==="quarantine");
+  const val = shelf.filter(x=>!x.paid).reduce((a,x)=>a+x.cost,0);
+  const row = x=>`<tr><td><b>${esc(x.pn)}</b></td><td>${esc(x.name)}</td><td>${esc(x.sn)}</td><td>${esc(x.f1.status)}</td><td>${esc(x.src)}</td><td>${money(x.cost)}${x.paid?"":" *"}</td>`;
+  return `<div class="card"><div class="row between"><b>Rotables on the shelf</b><span class="muted">${shelf.length} units · ${money(val)} unissued stock *</span></div>
+    ${shelf.length?`<div class="st-tbl"><table><tr><th>P/N</th><th>Description</th><th>S/N</th><th>Form 1 status</th><th>Source</th><th>Value</th></tr>${shelf.map(x=>row(x)+"</tr>").join("")}</table></div>`:`<p class="muted">Shelf empty.</p>`}
+    <p class="muted" style="font-size:11px">* Stock from before you took over the stores is charged at cost when issued to a job. Ordered parts are paid for at order. Parts are pulled and checked from the Maintenance Control workspace.</p></div>
+    <div class="card"><div class="row between"><b>Quarantine</b><span class="muted">${q.length} units</span></div>
+    ${q.length?`<div class="st-tbl"><table><tr><th>P/N</th><th>Description</th><th>S/N</th><th>Form 1 status</th><th>Source</th><th>Value</th><th></th></tr>${q.map(x=>row(x)+`<td><button class="btn" data-st="rel:${x.id}">Release</button> <button class="btn" data-st="rtv:${x.id}">Return (50%)</button></td></tr>`).join("")}</table></div>`:`<p class="muted">Nothing held. Units you doubt at the pre-fit check land here.</p>`}</div>
+    <div class="card"><div class="row between"><b>Orders in transit</b><span class="muted">${s.orders.length}</span></div>
+    ${s.orders.length?`<div class="st-tbl"><table><tr><th>P/N</th><th>For</th><th>Source</th><th>Cost</th><th>ETA</th></tr>${s.orders.map(o=>`<tr><td><b>${esc(o.pn)}</b></td><td>${esc(o.wo)}</td><td>${esc(SOURCES[o.src].name)}</td><td>${money(o.cost)}</td><td>${Math.max(0,o.due-nowH)}h</td></tr>`).join("")}</table></div>`:`<p class="muted">No open orders. Order from a work order's parts step.</p>`}
+    <p class="muted" style="font-size:11px">Lead times: OEM 36h at list, pool exchange 12h at +20%, broker 8h at -25% with a real risk of bogus paperwork, AOG desk 3h at 2.6x.</p></div>`;
+};
+window.mxStoresClick = function(v){
+  const [k, id] = v.split(":"), it = s.stores.find(x=>x.id===id); if(!it) return;
+  if(k==="rel"){ it.loc = "shelf"; addLog("info", `${it.pn} S/N ${it.sn} released from quarantine.`); }
+  if(k==="rtv"){ const c = Math.round(it.cost*0.5); s.stores = s.stores.filter(x=>x!==it); if(it.paid){ s.cash += c; ledgerAdd("parts", c); } addLog("info", `${it.pn} returned to the vendor${it.paid?`, credit ${money(c)}`:""}.`); }
 };
 window.mxClick = function(t){
   const ac = t.closest("[data-mxassign]");
@@ -3563,7 +3974,13 @@ window.mxClick = function(t){
     return;
   }
   const d = t.closest("[data-mxdiag]"); if(d){ doDiag(Number(d.dataset.mxdiag)); return; }
-  const pt = t.closest("[data-mxpart]"); if(pt){ doPart(pt.dataset.mxpart); return; }
+  const pi = t.closest("[data-mxitem]"); if(pi){ ui.item = pi.dataset.mxitem; ui.flash = null; refresh(); return; }
+  if(t.closest("[data-mxitemback]")){ ui.item = null; refresh(); return; }
+  const pa = t.closest("[data-mxaccept]"); if(pa){ doAccept(pa.dataset.mxaccept); return; }
+  const pq = t.closest("[data-mxquar]"); if(pq){ doQuarantine(pq.dataset.mxquar); return; }
+  const po = t.closest("[data-mxorder]"); if(po){ doOrder(po.dataset.mxorder); return; }
+  if(t.closest("[data-mxhint]")){ doHint(); return; }
+  const ins = t.closest("[data-mxinsp]"); if(ins){ doInsp(ins.dataset.mxinsp); return; }
   const tl = t.closest("[data-mxtool]"); if(tl){ if(!tl.disabled) doTool(tl.dataset.mxtool); return; }
   if(t.closest("[data-mxsign]")){ doSign(); return; }
   if(t.closest("[data-mxback]")){ ui.view = "aircraft"; ui.comp = null; refresh(); return; }
@@ -3584,7 +4001,7 @@ window.mxClick = function(t){
   const c = t.closest("[data-mxcomp]");
   if(c){ ui.comp = c.dataset.mxcomp; ui.flash = null; refresh(); return; }
   const w = t.closest("[data-mxsel]");
-  if(w && !t.closest("select") && !t.closest("button")){ if(ui.sel!==w.dataset.mxsel){ ui.sel = w.dataset.mxsel; ui.view = "aircraft"; ui.comp = null; ui.flash = null; } refresh(); }
+  if(w && !t.closest("select") && !t.closest("button")){ if(ui.sel!==w.dataset.mxsel){ ui.sel = w.dataset.mxsel; ui.view = "aircraft"; ui.comp = null; ui.flash = null; ui.item = null; } refresh(); }
 };
 })();
 
@@ -3654,7 +4071,7 @@ function renderFinance(){
   const L=s.ledger, LL=s.lastLedger;
   const total = o=>Object.values(o).reduce((a,b)=>a+b,0);
   return `<h2 class="title">Finance</h2>
-  <p class="muted">Tallied over a rolling 7 day period. Resets each Monday of the game clock. Full monthly statements live in the Inbox.</p>
+  <p class="muted">Tallied in 7-day periods. This period runs day ${s.periodStartDay} to day ${s.periodStartDay+6}. Full monthly statements live in the Inbox.</p>
   <table><tr><th></th><th class="n">This period</th><th class="n">Last period</th></tr>
     ${ledgerRow("Revenue (checks and contracts)", L.revenue, LL?LL.revenue:null)}
     ${ledgerRow("Wages", L.wages, LL?LL.wages:null)}
@@ -3712,7 +4129,7 @@ function renderCareer(){
       <div class="bar"><i style="width:${Math.min(100,s.jobsDone/ms.jobs*100)}%"></i></div>
       <div>Reputation: <b>${Math.round(s.rep)}</b> / ${ms.rep}</div>
       <div class="bar ${s.rep>=ms.rep?'':'amber'}"><i style="width:${Math.min(100,s.rep/ms.rep*100)}%"></i></div>
-      <p class="muted">On promotion: ${money(ms.bonus)}${ms.unlock?`, ${ms.unlock} rating unlocked`:''}${ms.wideBay?', wide body bay unlocked':''}</p>`
+      <p class="muted">On promotion: ${money(ms.bonus)}${ms.unlock?`, Part-145 approval extended to ${APPROVAL_NAME[ms.unlock]}`:''}${ms.wideBay?', wide body bay unlocked':''}</p>`
     : `<p class="good">You have reached the top of the ladder. Keep the hangar running.</p>`}
   </div>
   <div class="card"><h3>Clean streak</h3><div class="row between"><span class="muted">Consecutive days fault free</span><b class="amber">${s.streak||0}</b></div><p class="muted">A daily bonus grows with the streak, up to £5,000 a day, and resets the moment a fine or a missed AOG lands.</p></div>
@@ -3775,9 +4192,19 @@ document.addEventListener("click", e=>{
   else if(t.closest && t.closest("#atcRoot")){ atcClick(t); }
   else if(t.closest && t.closest("#mxRoot")){ mxClick(t); }
   else if(t.closest && t.closest("#mapRoot")){ mapClick(t); }
+  else if(t.closest && t.closest("#stRoot") && t.closest("[data-st]")){ mxStoresClick(t.closest("[data-st]").dataset.st); render(); }
   else if(t.dataset.hire){
     const c = s.candidates.find(x=>x.id===t.dataset.hire);
     if(c){ s.mechanics.push(c); s.candidates=s.candidates.filter(x=>x!==c); addLog("info",`Hired ${c.name}.`); render(); }
+  }
+  else if(t.dataset.typecourse){
+    const [mid, ty] = t.dataset.typecourse.split(":");
+    const m = s.mechanics.find(x=>x.id===mid);
+    if(m && !m.job && !m.training){
+      if(s.cash < TYPE_COURSE.cost){ toast("bad","Not enough cash for the course."); }
+      else { s.cash -= TYPE_COURSE.cost; ledgerAdd("wages",-TYPE_COURSE.cost); m.training = {type:ty, hours:TYPE_COURSE.days*24}; addLog("info", `${m.name} started the ${TYPE_NAME[ty]} type rating course.`); }
+    }
+    render();
   }
   else if(t.dataset.fire){
     const m = s.mechanics.find(x=>x.id===t.dataset.fire);
@@ -3788,7 +4215,7 @@ document.addEventListener("click", e=>{
   }
   else if(t.dataset.buy){
     const n = Number(t.dataset.buy);
-    const cost = n===10?10*180:n===50?50*170:150*160;
+    const cost = n===10?10*150:n===50?50*138:150*125;
     if(s.partsBlocked>0){ toast("bad","Shipment delayed, cannot restock yet."); return; }
     if(s.cash<cost){ toast("bad","Not enough cash."); return; }
     s.cash -= cost; s.parts += n; ledgerAdd("parts",-cost); addLog("info",`Bought ${n} parts for ${money(cost)}.`); render();
@@ -3844,9 +4271,7 @@ document.addEventListener("click", e=>{
     render();
   }
   else if(t.dataset.mxopen){ mxOpen(t.dataset.mxopen); }
-  else if(t.dataset.dev){
-    runDevAction(t.dataset.dev);
-  }
+  
   else{
     const item = t.closest("[data-markread]");
     if(item){
@@ -3857,44 +4282,7 @@ document.addEventListener("click", e=>{
     }
   }
 });
-function runDevAction(action){
-  if(action==="close"){ document.getElementById("dev-panel").classList.remove("show"); return; }
-  if(action==="cash"){ s.cash += 2000000; toast("good","+£2,000,000 added."); }
-  else if(action==="rep"){ s.rep = 100; toast("good","Reputation set to 100."); }
-  else if(action==="atc"){ atcDevSpawn(); }
-  else if(action==="upgrades"){ for(const k in s.upgrades) s.upgrades[k]=true; toast("good","All hangar upgrades installed."); }
-  else if(action==="bay"){ if(s.bays.length<8){ const id=s.bays.length+1; s.bays.push({id,job:null,mech:null,progress:0,broken:false,repairIn:0,grounded:false}); toast("good",`Bay ${id} added free.`); } else toast("bad","Already at the 8 bay cap."); }
-  else if(action==="resolve"){ mxDevFinish(); }
-  else if(action==="rank"){
-    s.rank = RANKS.length-1; s.rep = Math.max(s.rep,100); s.jobsDone = Math.max(s.jobsDone,300);
-    s.certs = {airframe:true, powerplant:true, avionics:true}; s.wideBay = true;
-    toast("good","Maxed rank, all certs and wide body unlocked.");
-  }
-  render();
-}
-function devHash(str){
-  let h=5381;
-  for(let i=0;i<str.length;i++){ h = ((h*33) ^ str.charCodeAt(i)) >>> 0; }
-  return h.toString(16);
-}
-const DEV_CODE_HASH = "a8daffe";
-let devUnlocked = false;
-let devBuffer = "";
-document.addEventListener("keydown", e=>{
-  const tag = (document.activeElement && document.activeElement.tagName) || "";
-  if(tag==="INPUT" || tag==="TEXTAREA") return;
-  if(e.key && e.key.length===1){
-    devBuffer = (devBuffer + e.key).slice(-12).toLowerCase();
-    if(devHash(devBuffer.slice(-5))===DEV_CODE_HASH){
-      devBuffer = "";
-      devUnlocked = true;
-      document.getElementById("dev-panel").classList.add("show");
-      toast("good","Dev panel unlocked.");
-    }
-  } else if(e.key==="Escape"){
-    document.getElementById("dev-panel").classList.remove("show");
-  }
-});
+
 
 const HOUR_MS = 6000;
 let lastTick = performance.now();
@@ -3953,6 +4341,7 @@ function roomCode(){
   return c;
 }
 function startGame(){
+  migrateState();
   document.getElementById("menu-overlay").style.display="none";
   render();
   if(!mpInited){ mpInited = true; initMultiplayer(); }
@@ -3979,9 +4368,9 @@ function showStartMenu(){
   if(!hasSave()){ continueBtn.disabled = true; continueBtn.title = "No saved game found yet on this account."; }
   else { continueBtn.disabled = false; continueBtn.title = ""; }
   const multiplayerReady = typeof claude!=="undefined" && !!claude.use;
-  document.getElementById("m-create-room").disabled = !multiplayerReady;
-  document.getElementById("m-join-room").disabled = !multiplayerReady;
-  note.textContent = multiplayerReady ? `Signed in as ${currentUser}.` : `Signed in as ${currentUser}. Multiplayer rooms need the Claude-hosted version of this game.`;
+  document.getElementById("mp-block").style.display = multiplayerReady ? "" : "none";
+  const who = currentUser==="__guest" ? "Playing as guest (progress is saved in this browser)." : `Signed in as ${currentUser}.`;
+  note.textContent = multiplayerReady ? who : `${who} Multiplayer rooms only run in the Claude-hosted version, so they are hidden here.`;
   continueBtn.onclick = ()=>{
     s = loadSave() || newState();
     startGame();
@@ -4041,6 +4430,7 @@ function showStartMenu(){
     const username = userIn.value.trim();
     const password = passIn.value;
     err.textContent = "";
+    if(username.startsWith("__")){ err.textContent = "Usernames cannot start with two underscores."; return; }
     if(username.length<3 || username.length>20 || !/^[a-zA-Z0-9_]+$/.test(username)){
       err.textContent = "Username must be 3-20 letters, numbers or underscores."; return;
     }
@@ -4064,6 +4454,14 @@ function showStartMenu(){
     }
   }
   go.addEventListener("click", submit);
+  document.getElementById("acctGuest").addEventListener("click", ()=>{
+    const accs = loadAccounts();
+    // the guest slot is reserved: names starting with "__" cannot be registered or logged into
+    if(accs.__guest && !accs.__guest.guest) delete accs.__guest;
+    if(!accs.__guest){ accs.__guest = {salt:"", hash:"!", save:null, createdAt:Date.now(), guest:true}; saveAccounts(accs); }
+    currentUser = "__guest";
+    showStartMenu();
+  });
   passIn.addEventListener("keydown", e=>{ if(e.key==="Enter") submit(); });
 })();
 document.getElementById("acct-privacy-link").addEventListener("click", e=>{
