@@ -643,6 +643,86 @@ details .step b{color:var(--text)}
 .atcx .ac-tagtxt.muted{fill:var(--muted)}
 .atcx .ac.attn .ac-tagtxt.st{fill:var(--amber)}
 .atcx .ac.held .ac-tagtxt.st{fill:var(--bad)}
+.atc-wx{display:flex;align-items:center;gap:10px;padding:0 14px;height:30px;flex:0 0 auto;background:#0a1016;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;overflow:hidden;white-space:nowrap}
+.atc-wxlbl{color:var(--amber);letter-spacing:1px}
+.atc-metar{color:var(--text);overflow:hidden;text-overflow:ellipsis;min-width:0;flex:1;letter-spacing:.3px}
+.atc-chip{border:1px solid var(--line2);border-radius:3px;padding:2px 7px;color:var(--muted);font-size:10px;letter-spacing:.5px}
+.atc-chip:empty{display:none}
+.atc-chip.bad{border-color:var(--bad);color:var(--bad);animation:atcblink 1.2s steps(2) infinite}
+.atc-chip.info{border-color:var(--cyan);color:var(--cyan)}
+@keyframes atcblink{50%{opacity:.35}}
+.atcx .atc-mode{background:var(--panel2);border:1px solid var(--line);color:var(--good);padding:5px 9px;border-radius:3px;cursor:pointer;font-size:10.5px;white-space:nowrap}
+.atcx .atc-mode.hard{border-color:var(--bad);color:var(--bad)}
+.atc-fx{position:absolute;inset:0;pointer-events:none;z-index:2;opacity:0;transition:opacity 2s}
+.atc-fx.fog{background:radial-gradient(ellipse at 50% 50%, rgba(150,170,180,.08), rgba(150,170,180,.32))}
+.atc-fx.rain{background:repeating-linear-gradient(105deg, rgba(120,180,220,.08) 0 2px, transparent 2px 14px);animation:atcrain .5s linear infinite}
+.atc-fx.snow{background-image:radial-gradient(rgba(255,255,255,.55) 1px, transparent 1.6px);background-size:22px 22px;animation:atcsnow 3s linear infinite}
+@keyframes atcrain{to{background-position:-14px 40px}}
+@keyframes atcsnow{to{background-position:22px 66px}}
+.atc-alert{position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:10;display:none;padding:8px 16px;border-radius:4px;font:700 12px var(--mono);letter-spacing:1px;pointer-events:none;box-shadow:0 8px 30px rgba(0,0,0,.6);white-space:nowrap}
+.atc-alert.show{display:block}
+.atc-alert.bad{background:var(--bad);color:#fff;animation:atcblink .6s steps(2) 6}
+.atc-alert.warn{background:var(--amber);color:#1c1204}
+.atc-alert.info{background:var(--cyan);color:#04141a}
+.atc-stage.flash::after{content:"";position:absolute;inset:0;border:4px solid var(--bad);pointer-events:none;z-index:11;animation:atcflash .5s steps(2) 8 forwards}
+@keyframes atcflash{0%{opacity:1}100%{opacity:0}}
+.atc-embar{position:absolute;top:52px;left:12px;z-index:7;display:flex;flex-direction:column;gap:6px;max-width:46%}
+.atcx .atc-emb{background:rgba(40,8,12,.92);border:1px solid var(--bad);color:#ffd5d9;font-size:11px;font-weight:700;padding:6px 10px;border-radius:4px;cursor:pointer;text-align:left;letter-spacing:.5px;animation:atcpulse 1.4s ease-in-out infinite}
+@keyframes atcpulse{50%{box-shadow:0 0 0 4px rgba(255,77,94,.25)}}
+.atc-bdg{display:inline-block;font-size:9px;line-height:14px;padding:0 4px;border-radius:2px;border:1px solid var(--line2);color:var(--muted);margin:0 3px 0 0;letter-spacing:.3px}
+.atc-bdg.bad{border-color:var(--bad);color:var(--bad)}
+.atc-bdg.warn{border-color:var(--amber);color:var(--amber)}
+.atc-bdg.info{border-color:var(--cyan);color:var(--cyan)}
+.atc-bdg.good{border-color:var(--good);color:var(--good)}
+.atc-bdg.mx{border-color:#b48cff;color:#b48cff}
+.atc-row .fr-flags{margin-top:3px}
+.atc-row.em{border-left-color:var(--bad);background:rgba(255,77,94,.07)}
+.atc-row.mx{border-left-color:#b48cff}
+.atc-left h4.em{color:var(--bad)}
+.atc-left h4.mx{color:#b48cff}
+.atc-emcard{border:1px solid var(--bad);border-left:3px solid var(--bad);background:rgba(255,77,94,.08);border-radius:4px;padding:10px 12px;margin-bottom:10px;font-family:var(--mono);font-size:11.5px}
+.atc-emcard .h{display:flex;justify-content:space-between;gap:8px;color:var(--bad);font-weight:700;letter-spacing:.5px;margin-bottom:4px}
+.atc-emcard .ck{color:var(--muted);margin-top:3px}
+.atc-emcard .ck b.ok{color:var(--good)}
+.atc-emcard .ck b.no{color:var(--bad)}
+.atc-dnote{font-family:var(--mono);font-size:10.5px;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.atcx .atc-db.mx{border-color:#b48cff66;color:#d8c6ff}
+.atc-opspanel{position:absolute;top:8px;right:8px;width:360px;max-width:92%;max-height:calc(100% - 16px);overflow-y:auto;background:var(--panel);border:1px solid var(--line);border-radius:6px;box-shadow:0 12px 40px rgba(0,0,0,.6);z-index:9;display:none;font-family:var(--mono);font-size:11px}
+.atc-opspanel.show{display:block}
+.atc-opspanel .lp-head{padding:9px 12px;border-bottom:1px solid var(--line);font-family:var(--headfont);text-transform:uppercase;letter-spacing:1px;font-size:11px;color:var(--amber)}
+.atc-ops-sec{padding:10px 12px;border-bottom:1px solid var(--line)}
+.atc-ops-sec h5{margin:0 0 6px;font-family:var(--headfont);text-transform:uppercase;letter-spacing:1px;font-size:11px;color:var(--cyan);font-weight:600}
+.atc-ops-row{display:flex;justify-content:space-between;gap:8px;padding:2px 0;color:var(--muted)}
+.atc-ops-row b{color:var(--text);font-weight:600}
+.atc-ops-note{color:var(--muted);line-height:1.5}
+.atc-sat{display:grid;grid-template-columns:120px 1fr 26px;gap:8px;align-items:center;padding:2px 0;color:var(--muted)}
+.atc-sat i{display:block;height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.atc-sat i b{display:block;height:100%;background:var(--good)}
+.atc-sat i b.mid{background:var(--amber)}
+.atc-sat i b.low{background:var(--bad)}
+.atcx .atc-ops-btns{display:flex;gap:6px;margin:4px 0 6px}
+.atcx .atc-ops-btns button{flex:1;background:var(--panel2);border:1px solid var(--line2);color:var(--muted);padding:7px;border-radius:3px;cursor:pointer;font-size:11px}
+.atcx .atc-ops-btns button.on{border-color:var(--good);color:var(--good)}
+.atcx .atc-ops-btns button.on.hard{border-color:var(--bad);color:var(--bad)}
+.atcx .mro-bldg{fill:#16122a;stroke:#b48cff;stroke-width:1.4}
+.atcx .mro-label{fill:#b48cff;font:bold 13px Consolas,monospace;text-anchor:middle;letter-spacing:2px}
+.atcx .mro-spot{fill:none;stroke:rgba(180,140,255,.4);stroke-width:1;stroke-dasharray:3 3}
+.atcx .deice-pad{fill:rgba(127,240,192,.05);stroke:rgba(127,240,192,.5);stroke-width:1;stroke-dasharray:6 4}
+.atcx .rffs-bldg{fill:#1c1014;stroke:var(--bad);stroke-width:1.2}
+.atcx .veh rect{stroke:#04141a;stroke-width:.8}
+.atcx .veh text{font:bold 7px Consolas,monospace;text-anchor:middle;fill:#04141a}
+.atcx .veh.fuel rect{fill:var(--amber)}
+.atcx .veh.deice rect{fill:#7ff0c0}
+.atcx .veh.rffs rect{fill:var(--bad)}
+.atcx .veh.medic rect{fill:#ffffff}
+.atcx .veh.idle{opacity:.4}
+.atcx .ac.em .ac-ring{display:block;stroke:var(--bad);stroke-dasharray:none;stroke-width:2;animation:atcblink 1s steps(2) infinite}
+.atcx .ac.em .ac-tagbox{stroke:var(--bad);stroke-dasharray:none}
+.atcx .ac.em .ac-tagtxt.call{fill:var(--bad)}
+.atcx .ac.inmx{opacity:.6}
+.atcx .ac.inmx .ac-icon{fill:#b48cff}
+.atcx .ac.sepw .ac-tagbox{stroke:var(--bad);stroke-width:1.6;stroke-dasharray:none}
+@media (max-width:820px){.atc-wx .atc-chip{display:none}.atc-embar{max-width:90%}.atc-alert{white-space:normal;max-width:90%}}
 
 </style>
 </head>
@@ -1061,7 +1141,8 @@ function tick(){
       s.rep = Math.max(0, s.rep-6);
       s.aogMissTimes.push(now);
       s.todayFault = true;
-      notify("alert","bad","Missed AOG deadline",`AOG on ${j.aircraft} (task ${j.taskNo}) missed its slot and was diverted. Reputation -6.`);
+      notify("alert","bad", j.ext ? "Missed departure slot" : "Missed AOG deadline", j.ext ? `${j.airline} pulled ${j.tail} from us after we missed the slot on task ${j.taskNo}. Their own engineers took it. Reputation -6.` : `AOG on ${j.aircraft} (task ${j.taskNo}) missed its slot and was diverted. Reputation -6.`);
+      if(j.atcId && window.atcJobDone) window.atcJobDone(j, false);
       checkAogEscalation();
       return false;
     }
@@ -1069,6 +1150,7 @@ function tick(){
   });
 
   spawnJobChance();
+  if(window.atcHourly) window.atcHourly();
   if(s.eventCooldown<=0 && Math.random() < 0.05){
     const ev = weightedEvent();
     ev.fn(s);
@@ -1113,6 +1195,7 @@ function completeJob(bay, mech){
   checkAchievements();
   bay.job=null; bay.progress=0; bay.mech=null;
   mech.job=null;
+  if(job.atcId && window.atcJobDone) window.atcJobDone(job, true);
 }
 function monthName(n){
   const names=["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -1523,7 +1606,7 @@ function gt(){ return s.day*24 + s.hour + Math.min(1, (s.tickAcc||0)/(HOUR_MS/(s
 function km(a,b){ const R=6371, r=Math.PI/180, dLa=(b.lat-a.lat)*r, dLo=(b.lon-a.lon)*r;
   const q = Math.sin(dLa/2)**2 + Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dLo/2)**2; return 2*R*Math.asin(Math.sqrt(q)); }
 function jobs(){ return s.queue.concat(s.bays.filter(b=>b.job).map(b=>b.job)).filter(j=>j && j.mxv===1); }
-function stationOf(j){ const m = /^Line station ([A-Z]{3})/.exec(j.location||""); return m ? m[1] : null; }
+function stationOf(j){ if(j.ext) return "LHR"; const m = /^Line station ([A-Z]{3})/.exec(j.location||""); return m ? m[1] : null; }
 function opBase(j){ return OPERATOR_BASE[j.airline] || "LHR"; }
 function ensure(){
   if(!s.mapFilter) s.mapFilter = { mega:true, major:true, mid:true, regional:true, base:true, contractOnly:false, routes:true, labels:true, grid:true, regions:true, radar:true };
@@ -1926,15 +2009,20 @@ window.mapLeaseOf = leaseOf;
 window.mapRateOf = rateOf;
 })();
 /* =========================================================
-   ATC TOWER -- London Heathrow (EGLL) ground radar.
-   Free to run, no licence or base required. Traffic lives in
-   s.atcFlights (plain data, saved with the game); SVG nodes are
-   kept in a private map and patched every frame, and the tab is
-   NOT rebuilt by the hourly render() so clicks never race a
-   rebuild. Movement runs on the game's own Pause/1x/2x/4x speed
-   while the ATC tab is open. It is a free-play mini-game: NATS
-   controls Heathrow, not the MRO, so movements earn no cash or
-   reputation. The tower clock shows the game clock.
+   ATC TOWER -- London Heathrow (EGLL) ground radar, v3.
+   Traffic lives in s.atcFlights (plain data, saved with the game);
+   SVG nodes are kept in private maps and patched every frame, and
+   the tab is NOT rebuilt by the hourly render() so clicks never
+   race a rebuild. Movement runs on the game's Pause/1x/2x/4x speed
+   while the ATC tab is open; weather and the daily ops settlement
+   run on the game clock from tick() even when the tab is closed.
+   v3 adds: METAR weather with LVP, emergencies with RFFS/paramedic
+   staging, separation and runway-occupancy monitoring, runway
+   incursion alarms, fuel bowsers and de-icing with holdover time,
+   a two-way pipeline to the MRO Job Queue (line fault reports at
+   the stand, A-checks with tows to the MRO hangar and back), and
+   an optional Hardcore mode that ties the tower to cash, airline
+   satisfaction and reputation.
    Westerly ops: 27R (north) arrivals, 27L (south) departures.
    Headings in SVG degrees: 0 east, 90 south, 180 west, 270 north.
    ========================================================= */
@@ -2000,6 +2088,20 @@ function route(from, to){
   return out;
 }
 
+
+/* MRO apron: taxiway N to the hangar, four parking slots inside */
+nd("MR",2190,565); ed("L5a","MR");
+const MRO_SPOTS = [2132,2170,2208,2246].map(x=>({ x, y:462 }));
+const DEPOTS = { fuel:{x:995,y:1146}, deice:{x:2155,y:748}, rffs:{x:1150,y:594}, medic:{x:1196,y:594} };
+const NO_HYDRANT = new Set(["511","513","515","401","403","405","407"]);
+function splitCross(pts){
+  for(let i=0;i<pts.length-1;i++){
+    const a = pts[i].id, b = pts[i+1].id;
+    if((a==="CXN"&&b==="CXS") || (a==="CXS"&&b==="CXN")) return { first:pts.slice(0,i+1), rest:pts.slice(i+1) };
+  }
+  return { first:pts, rest:[] };
+}
+
 /* ---------- traffic data ---------- */
 const AP = {
   KJFK:"New York JFK", KLAX:"Los Angeles", KORD:"Chicago O'Hare", KDFW:"Dallas Fort Worth", KMIA:"Miami",
@@ -2023,66 +2125,317 @@ const ALS = [
   { icao:"KLM", rt:"KLM", name:"KLM", term:["T4"], types:["B738","E190"], routes:["EHAM"], num:[1000,1099], weight:2 },
   { icao:"QTR", rt:"QATARI", name:"Qatar Airways", term:["T4"], types:["A388","A35K","B77W"], routes:["OTHH"], num:[1,15], weight:2 }
 ];
+
+const CAP = { A319:"A319", A320:"A320", A321:"A321", B738:"737-800", B38M:"737 MAX 8" };
+const REGP = { BAW:["G-EU",2], VIR:["G-V",3], DLH:["D-AI",2], EIN:["EI-D",2], SWR:["HB-J",2], AFR:["F-G",3], KLM:["PH-B",2], UAE:["A6-E",2], QTR:["A7-A",2] };
+const HEAVY = new Set(["A388","B77W","A35K","B789","B772","A333","B763"]);
+const DEFECT_TXT = { GEAR:"landing gear / brakes fault message after landing", HYD:"hydraulic system caution in flight",
+  FLT:"flight control fault message on approach", CKPT:"avionics fault message in cruise",
+  ENG1:"engine 1 fault message, parameters fluctuating", ENG2:"engine 2 fault message, parameters fluctuating" };
+const ZN = { GEAR:"landing gear", HYD:"hydraulics", FLT:"flight controls", CKPT:"avionics", ENG1:"engine 1", ENG2:"engine 2" };
+const EMS = {
+  ENG:{ code:"MAYDAY",  label:"engine 1 failure",                 t:200, need:["rffs"],  z:"ENG1", sq:"7700" },
+  HYD:{ code:"MAYDAY",  label:"hydraulic failure, green system",  t:210, need:["rffs"],  z:"HYD",  sq:"7700" },
+  MED:{ code:"PAN PAN", label:"medical emergency, diverting",     t:230, need:["medic"], z:null,   sq:null }
+};
 function AL(f){ return ALS.find(a=>a.icao===f.alIcao) || ALS[0]; }
 function rnd(a,b){ return a+Math.floor(Math.random()*(b-a+1)); }
 function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
 function pickAirline(){ const tot = ALS.reduce((acc,a)=>acc+a.weight,0); let r = Math.random()*tot; for(const a of ALS){ r-=a.weight; if(r<=0) return a; } return ALS[0]; }
 function squawk(){ let q=""; for(let i=0;i<4;i++) q+=rnd(0,7); return q; }
-function fmtClock(t){ const h=Math.floor(t/3600)%24, m=Math.floor(t/60)%60, sec=Math.floor(t)%60; return [h,m,sec].map(n=>String(n).padStart(2,"0")).join(":"); }
+function mkReg(al){
+  const L = "ABCDEFGHIJKLMNOPQRSTUVWXYZ", ch = ()=>L[rnd(0,25)];
+  if(al.icao==="AAL"||al.icao==="UAL") return `N${rnd(100,999)}${ch()}${ch()}`;
+  const [p,n] = REGP[al.icao] || ["G-",4]; let r = p; for(let i=0;i<n;i++) r += ch(); return r;
+}
 function fmtMMSS(t){ t=Math.max(0,Math.ceil(t)); return Math.floor(t/60)+":"+String(t%60).padStart(2,"0"); }
 function angTo(a,b){ return Math.atan2(b.y-a.y, b.x-a.x)*180/Math.PI; }
 function angDiff(a,b){ return ((b-a)%360+540)%360-180; }
 function esc(x){ return String(x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
 function apName(c){ return AP[c] || c; }
+function clamp(v,a,b){ return Math.max(a, Math.min(b, v)); }
 const $ = id=>document.getElementById(id);
 
 /* ---------- state helpers (all persistent data lives on s) ---------- */
 function FL(){ return s.atcFlights; }
 function others(f){ return FL().filter(o=>o!==f); }
-const els = new Map();          // flight id -> {g, rot, txt, tc}
-let unread = 0, logOpen = false, lastListSig = "", lastDrawerSig = "", lastSlow = 0;
-let view = { s:0.4, tx:0, ty:0 }, viewInited = false, anim = null, drag = null, justDragged = false;
+const els = new Map(), vels = new Map();
+let unread = 0, logOpen = false, opsOpen = false, lastListSig = "", lastDrawerSig = "", lastSlow = 0, lastOpsSig = "", lastEmSig = "", alertUntil = 0;
+let view = { s:0.4, tx:0, ty:0 }, viewInited = false, anim = null, drag = null, justDragged = false, actx = null;
 
 const AIRBORNE = new Set(["INBOUND","CLEARED_LAND","GO_AROUND","CLIMBOUT"]);
-const AT_STAND = new Set(["AT_GATE","PARKED"]);
+const AT_STAND = new Set(["AT_GATE","PARKED","MX_STAND","IN_MRO","MX_RELEASE"]);
+const MXSTATES = new Set(["MX_STAND","TOW_MRO","IN_MRO","MX_RELEASE","TOW_STAND"]);
 const TAXI_STATES = new Set(["PUSHBACK","TAXI_OUT","TAXI_IN"]);
-const WAITING = new Set(["PUSHED","HOLDING","LINED_UP","VACATED","HOLD_CROSS"]);
+const WAITING = new Set(["PUSHED","HOLDING","LINED_UP","VACATED","HOLD_CROSS","RTO_STOP"]);
+const RWY_BLOCK = new Set(["RTO","RTO_STOP","BACKTRACK"]);
 const STATUS = {
   AT_GATE:"At stand, ready", PUSHBACK:"Pushing back", PUSHED:"Ready for taxi", TAXI_OUT:"Taxiing to hold",
   HOLDING:"Holding short 27L", LINEUP:"Lining up 27L", LINED_UP:"Lined up 27L", TAKEOFF_ROLL:"Takeoff roll 27L",
   CLIMBOUT:"Airborne", INBOUND:"On approach 27R", CLEARED_LAND:"Cleared to land 27R", GO_AROUND:"Going around",
   LANDING_ROLL:"Landing roll 27R", VACATING:"Vacating 27R", VACATED:"Clear of 27R, request taxi", TAXI_IN:"Taxiing to stand",
-  HOLD_CROSS:"Holding short 27L, request cross", CROSSING:"Crossing 27L", PARKED:"On stand"
+  HOLD_CROSS:"Holding short 27L, request cross", CROSSING:"Crossing 27L", PARKED:"On stand",
+  RTO:"Rejecting takeoff", RTO_STOP:"Stopped on 27L, request backtrack", BACKTRACK:"Backtracking 27L",
+  MX_STAND:"Line maintenance on stand", TOW_MRO:"Under tow to MRO", IN_MRO:"In the MRO hangar",
+  MX_RELEASE:"Released, awaiting a stand", TOW_STAND:"Under tow to stand"
 };
 const CODE = {
   AT_GATE:"STAND", PUSHBACK:"PUSH", PUSHED:"RDY TAXI", TAXI_OUT:"TAXI", HOLDING:"HOLD 27L", LINEUP:"LUW", LINED_UP:"LUW",
   TAKEOFF_ROLL:"T/O ROLL", CLIMBOUT:"AIRB", INBOUND:"APP", CLEARED_LAND:"CLR LDG", GO_AROUND:"GO AROUND",
   LANDING_ROLL:"LDG ROLL", VACATING:"VAC", VACATED:"RDY TAXI", TAXI_IN:"TAXI IN", HOLD_CROSS:"HOLD XING",
-  CROSSING:"XING 27L", PARKED:"PARKED"
+  CROSSING:"XING 27L", PARKED:"PARKED", RTO:"RTO", RTO_STOP:"STOP RWY", BACKTRACK:"BKTRK",
+  MX_STAND:"MX STAND", TOW_MRO:"TOW MRO", IN_MRO:"IN MRO", MX_RELEASE:"RLSD", TOW_STAND:"TOW STD"
 };
 
+/* ---------- weather: METAR, LVP, icing ---------- */
+const MEAN_T = [5,5,7,9,12,15,18,18,15,12,8,6];
+const MON = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+const WXR = {
+  CLEAR: { vis:[9999,9999], cl:[2500,4500], cover:"FEW", phen:"" },
+  CLOUDY:{ vis:[7000,9999], cl:[1200,2400], cover:"BKN", phen:"" },
+  RAIN:  { vis:[4000,8000], cl:[800,1400],  cover:"BKN", phen:"RA" },
+  HEAVY: { vis:[1400,2800], cl:[500,900],   cover:"OVC", phen:"+RA" },
+  MIST:  { vis:[1200,3500], cl:[300,700],   cover:"BKN", phen:"BR" },
+  FOG:   { vis:[150,500],   cl:[100,100],   cover:"VV",  phen:"FG" },
+  SNOW:  { vis:[700,2200],  cl:[400,900],   cover:"OVC", phen:"SN" }
+};
+const PHEN_TXT = { RA:"rain", "-RA":"light rain", "+RA":"heavy rain", BR:"mist", FG:"fog", SN:"snow" };
+function gMonth(){ return (10 + Math.floor(((s.day||1)-1)/30)) % 12; }   // game day 1 is in November
+function winter(){ return [10,11,0,1,2].includes(gMonth()); }
+function gameT(){ return s.hour + Math.min(0.999, (s.tickAcc||0)/(6000/(s.speed||1))); }
+function gameClock(){ const t = gameT(), hr = Math.floor(t)%24, mi = Math.floor((t%1)*60); return `D${s.day} ${String(hr).padStart(2,"0")}:${String(mi).padStart(2,"0")}`; }
+function baseTemp(){ return MEAN_T[gMonth()] + 4*Math.cos((s.hour-15)/24*2*Math.PI); }
+function pickRegime(){
+  const night = s.hour>=21 || s.hour<=8, w = winter(), t = baseTemp() + (s.atcWx ? s.atcWx.tOff : 0);
+  const W = { CLEAR:3, CLOUDY:3, RAIN:2, HEAVY:0.9, MIST:1+(night?1.2:0)+(w?0.8:0), FOG:0.35+(night?1.2:0)+(w?0.9:0), SNOW:(w&&t<=2)?1.2:0 };
+  let r = Math.random()*Object.values(W).reduce((a,b)=>a+b,0);
+  for(const k in W){ r -= W[k]; if(r<=0) return k; }
+  return "CLOUDY";
+}
+function setRegime(w, r){
+  const R = WXR[r]; w.reg = r; w.left = r==="FOG" ? rnd(4,10) : rnd(3,9);
+  w.tv = rnd(R.vis[0], R.vis[1]); w.tc = rnd(R.cl[0], R.cl[1]); w.cover = R.cover;
+  w.phen = r==="RAIN" && Math.random()<0.4 ? "-RA" : R.phen; w.atis = (w.atis+1)%26;
+}
+function newWx(){
+  const w = { reg:"CLOUDY", left:4, vis:9000, tv:9000, cl:2000, tc:2000, cover:"BKN", phen:"", qnh:rnd(1008,1024), wdir:250, wspd:10, gust:0, tOff:0, temp:8, dew:5, lvp:false, atis:rnd(0,25) };
+  setRegime(w, pickRegime()); w.vis = w.tv; w.cl = w.tc; wxDerive(w); w.lvp = w.vis<600 || w.cl<200;
+  return w;
+}
+function wxDerive(w){
+  w.temp = Math.round(baseTemp() + w.tOff - (w.reg==="FOG"||w.reg==="SNOW" ? 1.5 : 0));
+  w.dew = w.temp - (w.reg==="FOG" ? 0 : w.reg==="MIST" ? 1 : ["RAIN","HEAVY","SNOW"].includes(w.reg) ? rnd(1,2) : rnd(3,6));
+  w.wspd = w.reg==="FOG" ? rnd(1,4) : clamp(w.wspd + rnd(-3,3) + (w.reg==="HEAVY"?2:0), 3, 22);
+  w.gust = w.reg==="HEAVY" ? w.wspd + rnd(8,14) : (w.wspd>15 && Math.random()<0.5 ? w.wspd+rnd(6,10) : 0);
+}
+function wxHour(){
+  const w = s.atcWx;
+  if(--w.left<=0){
+    const prev = w.reg; setRegime(w, pickRegime());
+    if(w.reg!==prev) log("info","EGLL ATIS",`information ${atisL()} current, trend to ${w.reg==="HEAVY"?"heavy rain":w.reg==="FOG"?"fog":w.reg.toLowerCase()}.`);
+  }
+  w.vis = Math.round(w.vis + (w.tv-w.vis)*0.55); if(Math.abs(w.vis-w.tv)<60) w.vis = w.tv;
+  w.cl = Math.round(w.cl + (w.tc-w.cl)*0.6);
+  w.qnh = clamp(w.qnh + rnd(-1,1), 988, 1036);
+  w.tOff = clamp(w.tOff + (Math.random()-0.5), -3, 3);
+  w.wdir = Math.round(clamp(w.wdir + rnd(-20,20), 190, 300)/10)*10;
+  wxDerive(w);
+  if(w.reg==="SNOW" && w.temp>2) setRegime(w,"RAIN");
+  lvpCheck();
+}
+function lvpCheck(){
+  const w = s.atcWx;
+  if(!w.lvp && (w.vis<600 || w.cl<200)){
+    w.lvp = true;
+    log("bad","EGLL TWR",`Low Visibility Procedures in force, RVR ${rvr()}m. CAT III approaches, ${sepMinNM()}NM minimum spacing, reduced taxi speed.`);
+    alertMsg("warn", `LVP IN FORCE · RVR ${rvr()}M`, 6); beep("warn");
+  } else if(w.lvp && w.vis>=800 && w.cl>=250){
+    w.lvp = false; log("good","EGLL TWR","Low Visibility Procedures cancelled.");
+  }
+}
+const lvp = ()=> !!(s.atcWx && s.atcWx.lvp);
+function atisL(){ return String.fromCharCode(65 + (s.atcWx.atis%26)); }
+function rvr(){ return clamp(Math.round(s.atcWx.vis*1.15/25)*25, 75, 2000); }
+function taxiMult(){ const w = s.atcWx; return w.lvp ? 0.6 : (w.phen==="+RA"||w.phen==="SN") ? 0.8 : 1; }
+function sepMinNM(){ return lvp() ? 4 : 2.5; }
+function spawnGap(){ return (lvp() ? 5.5 : 3.5)*NM; }
+function icing(){ const w = s.atcWx; return winter() && (w.phen==="SN" || (w.temp<=3 && w.phen!=="") || w.temp<=0); }
+function holdover(){ const p = s.atcWx.phen; return p==="SN" ? 75 : (p==="FG"||p==="BR") ? 120 : p ? 100 : 180; }
+function windStr(){ const w = s.atcWx; return w.wspd<3 ? "wind calm" : `wind ${String(w.wdir).padStart(3,"0")} degrees ${w.wspd} knots${w.gust?`, gusting ${w.gust}`:""}`; }
+function metar(){
+  const w = s.atcWx, p2 = n=>String(n).padStart(2,"0"), p3 = n=>String(n).padStart(3,"0"), p4 = n=>String(n).padStart(4,"0");
+  const t = gameT(), tf = n=>(n<0?"M":"")+p2(Math.abs(n));
+  const wind = (w.wspd<3 ? "00000" : p3(w.wdir)+p2(w.wspd)) + (w.gust?"G"+w.gust:"") + "KT";
+  const vis = w.vis>=9999 ? "9999" : p4(Math.round(w.vis/50)*50);
+  const cloud = w.cover==="VV" ? "VV"+p3(Math.max(1,Math.round(w.cl/100))) : w.cover+p3(Math.round(w.cl/100));
+  return `EGLL ${p2(((s.day-1)%30)+1)}${p2(Math.floor(t)%24)}${(t%1)<0.5?"20":"50"}Z ${wind} ${vis} ${w.vis<1500?`R27R/${p4(rvr())} `:""}${w.phen?w.phen+" ":""}${cloud} ${tf(w.temp)}/${tf(w.dew)} Q${w.qnh}`;
+}
+
+/* ---------- sound and alerts ---------- */
+function audioInit(){ try{ if(!actx){ const AC = window.AudioContext||window.webkitAudioContext; if(AC) actx = new AC(); } if(actx && actx.state==="suspended") actx.resume(); }catch(e){} }
+function beep(kind){
+  if(!s.atcSnd || !actx || !$("atcRoot")) return;
+  try{
+    const pat = kind==="alarm" ? [[880,0,.18],[660,.2,.18],[880,.4,.18],[660,.6,.18]] : kind==="em" ? [[990,0,.12],[990,.18,.12],[990,.36,.12]] : [[660,0,.14]];
+    const t0 = actx.currentTime;
+    for(const [fq,st,du] of pat){
+      const o = actx.createOscillator(), g = actx.createGain();
+      o.type = "square"; o.frequency.value = fq;
+      g.gain.setValueAtTime(0.0001, t0+st); g.gain.exponentialRampToValueAtTime(0.05, t0+st+0.01); g.gain.exponentialRampToValueAtTime(0.0001, t0+st+du);
+      o.connect(g).connect(actx.destination); o.start(t0+st); o.stop(t0+st+du+0.02);
+    }
+  }catch(e){}
+}
+function alertMsg(level, text, secs, flash){
+  alertUntil = performance.now() + (secs||5)*1000;
+  const a = $("atcAlert"); if(a){ a.className = "atc-alert show "+level; a.textContent = text; }
+  if(flash){ const st = $("atcStage"); if(st){ st.classList.remove("flash"); void st.offsetWidth; st.classList.add("flash"); } }
+}
+
+/* ---------- airline satisfaction, incidents, hardcore economics ---------- */
+function newDay(){ return { mov:0, dly:0, ga:0, inc:0, emOk:0, emFail:0 }; }
+function D(){ return s.atcDay || (s.atcDay = newDay()); }
+function satOf(f){ return s.atcSat[f.alIcao] ?? 70; }
+function satAdj(f, d){ if(!f) return; s.atcSat[f.alIcao] = clamp(satOf(f)+d, 0, 100); }
+function charge(amount, f, what){
+  if(!s.atcHard || amount<=0) return "";
+  s.cash -= amount; ledgerAdd("misc", -amount);
+  return ` ${f?AL(f).name:"Airline"} charges ${money(amount)}${what?" for "+what:""}.`;
+}
+const INC = {
+  incursion:{ cash:4000, rep:3,   sat:6, name:"RUNWAY INCURSION" },
+  rwyocc:   { cash:2000, rep:1.5, sat:5, name:"RUNWAY OCCUPIED" },
+  los:      { cash:2500, rep:2,   sat:5, name:"LOSS OF SEPARATION" },
+  emerg:    { cash:6000, rep:4,   sat:8, name:"EMERGENCY MISHANDLED" }
+};
+function incident(kind, f, text){
+  const k = INC[kind];
+  s.atcInc = (s.atcInc||0)+1; D().inc++;
+  satAdj(f, -k.sat);
+  let tail = "";
+  if(s.atcHard){ s.cash -= k.cash; ledgerAdd("misc", -k.cash); s.rep = Math.max(0, s.rep-k.rep); tail = ` Penalty ${money(k.cash)}, reputation -${k.rep}.`; }
+  log("bad", f ? f.call : "EGLL TWR", `${k.name}: ${text}.${tail}`);
+  alertMsg("bad", `${k.name}${f?" · "+f.call:""}`, 6, kind==="incursion"||kind==="rwyocc");
+  beep("alarm");
+  if(f && f.em && !f.em.done) f.em.fail = true;
+}
+function goAround(f, why, cause){
+  f.state = "GO_AROUND"; f.slow = false; f.occWarn = false; f.wsDone = false;
+  s.atcGA++;
+  if(cause==="wx"){ log("warn", f.call, `going around, ${why}.`); return; }
+  D().ga++; satAdj(f, -4);
+  log("bad", f.call, `going around, ${why}.${charge(900, f, "the go-around")}`);
+  if(f.em && !f.em.done){ f.em.fail = true; log("bad", f.call, `${EMS[f.em.k].code} traffic sent around. That is an emergency mishandled.`); if(!f.em.counted){ D().emFail++; f.em.counted = true; } }
+}
+function settle(f){
+  s.atcMov++; D().mov++;
+  const over = Math.max(0, (f.delay||0)-45);
+  f.delay = 0; f.dlyLogged = false;
+  if(over>0){ D().dly += over; satAdj(f, -over/15); const c = charge(Math.round(over*10), f, `${Math.round(over)}s of delay`); if(c) log("warn", f.call, c.trim()); }
+  else satAdj(f, 0.4);
+}
+function settleDay(dayNo){
+  const d = s.atcDay; if(!d) return;
+  const perMov = d.mov ? d.dly/d.mov : 0;
+  const eff = clamp(1 - perMov/90 - d.inc*0.25 - d.ga*0.06 - d.emFail*0.3, 0, 1);
+  const eligible = s.atcHard && (s.atcHardDay??1e9) < dayNo;
+  let bonus = 0, rg = 0;
+  if(eligible && d.mov>=6){
+    bonus = Math.min(3000, Math.round(d.mov*90*eff));
+    if(bonus>0){ s.cash += bonus; ledgerAdd("revenue", bonus); }
+    rg = eff>=0.85 ? 0.5 : 0; s.rep = Math.min(100, s.rep+rg);
+    notify("email", eff>=0.6?"good":"bad", `Heathrow ops report, day ${dayNo}`,
+      `${d.mov} movements, average delay ${Math.round(perMov)}s, ${d.ga} go-arounds, ${d.inc} incidents, emergencies ${d.emOk} handled / ${d.emFail} mishandled. Efficiency ${Math.round(eff*100)}%. Performance bonus ${money(bonus)}${rg?", reputation +0.5":""}.`);
+  }
+  s.atcSettle = { day:dayNo, mov:d.mov, eff:Math.round(eff*100), bonus, note: !s.atcHard ? "Free play, no payout" : !eligible ? "Hardcore switched on mid-day, no payout" : d.mov<6 ? "Fewer than 6 movements, no payout" : "" };
+  for(const k in s.atcSat) s.atcSat[k] += (70-s.atcSat[k])*0.05;
+}
+
+/* ---------- ground vehicles: fuel bowsers, de-icing rigs, RFFS, ambulance ---------- */
+const VEH_DEF = [["fuel",2],["deice",2],["rffs",3],["medic",1]];
+const VSPD = { fuel:70, deice:60, rffs:110, medic:100 };
+const VCH = { fuel:"F", deice:"D", rffs:"R", medic:"+" };
+function initVeh(){
+  s.atcVeh = []; let n = 0;
+  for(const [k,c] of VEH_DEF) for(let i=0;i<c;i++){
+    const d = DEPOTS[k], hx = d.x + (i-(c-1)/2)*16;
+    s.atcVeh.push({ id:"v"+(n++), kind:k, x:hx, y:d.y, hx, hy:d.y, ph:"idle", fid:null, t:0, slot:i });
+  }
+}
+function freeVeh(k){ return s.atcVeh.filter(v=>v.kind===k && v.ph==="idle"); }
+function dispatch(k, f, count){
+  const vs = freeVeh(k).slice(0, count||1);
+  vs.forEach((v,i)=>{ v.ph = "out"; v.fid = f.id; v.t = 0; v.slot = i; });
+  return vs.length;
+}
+function releaseVeh(f){ for(const v of s.atcVeh) if(v.fid===f.id && v.ph!=="idle"){ v.ph = "back"; v.fid = null; } }
+function stepVeh(dt){
+  for(const v of s.atcVeh){
+    if(v.ph==="idle") continue;
+    const f = v.fid ? FL().find(x=>x.id===v.fid) : null;
+    if(v.ph!=="back" && !f){ v.ph = "back"; v.fid = null; }
+    let tx, ty;
+    if(v.ph==="back"){ tx = v.hx; ty = v.hy; }
+    else if(v.kind==="rffs" && AIRBORNE.has(f.state)){ const ex = EXITS[TERMINAL_EXIT[f.term]]; tx = ex.rx + (v.slot-1)*42; ty = 252; }
+    else if(v.kind==="medic"){ const g = gateById(f.gate); tx = g.x + 22; ty = g.y + (g.nose===90 ? -6 : 6); }
+    else if(v.kind==="rffs"){ const a = f.hdg*Math.PI/180; tx = f.x - Math.cos(a)*(26+v.slot*16) + (v.slot%2?14:-14)*Math.sin(a); ty = f.y - Math.sin(a)*(26+v.slot*16) - (v.slot%2?14:-14)*Math.cos(a); }
+    else { tx = f.x + 18; ty = f.y + 14; }
+    const dx = tx-v.x, dy = ty-v.y, d = Math.hypot(dx,dy), sp = VSPD[v.kind]*dt;
+    if(d>sp){ v.x += dx/d*sp; v.y += dy/d*sp; continue; }
+    v.x = tx; v.y = ty;
+    if(v.ph==="back"){ v.ph = "idle"; continue; }
+    if(v.kind!=="fuel" && v.kind!=="deice") continue;          // RFFS and ambulance stay with the aircraft
+    if(f.speed>0.5) continue;                                   // wait until it stops
+    if(v.ph==="out"){
+      v.ph = "work"; v.t = v.kind==="fuel" ? 14 : (s.atcWx.phen==="SN" ? 24 : 18);
+      if(v.kind==="fuel"){ f.svc.fuel = "active"; log("info", f.call, "bowser on stand, fuelling started."); }
+      else { f.svc.deice = "active"; log("info", f.call, "de-icing rig in position, Type II fluid going on."); }
+    } else if(v.ph==="work"){
+      v.t -= dt;
+      if(v.t<=0){
+        v.ph = "back"; v.fid = null;
+        if(v.kind==="fuel"){ f.svc.fuel = "done"; log("good", f.call, "fuelling complete, bowser clear."); }
+        else { f.svc.deice = "done"; f.svc.hot = holdover(); log("good", f.call, `de-icing complete, holdover time ${fmtMMSS(f.svc.hot)} starts now.`); }
+      }
+    }
+  }
+}
+function initSvc(f){ f.svc = { fuel: NO_HYDRANT.has(f.gate) ? "need" : "hyd", deice:"none", hot:0 }; }
+function fuelOk(f){ return !f.svc || f.svc.fuel==="hyd" || f.svc.fuel==="done"; }
+function needDeice(f){ return !!f.svc && icing() && !(f.svc.deice==="done" && f.svc.hot>0); }
+function freeSpot(){ for(let i=0;i<MRO_SPOTS.length;i++) if(!FL().some(o=>o.mx && o.mx.spot===i)) return i; return null; }
+
+/* ---------- flights ---------- */
 function newFlight(kind, gate, al){
   al = al || pickAirline();
-  const n = rnd(al.num[0], al.num[1]), other = pick(al.routes);
-  return {
-    id:"a"+(s.atcSeq++), kind, alIcao:al.icao, call:al.icao+n, rt:al.rt+" "+n,
-    type:pick(al.types), squawk:squawk(), gate:gate.id, term:gate.term, occGate:true,
+  const n = rnd(al.num[0], al.num[1]), other = pick(al.routes), type = pick(al.types);
+  const f = {
+    id:"a"+(s.atcSeq++), kind, alIcao:al.icao, call:al.icao+n, rt:al.rt+" "+n, reg:mkReg(al),
+    type, squawk:squawk(), gate:gate.id, term:gate.term, occGate:true,
     origin: kind==="dep" ? "EGLL" : other, dest: kind==="dep" ? other : "EGLL",
     rwy: kind==="dep" ? "27L" : "27R", state: kind==="dep" ? "AT_GATE" : "INBOUND",
     x:gate.x, y:gate.y, hdg:gate.nose, tgtHdg:gate.nose,
     speed:0, cruise:0, path:[], pi:0, reverse:false, node:null,
     alt:0, held:false, blocked:false, readyIn:0, turnIn:0,
-    pending:null, crossNeeded:false, crossed:false, autoRoll:false, tagDown:(s.atcSeq%2)===0
+    pending:null, crossNeeded:false, crossed:false, autoRoll:false, tagDown:(s.atcSeq%2)===0,
+    baseSpd: kind==="arr" ? (HEAVY.has(type) ? rnd(41,45) : rnd(37,41)) : 40, slow:false,
+    delay:0, svc:null, em:null, defect:null, mx:null, towing:false
   };
+  if(kind==="dep") initSvc(f);
+  return f;
 }
 function addFlight(f){ FL().push(f); makeEl(f); return f; }
-function retireToDeparture(f){
+function retireToDeparture(f, msg){
   const al = AL(f), n = rnd(al.num[0], al.num[1]);
+  if(f.defect && !f.mx) log("info", f.call, `tech log entry cleared by ${al.name}'s own line engineers.`);
+  if(f.em) releaseVeh(f);
   Object.assign(f, { kind:"dep", call:al.icao+n, rt:al.rt+" "+n, squawk:squawk(), origin:"EGLL", dest:pick(al.routes),
     rwy:"27L", state:"AT_GATE", readyIn:rnd(8,25), pending:null, crossNeeded:false, crossed:false, autoRoll:false,
-    held:false, path:[], pi:0, node:null });
+    held:false, path:[], pi:0, node:null, em:null, defect:null, slow:false, sepW:false, cnfl:false, delay:0,
+    towing:false, towDest:null, towNext:null, speed:0 });
+  initSvc(f);
   const e = els.get(f.id); if(e){ e.g.classList.remove("arr"); e.g.classList.add("dep"); e.tc = {}; }
-  log("info", f.call, `turnaround complete at stand ${f.gate}, boarding for ${apName(f.dest)}.`);
+  log("info", f.call, msg || `turnaround complete at stand ${f.gate}, boarding for ${apName(f.dest)}.`);
 }
 function gateTaken(g){ return FL().some(f=>f.occGate && f.gate===g.id); }
 function freeGates(term){
@@ -2092,14 +2445,16 @@ function freeGates(term){
 function pickGateFor(al){ return pick(freeGates(pick(al.term))) || pick(freeGates()) || null; }
 function holdFor(f){ return gateById(f.gate).term==="T4" ? "HK" : "HB"; }
 function lastOnFinalX(except){ return Math.max(0, ...FL().filter(o=>o!==except && (o.state==="INBOUND"||o.state==="CLEARED_LAND")).map(o=>o.x)); }
+function rollDefect(f){ if(Math.random()<0.24){ const z = pick(["GEAR","GEAR","HYD","FLT","CKPT","CKPT","ENG1","ENG2"]); f.defect = { z, t:DEFECT_TXT[z] }; } }
 function spawnArrival(x){
   const al = pickAirline(), g = pickGateFor(al);
   if(!g) return null;
   const f = newFlight("arr", g, al);
-  f.x = Math.max(x||SPAWN_X, lastOnFinalX(f)+750); f.y = RWN.y; f.hdg = f.tgtHdg = 180; f.speed = 40;
+  f.x = Math.max(x||SPAWN_X, lastOnFinalX(f)+spawnGap()); f.y = RWN.y; f.hdg = f.tgtHdg = 180; f.speed = f.baseSpd;
   f.crossNeeded = g.term==="T4";
+  rollDefect(f);
   addFlight(f);
-  log("info", f.call, `${f.type} from ${apName(f.origin)}, ${((f.x-RWN.thr)/NM).toFixed(1)}NM final 27R, stand ${g.id}.`);
+  log("info", f.call, `${f.type} from ${apName(f.origin)}, ${((f.x-RWN.thr)/NM).toFixed(1)}NM final 27R, stand ${g.id}${f.defect?". Crew report a tech log entry":""}.`);
   return f;
 }
 function spawnDeparture(){
@@ -2108,74 +2463,165 @@ function spawnDeparture(){
   const f = newFlight("dep", g, al);
   f.readyIn = rnd(10,35);
   addFlight(f);
-  log("info", f.call, `${f.type} boarding at stand ${g.id} (${g.term}) for ${apName(f.dest)}.`);
+  log("info", f.call, `${f.type} boarding at stand ${g.id} (${g.term}) for ${apName(f.dest)}${f.svc.fuel==="need"?", no hydrant on this stand":""}.`);
   return f;
 }
-function pay(f, what){
-  // free play: count the movement, no money or reputation
-  s.atcMov++;
+function spawnEmergency(k){
+  const al = pickAirline(), g = pickGateFor(al);
+  if(!g) return null;
+  k = k || pick(["ENG","ENG","HYD","MED","MED"]);
+  const E = EMS[k], f = newFlight("arr", g, al);
+  f.em = { k, t:E.t, rffs:false, medic:false, stand:false, fail:false, done:false, timeout:false, relT:0 };
+  if(E.sq) f.squawk = E.sq;
+  if(k==="MED") f.origin = pick(al.routes.filter(r=>r!=="EGLL")) || f.origin;
+  f.baseSpd = 42; f.speed = 42; f.y = RWN.y; f.hdg = f.tgtHdg = 180; f.crossNeeded = g.term==="T4";
+  const min = sepMinNM()*NM*1.15;
+  const fin = FL().filter(o=>o.state==="INBOUND"||o.state==="CLEARED_LAND");
+  let x = RWN.thr + 4.5*NM;
+  while(x < RWN.thr+9*NM && fin.some(o=>Math.abs(o.x-x)<min)) x += 0.25*NM;
+  if(fin.some(o=>Math.abs(o.x-x)<min)) x = lastOnFinalX(f)+spawnGap();
+  f.x = x;
+  addFlight(f);
+  s.atcEmCount = (s.atcEmCount||0)+1;
+  log("bad", f.call, `${E.code} ${E.code} ${E.code}, ${f.rt}, ${E.label}, ${((f.x-RWN.thr)/NM).toFixed(1)}NM final 27R, ${al.name} ${f.type}, request priority landing${E.need.includes("medic")?" and paramedics at the stand":""}.`);
+  alertMsg("bad", `${E.code} · ${f.call} · ${E.label.toUpperCase()}`, 7); beep("em");
+  return f;
 }
-function gameClock(){ const t = s.hour + Math.min(0.999, (s.tickAcc||0)/(6000/(s.speed||1))), hr = Math.floor(t)%24, mi = Math.floor((t%1)*60); return `D${s.day} ${String(hr).padStart(2,"0")}:${String(mi).padStart(2,"0")}`; }
 
 /* ---------- runway protection ---------- */
-function rollOnRunway(f){ return others(f).some(o=> o.state==="TAKEOFF_ROLL" || (o.state==="LINEUP" && o.autoRoll)); }
-function lineupBusy(f){ return others(f).some(o=> o.state==="LINEUP" || o.state==="LINED_UP"); }
-function crossingActive(f){ return others(f).some(o=> o.state==="CROSSING"); }
-function rollApproachingCrossing(f){ return others(f).some(o=> (o.state==="TAKEOFF_ROLL" && o.x > XING_X-40) || (o.state==="LINEUP" && o.autoRoll)); }
+function rollOnRunway(f){ return others(f).some(o=> o.state==="TAKEOFF_ROLL" || (o.state==="LINEUP" && o.autoRoll) || RWY_BLOCK.has(o.state)); }
+function lineupBusy(f){ return others(f).some(o=> o.state==="LINEUP" || o.state==="LINED_UP" || RWY_BLOCK.has(o.state)); }
+function crosser(f){ return others(f).find(o=> o.state==="CROSSING"); }
+function rollApproachingCrossing(f){ return others(f).some(o=> (o.state==="TAKEOFF_ROLL" && o.x > XING_X-40) || (o.state==="LINEUP" && o.autoRoll) || RWY_BLOCK.has(o.state)); }
+function rwyOcc(f){ return others(f).some(o=> o.state==="LANDING_ROLL" || (o.state==="VACATING" && Math.abs(o.y-RWN.y)<26)); }
 function runwaySig(){
-  return [FL().some(o=>o.state==="TAKEOFF_ROLL"||(o.state==="LINEUP"&&o.autoRoll)), FL().some(o=>o.state==="LINEUP"||o.state==="LINED_UP"),
-          FL().some(o=>o.state==="CROSSING")].map(b=>b?1:0).join("");
+  return [FL().some(o=>o.state==="TAKEOFF_ROLL"||(o.state==="LINEUP"&&o.autoRoll)||RWY_BLOCK.has(o.state)), FL().some(o=>o.state==="LINEUP"||o.state==="LINED_UP"),
+          FL().some(o=>o.state==="CROSSING"), lvp(), icing(), freeVeh("fuel").length, freeVeh("deice").length, freeVeh("rffs").length, freeVeh("medic").length, freeSpot()].map(b=>b===true?1:b===false?0:b).join("");
+}
+function rotEst(o){
+  const ex = EXITS[TERMINAL_EXIT[o.term]];
+  if(o.state==="LANDING_ROLL") return (o.x-ex.rx)/Math.max(o.speed,24)+5;
+  if(o.state==="VACATING") return 3;
+  return (o.x-RWN.thr)/Math.max(o.speed,1) + (RWN.thr-ex.rx)/30 + 5;
+}
+function finalMonitor(){
+  const fin = FL().filter(o=>(o.state==="INBOUND"||o.state==="CLEARED_LAND") && o.x>RWN.thr).sort((a,b)=>a.x-b.x);
+  const min = sepMinNM()*NM;
+  for(let i=0;i<fin.length;i++){
+    const f = fin[i], lead = fin[i-1];
+    f.sepW = false;
+    if(lead && lead.state!=="GO_AROUND" && f.state!=="GO_AROUND"){
+      const gap = f.x-lead.x;
+      if(gap<min){
+        f.sepW = true;
+        if(!f.sepLogged){ f.sepLogged = true; log("warn", f.call, `${(gap/NM).toFixed(1)}NM behind ${lead.call}, minimum ${sepMinNM()}NM. Reduce speed or send around.`); alertMsg("warn", `SPACING · ${f.call} ${(gap/NM).toFixed(1)}NM`, 4); beep("warn"); }
+      } else if(gap>min*1.1) f.sepLogged = false;
+      if(gap<min*0.6){
+        const victim = (f.em && !lead.em) ? lead : f;
+        incident("los", victim, `${f.call} ${(gap/NM).toFixed(1)}NM behind ${lead.call} on final 27R`);
+        goAround(victim, "loss of separation on final", "ctl");
+        continue;
+      }
+    }
+    const tts = (f.x-RWN.thr)/Math.max(f.speed,1);
+    f.cnfl = FL().some(o=>o!==f && (o.state==="LANDING_ROLL" || (o.state==="VACATING"&&Math.abs(o.y-RWN.y)<26) ||
+      ((o.state==="INBOUND"||o.state==="CLEARED_LAND") && o.x<f.x)) && rotEst(o) > tts-1);
+  }
 }
 
 /* ---------- clearances ---------- */
-const DEP_ORDER = { AT_GATE:0, PUSHBACK:1, PUSHED:2, TAXI_OUT:3, HOLDING:4, LINEUP:5, LINED_UP:6, TAKEOFF_ROLL:7, CLIMBOUT:8 };
+const DEP_ORDER = { AT_GATE:0, PUSHBACK:1, PUSHED:2, TAXI_OUT:3, HOLDING:4, RTO:4, RTO_STOP:4, BACKTRACK:4, LINEUP:5, LINED_UP:6, TAKEOFF_ROLL:7, CLIMBOUT:8 };
+const OPTIONAL = new Set(["hold","goaround","resume","cancelto","slow","spd","lmfr","acheck"]);
 function actionList(f){
-  const A = [];
-  const mk = (act,label,done,ok,why,danger)=>({act,label,done,ok:!done&&ok,why,danger});
+  const A = [], st = f.state;
+  const mk = (act,label,done,ok,why,danger,grp)=>({act,label,done,ok:!done&&ok,why,danger,grp});
+  if(MXSTATES.has(st) || f.towing){
+    if(st==="HOLD_CROSS"){
+      let r = "", ok = false;
+      if(rollApproachingCrossing(f)) r = "Departure rolling on 27L";
+      else if(others(f).some(o=>o.state==="LINEUP")) r = "Aircraft entering 27L";
+      else ok = true;
+      A.push(mk("cross","Cross Runway 27L (Tow)", false, ok, r));
+    }
+    return A;
+  }
   if(f.kind==="dep"){
-    const o = DEP_ORDER[f.state] ?? 0;
-    A.push(mk("push","Clear to Pushback", o>=1, o===0 && f.readyIn<=0, o===0 && f.readyIn>0 ? "Boarding" : ""));
+    const o = DEP_ORDER[st] ?? 0, sv = f.svc;
+    if(st==="AT_GATE" && sv.fuel!=="hyd"){
+      const nb = freeVeh("fuel").length;
+      A.push(mk("fuel","Dispatch Fuel Bowser", sv.fuel==="done", sv.fuel==="need" && nb>0,
+        sv.fuel==="need" ? (nb?"No hydrant on this stand":"All bowsers busy") : sv.fuel==="enroute" ? "Bowser en route" : sv.fuel==="active" ? "Fuelling" : ""));
+    }
+    if(o<=6 && (icing() || sv.deice==="enroute" || sv.deice==="active")){
+      const nd = needDeice(f), busy = sv.deice==="enroute" || sv.deice==="active", still = ["AT_GATE","PUSHED","HOLDING"].includes(st), nr = freeVeh("deice").length;
+      A.push(mk("deice", sv.deice==="expired" ? "Re-de-ice (Holdover Expired)" : "Dispatch De-icing Rig", !nd && !busy, nd && !busy && still && nr>0,
+        busy ? (sv.deice==="active"?"De-icing":"Rig en route") : !nd ? "Holdover running" : !still ? "Stop the aircraft first" : (nr?"":"All rigs busy"), sv.deice==="expired"));
+    }
+    let pWhy = "";
+    if(o===0){ if(f.readyIn>0) pWhy = "Boarding"; else if(sv.fuel==="need"||sv.fuel==="enroute") pWhy = "Needs a fuel bowser"; else if(sv.fuel==="active") pWhy = "Fuelling"; else if(needDeice(f)) pWhy = "De-icing required"; }
+    A.push(mk("push","Clear to Pushback", o>=1, o===0 && !pWhy, pWhy));
     A.push(mk("taxi",`Taxi to Holding Point ${HOLDS[holdFor(f)].name}`, o>=3, o===2, o<2 ? "After pushback" : ""));
     const luBlocked = lineupBusy(f);
-    A.push(mk("luw","Line Up and Wait 27L", o>=5, o===4 && !luBlocked, o<4 ? "At holding point" : (o===4 && luBlocked ? "Runway entry occupied" : "")));
-    let tkWhy = "", tkOk = false;
-    if(o===4 || o===6){
-      if(crossingActive(f)) tkWhy = "Traffic crossing 27L";
+    A.push(mk("luw","Line Up and Wait 27L", o>=5, st==="HOLDING" && !luBlocked && !needDeice(f),
+      o<4 ? "At holding point" : RWY_BLOCK.has(st) ? "Rejected takeoff" : (st==="HOLDING" && luBlocked) ? "Runway entry occupied" : (st==="HOLDING" && needDeice(f)) ? "De-icing required" : ""));
+    let tkWhy = "", tkOk = false, tkDanger = false;
+    if(RWY_BLOCK.has(st)) tkWhy = "Rejected takeoff";
+    else if(st==="HOLDING" || st==="LINED_UP"){
+      if(needDeice(f)) tkWhy = sv.deice==="expired" ? "Holdover time expired" : "De-icing required";
       else if(rollOnRunway(f)) tkWhy = "Preceding departure rolling";
-      else if(o===4 && luBlocked) tkWhy = "Runway entry occupied";
-      else tkOk = true;
+      else if(st==="HOLDING" && luBlocked) tkWhy = "Runway entry occupied";
+      else if(lvp() && s.atcTime-(s.atcLastTO??-1e9) < 45) tkWhy = "LVP departure spacing";
+      else { tkOk = true; if(crosser(f)){ tkWhy = "TRAFFIC CROSSING 27L"; tkDanger = true; } }
     } else if(o<4) tkWhy = "At holding point";
     else if(o===5) tkWhy = "Lining up";
-    A.push(mk("takeoff","Clear for Takeoff 27L", o>=7, tkOk, tkWhy));
-    if(TAXI_STATES.has(f.state)) A.push(f.held ? mk("resume","Continue Taxi",false,true,"",false) : mk("hold","Hold Position",false,true,"",true));
+    A.push(mk("takeoff","Clear for Takeoff 27L", o>=7, tkOk, tkWhy, tkDanger));
+    if((st==="LINEUP" && f.autoRoll) || (st==="TAKEOFF_ROLL" && f.speed<50)) A.push(mk("cancelto","Cancel Takeoff Clearance",false,true,"",true));
+    if(st==="RTO_STOP") A.push(mk("backtrack",`Backtrack 27L, Re-enter at ${HOLDS[holdFor(f)].name}`,false,true,""));
+    if(TAXI_STATES.has(st)) A.push(f.held ? mk("resume","Continue Taxi",false,true,"",false) : mk("hold","Hold Position",false,true,"",true));
+    if(st==="AT_GATE") mxActs(f, A, mk);
   } else {
-    const st = f.state;
+    const em = f.em && !f.em.done ? f.em : null, E = em ? EMS[em.k] : null;
+    if(em && E.need.includes("rffs")){ const n = freeVeh("rffs").length; A.push(mk("rffs","Alert RFFS · Full Emergency", em.rffs, n>0, n?"":"RFFS committed")); }
+    if(em && E.need.includes("medic")){ const n = freeVeh("medic").length; A.push(mk("medic",`Paramedics to Stand ${f.gate}`, em.medic, n>0, n?"":"Ambulance committed")); }
     A.push(mk("land","Clear to Land 27R", !["INBOUND","GO_AROUND"].includes(st), st==="INBOUND", st==="GO_AROUND" ? "Re-sequencing" : ""));
+    if((st==="INBOUND"||st==="CLEARED_LAND") && f.x > RWN.thr+1.5*NM)
+      A.push(f.slow ? mk("spd","Resume Normal Approach Speed",false,true,"") : mk("slow","Reduce to Minimum Approach Speed",false,true,""));
     if(st==="CLEARED_LAND") A.push(mk("goaround","Instruct Go Around",false,true,"",true));
+    if(em) A.push(mk("stand",`Confirm Priority Stand ${f.gate}`, em.stand, true, ""));
     const txDone = ["TAXI_IN","HOLD_CROSS","CROSSING","PARKED"].includes(st);
-    A.push(mk("taxiin",`Taxi to Stand ${f.gate}`, txDone, st==="VACATED", !txDone && st!=="VACATED" ? "After vacating 27R" : ""));
+    A.push(mk("taxiin",`Taxi to Stand ${f.gate}`, txDone, st==="VACATED" && (!em || em.stand),
+      !txDone && st!=="VACATED" ? "After vacating 27R" : (st==="VACATED" && em && !em.stand) ? "Confirm the stand first" : ""));
     if(f.crossNeeded){
-      let r="", ok=false;
+      let r = "", ok = false;
       if(st==="HOLD_CROSS"){
-        if(rollApproachingCrossing(f)) r="Departure rolling on 27L";
-        else if(others(f).some(o=>o.state==="LINEUP")) r="Aircraft entering 27L";
-        else ok=true;
-      } else if(!f.crossed && st!=="CROSSING") r="At crossing hold";
+        if(rollApproachingCrossing(f)) r = "Departure rolling on 27L";
+        else if(others(f).some(o=>o.state==="LINEUP")) r = "Aircraft entering 27L";
+        else ok = true;
+      } else if(!f.crossed && st!=="CROSSING") r = "At crossing hold";
       A.push(mk("cross","Cross Runway 27L", f.crossed || st==="CROSSING", ok, r));
     }
     if(TAXI_STATES.has(st)) A.push(f.held ? mk("resume","Continue Taxi",false,true,"",false) : mk("hold","Hold Position",false,true,"",true));
+    if(st==="PARKED") mxActs(f, A, mk);
   }
   return A;
 }
-function nextAction(f){ return actionList(f).find(a=>a.ok && a.act!=="hold" && a.act!=="goaround" && a.act!=="resume"); }
-const SHORT = { push:"PUSH", taxi:"TAXI", luw:"LUW", takeoff:"T/O", land:"LAND", taxiin:"TAXI", cross:"CROSS", resume:"CONT" };
+function mxActs(f, A, mk){
+  const model = CAP[f.type];
+  const why = !model ? `${f.type} is not on our Part-145 approval` : "";
+  if(f.defect) A.push(mk("lmfr","Raise Line Fault Report", false, !!model, why, false, "mx"));
+  const sp = freeSpot();
+  A.push(mk("acheck","Schedule A-Check (Tow to MRO)", false, !!model && sp!=null, why || (sp==null ? "MRO apron full" : ""), false, "mx"));
+}
+function nextAction(f){ return actionList(f).find(a=>a.ok && !OPTIONAL.has(a.act)); }
+const SHORT = { push:"PUSH", taxi:"TAXI", luw:"LUW", takeoff:"T/O", land:"LAND", taxiin:"TAXI", cross:"CROSS", resume:"CONT",
+  fuel:"FUEL", deice:"DEICE", rffs:"RFFS", medic:"MED", stand:"STAND", backtrack:"BKTRK" };
 function viaText(r){
   const names = [];
   for(const p of r){
     if(!p.id) continue;
     let n = null;
     if(/^A\d/.test(p.id)) n="A"; else if(/^B\d/.test(p.id)) n="B"; else if(p.id==="K0"||p.id==="KE"||/^P4/.test(p.id)) n="K";
-    else if(p.id==="W1") n="W"; else if(p.id==="L2") n="L"; else if(p.id.startsWith("L3")||p.id==="CXN"||p.id==="CXS") n="M"; else if(p.id==="L5a") n="N";
+    else if(p.id==="W1") n="W"; else if(p.id==="L2") n="L"; else if(p.id.startsWith("L3")||p.id==="CXN"||p.id==="CXS") n="M"; else if(p.id==="L5a"||p.id==="MR") n="N";
     if(n && names[names.length-1]!==n) names.push(n);
   }
   return names.join(", ") || "apron";
@@ -2185,43 +2631,116 @@ function faceDir(g){
   if(!r || r.length<2) return "east";
   return r[1].x < r[0].x ? "west" : r[1].x > r[0].x ? "east" : (r[1].y<r[0].y?"north":"south");
 }
-function goAround(f, why){ f.state="GO_AROUND"; s.atcGA++; log("bad", f.call, `going around, ${why}.`); }
 function doAction(id, act){
   const f = FL().find(x=>x.id===id); if(!f) return;
   const a = actionList(f).find(x=>x.act===act);
   if(!a || !a.ok){ if(a && a.why) log("warn", f.call, `unable, ${a.why.toLowerCase()}.`); return; }
-  const g = gateById(f.gate);
+  const g = gateById(f.gate), lv = lvp() ? `, RVR ${rvr()} metres` : "";
   switch(act){
     case "push":
-      f.state="PUSHBACK"; f.reverse=true; f.cruise=6; setPath(f,[{x:g.x, y:NODES[g.push].y, id:g.push}]);
+      f.state="PUSHBACK"; f.reverse=true; f.cruise=6*taxiMult(); setPath(f,[{x:g.x, y:NODES[g.push].y, id:g.push}]);
       log("info", f.call, `push and start approved, stand ${g.id}, face ${faceDir(g)}.`); break;
     case "taxi": {
       const r = route(f.node, holdFor(f));
-      f.state="TAXI_OUT"; f.reverse=false; f.cruise=TAXI_SPD; setPath(f, r.slice(1));
-      log("info", f.call, `taxi holding point ${HOLDS[holdFor(f)].name} runway 27L via ${viaText(r)}.`); break; }
+      f.state="TAXI_OUT"; f.reverse=false; f.cruise=TAXI_SPD*taxiMult(); setPath(f, r.slice(1));
+      log("info", f.call, `taxi holding point ${HOLDS[holdFor(f)].name} runway 27L via ${viaText(r)}${lvp()?", low visibility procedures in force":""}.`); break; }
     case "luw":
       f.state="LINEUP"; f.autoRoll=false; f.cruise=8; setPath(f, HOLDS[f.node].lineup);
       log("info", f.call, "line up and wait runway 27L."); break;
-    case "takeoff":
+    case "takeoff": {
+      const c = crosser(f);
       if(f.state==="HOLDING"){ f.state="LINEUP"; f.autoRoll=true; f.cruise=9; setPath(f, HOLDS[f.node].lineup); }
       else { f.state="TAKEOFF_ROLL"; f.speed=0; }
-      log("good", f.call, "wind 250 degrees 9 knots, runway 27L cleared for takeoff."); break;
+      s.atcLastTO = s.atcTime;
+      log("good", f.call, `${windStr()}${lv}, runway 27L cleared for takeoff.`);
+      if(c) incident("incursion", f, `${f.call} cleared for takeoff with ${c.call} crossing 27L at M`);
+      break; }
+    case "cancelto":
+      if(f.state==="LINEUP"){ f.autoRoll = false; log("warn", f.call, "cancel takeoff clearance, line up and wait."); }
+      else { f.state = "RTO"; log("bad", f.call, "stop immediately, cancel takeoff clearance. Rejecting."); }
+      break;
+    case "backtrack": {
+      const h = holdFor(f), lu = HOLDS[h].lineup[0];
+      f.state="BACKTRACK"; f.reverse=false; f.cruise=12; setPath(f, [{x:lu.x, y:RWS.y}, {x:NODES[h].x, y:NODES[h].y, id:h}]);
+      log("info", f.call, `backtrack runway 27L, vacate at ${HOLDS[h].name} and hold short.`); break; }
     case "land":
-      f.state="CLEARED_LAND"; log("good", f.call, "wind 250 degrees 10 knots, runway 27R cleared to land."); break;
-    case "goaround": goAround(f, "instructed by tower"); break;
+      f.state="CLEARED_LAND"; f.occWarn=false;
+      log("good", f.call, `${windStr()}${lv}, runway 27R cleared to land.`); break;
+    case "goaround": goAround(f, "instructed by tower", "ctl"); break;
+    case "slow": f.slow = true; log("info", f.call, "reduce to minimum approach speed."); break;
+    case "spd": f.slow = false; log("info", f.call, "resume normal speed."); break;
     case "taxiin": {
       const r = route(f.node, g.push); r.push({x:g.x, y:g.y});
       const ix = r.findIndex(p=>p.id==="CXN");
-      f.reverse=false; f.cruise=TAXI_SPD; f.state="TAXI_IN";
+      f.reverse=false; f.cruise=TAXI_SPD*taxiMult(); f.state="TAXI_IN";
       if(ix>=0){ setPath(f, r.slice(1, ix+1)); f.pending = r.slice(ix+1); } else { setPath(f, r.slice(1)); f.pending=null; }
       log("info", f.call, `taxi stand ${g.id} via ${viaText(r)}${ix>=0?", hold short runway 27L at M":""}.`); break; }
     case "cross":
       f.state="CROSSING"; f.cruise=18; setPath(f, [f.pending[0]]); f.pending = f.pending.slice(1);
-      log("good", f.call, "cross runway 27L at M."); break;
+      log("good", f.call, `cross runway 27L at M${f.towing?" (tug and tow)":""}.`); break;
     case "hold": f.held=true; log("warn", f.call, "hold position."); break;
     case "resume": f.held=false; log("info", f.call, "continue taxi."); break;
+    case "fuel": dispatch("fuel", f); f.svc.fuel = "enroute"; log("info", f.call, `fuel bowser dispatched to stand ${f.gate}.`); break;
+    case "deice": dispatch("deice", f); f.svc.deice = "enroute"; log("info", f.call, `de-icing rig dispatched${f.state==="AT_GATE"?` to stand ${f.gate}`:", hold position for remote de-icing"}.`); break;
+    case "rffs": dispatch("rffs", f, 3); f.em.rffs = true; log("good", "EGLL TWR", `full emergency declared for ${f.call}, RFFS appliances staging at ${EXITS[TERMINAL_EXIT[f.term]].name}.`); break;
+    case "medic": dispatch("medic", f); f.em.medic = true; log("good", "EGLL TWR", `paramedics dispatched to stand ${f.gate} for ${f.call}.`); break;
+    case "stand": f.em.stand = true; log("info", f.call, `priority stand ${f.gate} confirmed, handling agent advised.`); break;
+    case "lmfr": induct(f, "LINE"); break;
+    case "acheck": induct(f, "ACHECK"); break;
   }
 }
+
+/* ---------- MRO pipeline ---------- */
+function induct(f, kind){
+  const model = CAP[f.type]; if(!model || !window.mxInduct) return;
+  const spot = kind==="ACHECK" ? freeSpot() : null;
+  if(kind==="ACHECK" && spot==null){ log("warn","EGLL MRO","no free slot on the MRO apron."); return; }
+  const pm = s.atcHard ? 0.8 + satOf(f)/100*0.45 : 1;
+  const j = window.mxInduct({ tail:f.reg, model, airline:AL(f).name, zone: kind==="LINE" ? f.defect.z : null, kind, atcId:f.id, payMult:pm,
+    deadlineH: kind==="LINE" ? 14 : null, defect: f.defect ? f.defect.t : "", loc: kind==="LINE" ? `EGLL stand ${f.gate}` : "EGLL MRO hangar" });
+  if(!j){
+    log("warn", f.call, kind==="LINE" ? `none of our approvals cover ${ZN[f.defect.z]} work. ${AL(f).name}'s own engineers will take it.` : "none of our approvals cover an A-check on this type.");
+    if(kind==="LINE") f.defect = null;
+    return;
+  }
+  f.mx = { kind, jobId:j.id, wo:j.wo, spot, prev:f.state };
+  s.atcMxCount = (s.atcMxCount||0)+1;
+  toast("info", `${j.wo} raised: ${f.reg} ${kind==="LINE"?"line fault":"A-check"}. See the Job Queue.`);
+  log("good", f.call, `${f.reg} handed to MRO, ${j.wo} ${kind==="LINE"?"line fault report":"A-check work pack"} in the Job Queue, ${money(j.pay)}.`);
+  if(kind==="LINE") f.state = "MX_STAND";
+  else startTowMro(f);
+}
+function startTowMro(f){
+  const g = gateById(f.gate), sp = MRO_SPOTS[f.mx.spot], r = route(g.push, "MR");
+  Object.assign(f, { towing:true, towDest:"mro", crossed:false, held:false, state:"TOW_MRO", reverse:true, cruise:6, speed:0, pending:null });
+  setPath(f, [{x:g.x, y:NODES[g.push].y, id:g.push}]);
+  f.towNext = r.slice(1).concat([{x:sp.x, y:520}, {x:sp.x, y:sp.y}]);
+  log("info", f.call, `tug connected, tow ${f.reg} from stand ${g.id} to the MRO hangar via ${viaText(r)}.`);
+}
+function startTowStand(f){
+  const g = pickGateFor(AL(f)); if(!g) return false;
+  const sp = MRO_SPOTS[f.mx.spot], r = route("MR", g.push);
+  Object.assign(f, { gate:g.id, term:g.term, occGate:true, towing:true, towDest:"stand", crossed:false, state:"TOW_STAND", reverse:false, cruise:16*taxiMult(), speed:0, towNext:null });
+  const c = splitCross([{x:sp.x, y:520}].concat(r, [{x:g.x, y:g.y}]));
+  setPath(f, c.first); f.pending = c.rest.length ? c.rest : null;
+  log("good", f.call, `${f.reg} released to service off the A-check, tow to stand ${g.id} via ${viaText(r)}.`);
+  return true;
+}
+window.atcJobDone = function(job, ok){
+  if(!s.atcFlights) return;
+  const f = s.atcFlights.find(x=>x.id===job.atcId); if(!f || !f.mx) return;
+  satAdj(f, ok ? 3 : -5);
+  if(f.mx.kind==="LINE"){
+    const prev = f.mx.prev; f.mx = null; f.defect = null;
+    const msg = ok ? `${f.reg} CRS signed on ${job.wo}, released to service on stand ${f.gate}.` : `${job.wo} lost, ${AL(f).name} engineers rectified ${f.reg} themselves. Departure delayed.`;
+    if(prev==="PARKED") retireToDeparture(f, msg); else { f.state = "AT_GATE"; log(ok?"good":"bad", f.call, msg); }
+    f.readyIn = ok ? rnd(6,12) : rnd(30,45);
+  } else {
+    f.defect = null;
+    log(ok?"good":"bad", f.call, ok ? `${f.reg} A-check complete, CRS signed on ${job.wo}.` : `${job.wo} A-check closed without us.`);
+    if(f.state==="IN_MRO"){ f.state = "MX_RELEASE"; f.relT = 0; f.relLogged = false; } else f.mx.release = true;
+  }
+};
 
 /* ---------- movement ---------- */
 function setPath(f, pts){ f.path = pts.map(p=>({...p})); f.pi = 0; }
@@ -2244,7 +2763,7 @@ function walk(f, dt){
   let tgt = Math.min(f.cruise, Math.sqrt(2*decel*distToEnd(f))+0.6);
   f.blocked = false;
   if(f.held) tgt = 0;
-  else if((f.state==="TAXI_OUT"||f.state==="TAXI_IN") && blockedAhead(f)){ tgt = 0; f.blocked = true; }
+  else if(["TAXI_OUT","TAXI_IN","TOW_STAND"].includes(f.state) || (f.state==="TOW_MRO" && !f.reverse)){ if(blockedAhead(f)){ tgt = 0; f.blocked = true; } }
   f.speed = f.speed<tgt ? Math.min(tgt, f.speed+accel*dt) : Math.max(tgt, f.speed-decel*dt);
   let step = f.speed*dt;
   while(step>0 && f.pi<f.path.length){
@@ -2260,18 +2779,36 @@ function walk(f, dt){
 function turn(f, dt, rate){ const d = angDiff(f.hdg, f.tgtHdg), m = rate*dt; f.hdg = Math.abs(d)<=m ? f.tgtHdg : f.hdg + Math.sign(d)*m; }
 function stepFlight(f, dt){
   const st = f.state;
-  if(st==="AT_GATE"){ if(f.readyIn>0){ f.readyIn-=dt; if(f.readyIn<=0) log("warn", f.call, `stand ${f.gate}, ready for pushback.`); } return; }
+  if(st==="AT_GATE"){ if(f.readyIn>0){ f.readyIn-=dt; if(f.readyIn<=0) log("warn", f.call, `stand ${f.gate}, ready for pushback${!fuelOk(f)?", still needs fuel":""}.`); } return; }
   if(st==="PARKED"){ f.turnIn-=dt; if(f.turnIn<=0) retireToDeparture(f); return; }
+  if(st==="MX_STAND" || st==="IN_MRO"){ f.speed = 0; return; }
+  if(st==="MX_RELEASE"){
+    f.relT = (f.relT||0)-dt; if(f.relT>0) return; f.relT = 3;
+    if(!startTowStand(f) && !f.relLogged){ f.relLogged = true; log("warn", f.call, `${f.reg} off the A-check, waiting for a free stand.`); }
+    return;
+  }
   if(st==="INBOUND" || st==="CLEARED_LAND"){
-    f.speed = 40; f.hdg = f.tgtHdg = 180; f.x -= f.speed*dt; f.y = RWN.y;
+    const v = f.slow ? 32 : f.baseSpd;
+    f.speed += clamp(v-f.speed, -4*dt, 4*dt);
+    f.hdg = f.tgtHdg = 180; f.x -= f.speed*dt; f.y = RWN.y;
     f.alt = Math.max(0, (f.x-RWN.thr)/NM*318);
-    if(st==="INBOUND" && f.x<=GA_X) goAround(f, "no landing clearance received");
-    else if(st==="CLEARED_LAND" && f.x<=RWN.thr){ f.state="LANDING_ROLL"; f.alt=0; log("info", f.call, `touchdown 27R, vacate at ${EXITS[TERMINAL_EXIT[f.term]].name}.`); }
+    if(st==="INBOUND" && f.x<=GA_X){ goAround(f, "no landing clearance received", "ctl"); return; }
+    if(st==="CLEARED_LAND"){
+      const occ = rwyOcc(f);
+      if(occ && !f.occWarn && f.x < RWN.thr+2*NM){ f.occWarn = true; log("warn", f.call, "2NM final with traffic still on 27R."); alertMsg("warn", `27R OCCUPIED · ${f.call} 2NM`, 4); beep("warn"); }
+      if(!f.wsDone && f.x < RWN.thr+NM){ f.wsDone = true; if(s.atcWx.phen==="+RA" && s.atcWx.gust && Math.random()<0.1){ goAround(f, "windshear warning on short final", "wx"); return; } }
+      if(f.x<=RWN.thr){
+        if(occ){ incident("rwyocc", f, `${f.call} reached the threshold with traffic still on 27R`); goAround(f, "runway 27R occupied at the threshold", "ctl"); return; }
+        f.state="LANDING_ROLL"; f.alt=0;
+        log("info", f.call, `touchdown 27R, vacate at ${EXITS[TERMINAL_EXIT[f.term]].name}.`);
+        if(f.em && !f.em.done && EMS[f.em.k].need.includes("rffs") && !f.em.rffs) incident("emerg", f, `${f.call} touched down with no RFFS cover`);
+      }
+    }
     return;
   }
   if(st==="GO_AROUND"){
     f.speed = Math.min(58, f.speed+6*dt); f.x -= f.speed*dt; f.alt = Math.min(3000, f.alt+260*dt);
-    if(f.x < 120){ f.state="INBOUND"; f.x = Math.max(SPAWN_X, lastOnFinalX(f)+750); f.speed=40; log("warn", f.call, "re-sequenced, back on final for 27R."); }
+    if(f.x < 120){ f.state="INBOUND"; f.x = Math.max(SPAWN_X, lastOnFinalX(f)+spawnGap()); f.speed=f.baseSpd; f.sepLogged=false; log("warn", f.call, "re-sequenced, back on final for 27R."); }
     return;
   }
   if(st==="LANDING_ROLL"){
@@ -2282,15 +2819,24 @@ function stepFlight(f, dt){
   }
   if(st==="TAKEOFF_ROLL" || st==="CLIMBOUT"){
     f.hdg = f.tgtHdg = 180;
+    if(st==="TAKEOFF_ROLL"){
+      const c = others(f).find(o=>o.state==="CROSSING" && Math.abs(o.y-RWS.y)<30);
+      if(c && f.x > XING_X && f.speed < 52){ f.state = "RTO"; log("bad", f.call, `rejecting takeoff, ${c.call} on the runway ahead.`); alertMsg("bad", `RTO · ${f.call} · TRAFFIC ON 27L`, 5, true); beep("alarm"); return; }
+    }
     f.speed = Math.min(st==="CLIMBOUT"?88:80, f.speed+(st==="CLIMBOUT"?3:4.6)*dt); f.x -= f.speed*dt;
     if(st==="TAKEOFF_ROLL" && f.speed>=60){ f.state="CLIMBOUT"; log("good", f.call, "airborne 27L, contact London Control."); }
     if(f.state==="CLIMBOUT") f.alt += 420*dt;
     if(f.x < -150) f.dead=true;
     return;
   }
+  if(st==="RTO"){
+    f.speed = Math.max(0, f.speed-10*dt); f.x -= f.speed*dt;
+    if(f.speed<=0){ f.state = "RTO_STOP"; log("warn", f.call, "stopped on 27L, request backtrack."); }
+    return;
+  }
   if(WAITING.has(st)){ turn(f, dt, 60); f.speed=0; f.blocked=false; return; }
   const ended = walk(f, dt);
-  turn(f, dt, st==="PUSHBACK" ? 40 : 140);
+  turn(f, dt, (st==="PUSHBACK" || (f.towing && f.reverse)) ? 40 : 140);
   if(!ended) return;
   if(st==="PUSHBACK"){
     f.state="PUSHED"; f.reverse=false; f.speed=0; f.occGate=false;
@@ -2299,6 +2845,8 @@ function stepFlight(f, dt){
     log("info", f.call, "pushback complete, ready for taxi.");
   } else if(st==="TAXI_OUT"){
     f.state="HOLDING"; f.speed=0; log("warn", f.call, `holding short runway 27L at ${HOLDS[f.node].name}, ready for departure.`);
+  } else if(st==="BACKTRACK"){
+    f.state="HOLDING"; f.speed=0; log("warn", f.call, `vacated 27L, holding at ${HOLDS[f.node].name}, ready again.`);
   } else if(st==="LINEUP"){
     f.tgtHdg = 180;
     if(Math.abs(angDiff(f.hdg,180))<4){
@@ -2311,29 +2859,79 @@ function stepFlight(f, dt){
     if(f.pending && !f.crossed){ f.state="HOLD_CROSS"; f.speed=0; log("warn", f.call, "holding short runway 27L at M, request crossing."); }
     else {
       f.state="PARKED"; f.speed=0; f.hdg=f.tgtHdg=gateById(f.gate).nose; f.turnIn=rnd(45,80);
-      log("good", f.call, `on stand ${f.gate}, blocks on.`); pay(f, "parked on stand");
+      log("good", f.call, `on stand ${f.gate}, blocks on.`); settle(f);
+      if(f.em && !f.em.done) emergencyClosed(f);
     }
   } else if(st==="CROSSING"){
-    f.crossed=true; f.state="TAXI_IN"; setPath(f, f.pending); f.pending=null; log("info", f.call, "runway 27L vacated, continue to stand.");
+    f.crossed=true; f.state = f.towing ? (f.towDest==="mro" ? "TOW_MRO" : "TOW_STAND") : "TAXI_IN";
+    setPath(f, f.pending); f.pending=null; log("info", f.call, "runway 27L vacated, continue.");
+  } else if(st==="TOW_MRO" || st==="TOW_STAND"){
+    if(f.towNext){
+      const c = splitCross(f.towNext); f.towNext = null; f.reverse = false; f.cruise = 16*taxiMult(); f.occGate = false;
+      setPath(f, c.first); f.pending = c.rest.length ? c.rest : null; return;
+    }
+    if(f.pending && !f.crossed){ f.state="HOLD_CROSS"; f.speed=0; log("warn", f.call, "tow holding short runway 27L at M, request crossing."); return; }
+    f.speed = 0; f.pending = null;
+    if(st==="TOW_MRO"){
+      f.state = "IN_MRO"; f.towing = false; f.hdg = f.tgtHdg = 270;
+      log("good", f.call, `${f.reg} in the MRO hangar, ${f.mx.wo} open.`);
+      if(f.mx.release){ f.state = "MX_RELEASE"; f.relT = 0; }
+    } else {
+      f.towing = false; f.mx = null; f.hdg = f.tgtHdg = gateById(f.gate).nose;
+      retireToDeparture(f, `on stand ${f.gate} after the A-check, crew boarding.`);
+      f.readyIn = rnd(10,18);
+    }
   }
+}
+function emergencyClosed(f){
+  const em = f.em, E = EMS[em.k];
+  em.done = true; em.relT = 8;
+  if(E.need.includes("medic") && !em.medic) incident("emerg", f, `${f.call} on stand with no paramedics called`);
+  if(!em.fail && !em.timeout){
+    D().emOk++; satAdj(f, 4);
+    let tail = "";
+    if(s.atcHard){ s.cash += 1500; ledgerAdd("revenue", 1500); s.rep = Math.min(100, s.rep+1); tail = ` ${AL(f).name} thanks the tower: ${money(1500)}, reputation +1.`; }
+    log("good", f.call, `${E.code} closed, on stand inside ${fmtMMSS(E.t-em.t)}.${tail}`);
+  } else if(!em.counted){ D().emFail++; }
+  em.counted = true;
+  f.squawk = squawk();
+  if(E.z && CAP[f.type]) { f.defect = { z:E.z, t:`${E.label} reported in flight` }; log("warn", f.call, `${f.reg} has a defect to clear before it flies: raise a line fault report to MRO.`); }
+  f.turnIn = rnd(90,130);
+}
+function tickTimers(f, dt){
+  if(f.em && !f.em.done){
+    f.em.t -= dt;
+    if(f.em.t<=0 && !f.em.timeout){ f.em.timeout = true; incident("emerg", f, `${f.call} not on stand inside the emergency time limit`); }
+  } else if(f.em && f.em.done && f.em.relT>0){ f.em.relT -= dt; if(f.em.relT<=0) releaseVeh(f); }
+  if(f.svc && f.svc.deice==="done" && f.state!=="TAKEOFF_ROLL" && f.state!=="CLIMBOUT"){
+    f.svc.hot -= dt;
+    if(f.svc.hot<=0){ f.svc.hot = 0; f.svc.deice = "expired"; if(icing()){ log("bad", f.call, "holdover time expired, de-ice again before departure."); alertMsg("warn", `HOT EXPIRED · ${f.call}`, 4); beep("warn"); } }
+  }
+  const waiting = !f.towing && ((f.kind==="dep" && f.state==="AT_GATE" && f.readyIn<=0) || WAITING.has(f.state));
+  if(waiting){ f.delay = (f.delay||0)+dt; if(f.delay>60 && !f.dlyLogged){ f.dlyLogged = true; log("warn", f.call, `${AL(f).name} ops: ${f.call} is now delayed.`); } }
 }
 function simStep(dt){
   s.atcTime += dt;
   for(const f of FL()) stepFlight(f, dt);
+  stepVeh(dt);
+  finalMonitor();
+  for(const f of FL()) tickTimers(f, dt);
   const dead = FL().filter(x=>x.dead);
   if(dead.length){
     s.atcFlights = FL().filter(x=>!x.dead);
     for(const f of dead){
       log("good", f.call, "departed, frequency change approved.");
-      pay(f, "departed");
+      settle(f);
       removeEl(f.id);
       if(s.atcSel===f.id) select(null);
     }
   }
   s.atcArrIn -= dt;
-  if(s.atcArrIn<=0){ s.atcArrIn = rnd(34,55); if(FL().filter(f=>f.kind==="arr" && f.state!=="PARKED").length < 5) spawnArrival(); }
+  if(s.atcArrIn<=0){ s.atcArrIn = lvp() ? rnd(55,80) : rnd(26,55); if(FL().filter(f=>f.kind==="arr" && !f.mx && !f.em && f.state!=="PARKED").length < 5) spawnArrival(); }
   s.atcDepIn -= dt;
-  if(s.atcDepIn<=0){ s.atcDepIn = rnd(22,38); if(FL().filter(f=>f.kind==="dep").length < 8) spawnDeparture(); }
+  if(s.atcDepIn<=0){ s.atcDepIn = rnd(22,38); if(FL().filter(f=>f.kind==="dep" && !f.mx).length < 8) spawnDeparture(); }
+  s.atcEmIn -= dt;
+  if(s.atcEmIn<=0){ s.atcEmIn = rnd(260,460); if(!FL().some(o=>o.em && !o.em.done)) spawnEmergency(); }
 }
 
 /* ---------- static vector map ---------- */
@@ -2345,7 +2943,7 @@ function mapSvg(){
     <pattern id="atcGridL" width="250" height="250" patternUnits="userSpaceOnUse"><rect width="250" height="250" fill="url(#atcGridS)"/><path d="M250 0H0V250" fill="none" stroke="#12222d" stroke-width="1.5"/></pattern>
   </defs><rect x="0" y="0" width="${VB_W}" height="${VB_H}" fill="url(#atcGridL)"/>`;
   [450,900,1350].forEach((r,i)=>{ o += `<circle class="ring" cx="1250" cy="620" r="${r}"/><text class="ring-txt" x="1250" y="${620-r+16}">${(i+1)*2}NM</text>`; });
-  o += `<rect class="boundary" x="250" y="110" width="2030" height="1150" rx="40"/>`;
+  o += `<rect class="boundary" x="250" y="110" width="2040" height="1150" rx="40"/>`;
   o += `<line class="app-line" x1="${RWN.x2}" y1="${RWN.y}" x2="${VB_W}" y2="${RWN.y}"/>`;
   for(let k=1;k<=3;k++){ const x=RWN.thr+k*NM; o += `<line class="app-tick" x1="${x}" y1="${RWN.y-14}" x2="${x}" y2="${RWN.y+14}"/><text class="app-txt" x="${x}" y="${RWN.y+32}">${k}NM</text>`; }
   o += `<line class="ga-line" x1="${GA_X}" y1="${RWN.y-40}" x2="${GA_X}" y2="${RWN.y+40}"/><text class="ga-txt" x="${GA_X}" y="${RWN.y-48}">MISSED APP PT</text>`;
@@ -2353,7 +2951,7 @@ function mapSvg(){
   o += `<line class="dep-line" x1="${RWS.x1}" y1="${RWS.y}" x2="0" y2="${RWS.y}"/><text class="app-txt" style="fill:rgba(255,176,32,.6)" x="220" y="${RWS.y-18}">SID 27L</text>`;
   o += `<rect class="apron-surface" x="520" y="340" width="360" height="110" rx="6"/><rect class="apron-surface" x="560" y="575" width="290" height="105" rx="6"/>`;
   o += `<rect class="apron-surface" x="1380" y="330" width="240" height="100" rx="6"/><rect class="apron-surface" x="1710" y="540" width="260" height="100" rx="6"/>`;
-  o += `<rect class="apron-surface" x="1500" y="1060" width="320" height="80" rx="6"/>`;
+  o += `<rect class="apron-surface" x="1500" y="1060" width="320" height="80" rx="6"/><rect class="apron-surface" x="2108" y="500" width="168" height="80" rx="6"/>`;
   const seen = new Set(), segs = [];
   for(const a of Object.values(NODES)) for(const b of a.adj){ const k = a.id<b ? a.id+"|"+b : b+"|"+a.id; if(seen.has(k)) continue; seen.add(k); segs.push([a, NODES[b]]); }
   const rapid = Object.values(EXITS).map(ex=>[{x:ex.rx,y:RWN.y}, NODES[ex.node]]);
@@ -2365,12 +2963,16 @@ function mapSvg(){
   o += holdBar(2110, 960, "27L B1", 16, -8) + holdBar(2150, 1040, "27L K1", 16, 18) + holdBar(1300, 962, "27L M", -58, -6) + holdBar(1300, 1040, "27L M", -58, 18);
   o += terminal(520,460,360,100,"T5",700,523) + terminal(1380,440,240,120,"T2",1500,512) + terminal(1700,650,260,140,"T3",1830,732) + terminal(1500,1150,350,80,"T4",1675,1202);
   o += `<rect class="misc-bldg" x="620" y="1110" width="300" height="90" rx="4"/><text class="misc-label" x="770" y="1160">CARGO</text>`;
-  o += `<rect class="misc-bldg" x="2160" y="420" width="90" height="110" rx="4"/><text class="misc-label" x="2205" y="480">MRO</text>`;
+  o += `<rect class="misc-bldg" x="945" y="1158" width="100" height="40" rx="4"/><text class="misc-label" x="995" y="1183">FUEL</text>`;
+  o += `<rect class="mro-bldg" x="2108" y="396" width="168" height="104" rx="4"/><text class="mro-label" x="2192" y="420">MRO HANGAR</text>`;
+  o += MRO_SPOTS.map(p=>`<rect class="mro-spot" x="${p.x-15}" y="${p.y-16}" width="30" height="32" rx="2"/>`).join("");
+  o += `<rect class="deice-pad" x="2100" y="735" width="110" height="52" rx="4"/><text class="misc-label" x="2155" y="779" style="fill:rgba(127,240,192,.7)">DE-ICE</text>`;
+  o += `<rect class="rffs-bldg" x="1095" y="604" width="125" height="36" rx="3"/><text class="misc-label" x="1157" y="627" style="fill:rgba(255,77,94,.8)">RFFS</text>`;
   o += `<circle class="twr" cx="1150" cy="560" r="16"/><text class="twr-txt" x="1150" y="564">TWR</text>`;
   for(const g of GATES){
     const p = NODES[g.push];
     o += `<line class="gate-lead" x1="${p.x}" y1="${p.y}" x2="${g.x}" y2="${g.y}"/><rect class="gate-box" x="${g.x-14}" y="${g.y-15}" width="28" height="30" rx="2"/>`;
-    o += `<text class="gate-label" x="${g.x}" y="${g.nose===90 ? g.y+28 : g.y-21}">${g.id}</text>`;
+    o += `<text class="gate-label" x="${g.x}" y="${g.nose===90 ? g.y+28 : g.y-21}">${g.id}${NO_HYDRANT.has(g.id)?"*":""}</text>`;
   }
   [["A",540,280],["A",1500,280],["B",540,920],["B",1500,920],["K",1960,1080],["W",380,760],["L",1000,760],["M",1300,560],["N",2050,420]]
     .forEach(([t,x,y])=>{ o += `<rect class="twy-tagbg" x="${x-10}" y="${y-10}" width="20" height="20" rx="2"/><text class="twy-label" x="${x}" y="${y+5}">${t}</text>`; });
@@ -2398,7 +3000,8 @@ function mapSvg(){
   }
 }
 
-/* ---------- aircraft SVG (counter-scaled so tags stay readable) ---------- */
+
+/* ---------- aircraft and vehicle SVG (counter-scaled so tags stay readable) ---------- */
 const SVGNS = "http://www.w3.org/2000/svg";
 const ICON = "M11,0 L7,-1.6 L2,-1.6 L-2,-10 L-4.5,-10 L-2.6,-1.6 L-8,-1.6 L-10,-5 L-11.6,-5 L-10.6,0 L-11.6,5 L-10,5 L-8,1.6 L-2.6,1.6 L-4.5,10 L-2,10 L2,1.6 L7,1.6 Z";
 function makeEl(f){
@@ -2419,7 +3022,7 @@ function makeEl(f){
 function removeEl(id){ const e = els.get(id); if(e){ e.g.remove(); els.delete(id); } }
 function kts(f){
   if(AIRBORNE.has(f.state)) return Math.round(140+(f.speed-40)*1.78);
-  if(f.state==="TAKEOFF_ROLL" || f.state==="LANDING_ROLL") return Math.round(f.speed*2.8);
+  if(f.state==="TAKEOFF_ROLL" || f.state==="LANDING_ROLL" || f.state==="RTO") return Math.round(f.speed*2.8);
   return Math.round(f.speed*0.9);
 }
 function altSpd(f){
@@ -2437,17 +3040,61 @@ function patchAircraft(){
     let st = CODE[f.state];
     if(f.state==="AT_GATE" && f.readyIn>0) st = "BOARDING";
     if(f.held) st = "HOLD POSN"; else if(f.blocked) st += " WAIT";
-    const v = [f.call, f.type+"  "+f.rwy+"  "+(f.kind==="dep" ? f.dest : "S"+f.gate), altSpd(f), st];
+    if(f.sepW) st += " SEP"; else if(f.cnfl && (f.state==="INBOUND"||f.state==="CLEARED_LAND")) st += " CNFL";
+    const em = f.em && !f.em.done;
+    const l2 = em ? `${EMS[f.em.k].code} ${fmtMMSS(f.em.t)}` : f.mx ? `${f.reg} ${f.mx.wo}` : f.type+"  "+f.rwy+"  "+(f.kind==="dep" ? f.dest : "S"+f.gate);
+    const v = [f.call, l2, altSpd(f), st];
     v.forEach((t,i)=>{ if(e.tc[i]!==t){ e.tc[i]=t; e.txt[i].textContent=t; } });
     const cls = (c,on)=>{ if(e.g.classList.contains(c)!==on) e.g.classList.toggle(c,on); };
     cls("sel", f.id===s.atcSel); cls("held", f.held); cls("attn", !f.held && !!nextAction(f));
+    cls("em", !!em); cls("inmx", f.state==="IN_MRO"||f.state==="MX_STAND"||f.state==="MX_RELEASE"); cls("sepw", !!f.sepW);
   }
   for(const id of [...els.keys()]) if(!ids.has(id)) removeEl(id);
 }
+function patchVeh(){
+  const layer = $("atcVehLayer"); if(!layer) return;
+  const k = (1/view.s).toFixed(4);
+  for(const v of s.atcVeh){
+    let e = vels.get(v.id);
+    if(!e){
+      const g = document.createElementNS(SVGNS,"g");
+      g.setAttribute("class","veh "+v.kind);
+      g.innerHTML = `<rect x="-7" y="-4.5" width="14" height="9" rx="2"/><text y="3">${VCH[v.kind]}</text>`;
+      layer.appendChild(g); e = { g, idle:null }; vels.set(v.id, e);
+    }
+    e.g.setAttribute("transform", `translate(${v.x.toFixed(1)},${v.y.toFixed(1)}) scale(${k})`);
+    const idle = v.ph==="idle"; if(e.idle!==idle){ e.idle = idle; e.g.classList.toggle("idle", idle); }
+  }
+}
 
 /* ---------- left panel queues (dirty-checked) ---------- */
-const DEP_SORT = { CLIMBOUT:-2, TAKEOFF_ROLL:-1, LINED_UP:0, LINEUP:1, HOLDING:2, TAXI_OUT:3, PUSHED:4, PUSHBACK:5, AT_GATE:6 };
+const DEP_SORT = { CLIMBOUT:-2, TAKEOFF_ROLL:-1, RTO:-1, RTO_STOP:0, BACKTRACK:1, LINED_UP:0, LINEUP:1, HOLDING:2, TAXI_OUT:3, PUSHED:4, PUSHBACK:5, AT_GATE:6 };
+function flags(f){
+  const b = [];
+  if(f.em && !f.em.done) b.push(["bad", EMS[f.em.k].code]);
+  if(f.defect && !f.mx) b.push(["warn","TECH LOG"]);
+  if(f.svc && f.kind==="dep" && (DEP_ORDER[f.state]??9)<=6){
+    if(["need","enroute","active"].includes(f.svc.fuel)) b.push(["info", f.svc.fuel==="active"?"FUELLING":"FUEL"]);
+    if(needDeice(f)) b.push([f.svc.deice==="expired"?"bad":"info", f.svc.deice==="expired"?"HOT EXPIRED":f.svc.deice==="active"?"DE-ICING":"DE-ICE"]);
+    else if(f.svc.deice==="done" && f.svc.hot>0) b.push(["good","HOT"]);
+  }
+  if(f.slow) b.push(["info","SLOW"]);
+  if(f.sepW) b.push(["bad","SEP"]); else if(f.cnfl && (f.state==="INBOUND"||f.state==="CLEARED_LAND")) b.push(["warn","RWY CNFL"]);
+  if((f.delay||0)>45) b.push(["warn","DLY"]);
+  if(f.mx) b.push(["mx", f.mx.wo]);
+  return b;
+}
+function flagHtml(f){ const b = flags(f); return b.length ? `<div class="fr-flags">${b.map(([c,t])=>`<span class="atc-bdg ${c}">${t}</span>`).join("")}</div>` : ""; }
+function jobStatus(f){
+  if(!f.mx) return "";
+  const j = window.mxJobById ? window.mxJobById(f.mx.jobId) : null;
+  if(!j) return f.mx.release||f.state==="MX_RELEASE"||f.state==="TOW_STAND" ? "Released" : "Closed";
+  if(!s.bays.some(b=>b.job && b.job.id===j.id)) return "Awaiting bay";
+  return { diagnose:"Troubleshooting", part:"Parts", work:"On the tools", signoff:"Awaiting CRS" }[j.prog.stage] || j.prog.stage;
+}
 function liveLine(f){
+  if(f.em && !f.em.done) return `${EMS[f.em.k].code} ${fmtMMSS(f.em.t)}`;
+  if(f.mx) return jobStatus(f);
   if(f.state==="INBOUND"||f.state==="CLEARED_LAND") return ((f.x-RWN.thr)/NM).toFixed(1)+"NM "+kts(f)+"KT";
   if(f.state==="AT_GATE") return f.readyIn>0 ? "RDY "+fmtMMSS(f.readyIn) : "READY";
   if(f.state==="PARKED") return "TURN "+fmtMMSS(f.turnIn);
@@ -2455,36 +3102,41 @@ function liveLine(f){
 }
 function rowHtml(f, idx){
   const n = nextAction(f);
-  const pend = actionList(f).find(x=>!x.done && !["hold","goaround","resume"].includes(x.act));
+  const pend = actionList(f).find(x=>!x.done && !OPTIONAL.has(x.act));
   const b = n || pend;
-  const cls = ["atc-row", f.kind, f.id===s.atcSel?"sel":"", f.held?"held":"", (n&&!f.held)?"attn":""].join(" ");
-  const rt = f.kind==="dep" ? `to ${f.dest} ${apName(f.dest)}` : `from ${f.origin} ${apName(f.origin)}`;
+  const cls = ["atc-row", f.kind, f.id===s.atcSel?"sel":"", f.held?"held":"", (n&&!f.held)?"attn":"", f.em&&!f.em.done?"em":"", f.mx?"mx":""].join(" ");
+  const rt = f.mx ? `${f.reg} · ${f.mx.kind==="LINE"?"line fault, stand "+f.gate:"A-check, MRO hangar"}` : f.kind==="dep" ? `to ${f.dest} ${apName(f.dest)}` : `from ${f.origin} ${apName(f.origin)}`;
   const st = f.held ? "Holding position" : (f.state==="AT_GATE" && f.readyIn>0 ? "Boarding" : STATUS[f.state]) + (f.blocked?" (traffic)":"");
   const btn = b ? `<button class="atc-q" data-aact="${b.act}" data-aid="${f.id}" ${b.ok?"":"disabled"} title="${esc(b.label)}${b.why?" ("+esc(b.why)+")":""}">${SHORT[b.act]||"GO"}</button>` : "";
   return `<div class="${cls}" data-arow="${f.id}">
     <div class="fr-top">${idx!=null?`<span class="atc-seq">${idx}</span>`:""}<span class="fr-call">${f.call}</span><span class="fr-type">${f.type}</span><span class="fr-gate">${f.term} ${f.gate}</span></div>
-    <div class="fr-meta">${esc(rt)}</div>
+    <div class="fr-meta">${esc(rt)}</div>${flagHtml(f)}
     <div class="fr-bottom"><span class="fr-status">${st}</span><span class="fr-live" id="atcsl-${f.id}">${liveLine(f)}</span>${btn}</div>
   </div>`;
 }
 function renderLists(force){
-  const arrEl = $("atcArrList"), depEl = $("atcDepList"); if(!arrEl || !depEl) return;
-  const arr = FL().filter(f=>f.kind==="arr" && f.state!=="PARKED");
-  const parked = FL().filter(f=>f.kind==="arr" && f.state==="PARKED");
-  const dep = FL().filter(f=>f.kind==="dep");
+  const arrEl = $("atcArrList"), depEl = $("atcDepList"), emEl = $("atcEmList"), mxEl = $("atcMxList"); if(!arrEl || !depEl) return;
+  const inMx = f=>!!f.mx || MXSTATES.has(f.state) || f.towing;
+  const em = FL().filter(f=>f.em && !f.em.done && !inMx(f));
+  const arr = FL().filter(f=>f.kind==="arr" && f.state!=="PARKED" && !inMx(f) && !(f.em && !f.em.done));
+  const parked = FL().filter(f=>f.kind==="arr" && f.state==="PARKED" && !inMx(f));
+  const dep = FL().filter(f=>f.kind==="dep" && !inMx(f));
+  const mx = FL().filter(inMx);
   arr.sort((a,b)=> (AIRBORNE.has(b.state)?1:0)-(AIRBORNE.has(a.state)?1:0) || a.x-b.x);
   dep.sort((a,b)=> (DEP_SORT[a.state]??9)-(DEP_SORT[b.state]??9) || (a.readyIn-b.readyIn));
-  const sig = arr.concat(parked,dep).map(f=>[f.id,f.call,f.state,f.held?1:0,f.blocked?1:0,f.readyIn>0?1:0,nextAction(f)?.act||""].join(":")).join(",")+"|"+s.atcSel+"|"+runwaySig();
+  const sig = em.concat(arr,parked,dep,mx).map(f=>[f.id,f.call,f.state,f.held?1:0,f.blocked?1:0,f.readyIn>0?1:0,nextAction(f)?.act||"",flags(f).map(x=>x[1]).join("."),f.mx?jobStatus(f):""].join(":")).join(",")+"|"+s.atcSel+"|"+runwaySig();
   if(!force && sig===lastListSig){
     for(const f of FL()){ const el=$("atcsl-"+f.id); if(el){ const v=liveLine(f); if(el.textContent!==v) el.textContent=v; } }
     return;
   }
   lastListSig = sig;
   $("atcArrCnt").textContent = arr.length; $("atcDepCnt").textContent = dep.length;
+  if(emEl){ emEl.innerHTML = em.map(f=>rowHtml(f)).join(""); $("atcEmHead").style.display = em.length ? "" : "none"; }
   arrEl.innerHTML = (arr.length ? arr.map(f=>rowHtml(f)).join("") : `<div class="atc-empty">No inbound traffic</div>`)
     + (parked.length ? `<div class="atc-subhead">ON STAND, TURNING AROUND</div>`+parked.map(f=>rowHtml(f)).join("") : "");
   let n = 0;
   depEl.innerHTML = dep.length ? dep.map(f=>rowHtml(f, ["HOLDING","LINEUP","LINED_UP","TAXI_OUT"].includes(f.state) ? ++n : null)).join("") : `<div class="atc-empty">No outbound traffic</div>`;
+  if(mxEl){ $("atcMxCnt").textContent = mx.length; mxEl.innerHTML = mx.length ? mx.map(f=>rowHtml(f)).join("") : `<div class="atc-empty">Nothing handed to MRO. Select a parked A320-family or 737 to raise a fault report or schedule an A-check.</div>`; }
 }
 
 /* ---------- drawer ---------- */
@@ -2497,41 +3149,68 @@ function select(id, fly){
   renderLists(true);
   if(fly && id){ const f = FL().find(x=>x.id===id); if(f) flyTo(f); }
 }
+function svcRows(f){
+  if(!f.svc || f.kind!=="dep") return "";
+  const fu = { hyd:"Hydrant", need:"Bowser required", enroute:"Bowser en route", active:"Fuelling", done:"Complete" }[f.svc.fuel];
+  const di = f.svc.deice==="done" ? `Done, HOT <b id="atcDHot">${fmtMMSS(f.svc.hot)}</b>` : f.svc.deice==="expired" ? (icing()?"HOT EXPIRED":"Not required")
+    : f.svc.deice==="enroute" ? "Rig en route" : f.svc.deice==="active" ? "In progress" : icing() ? "Required (icing)" : "Not required";
+  return `<div class="atc-di"><span>Fuel</span><b>${fu}</b></div><div class="atc-di"><span>De-icing</span><b>${di}</b></div>`;
+}
+function emCard(f){
+  if(!f.em || f.em.done) return "";
+  const E = EMS[f.em.k], ck = (on,t)=>`<div class="ck"><b class="${on?"ok":"no"}">${on?"&#10003;":"&#10007;"}</b> ${t}</div>`;
+  return `<div class="atc-emcard"><div class="h"><span>${E.code} · ${esc(E.label.toUpperCase())}</span><span id="atcDEm">${fmtMMSS(f.em.t)}</span></div>
+    ${E.need.includes("rffs")?ck(f.em.rffs,"RFFS alerted and staged"):""}${E.need.includes("medic")?ck(f.em.medic,"Paramedics to the stand"):""}
+    ${ck(f.state!=="INBOUND"&&f.state!=="GO_AROUND","Priority landing clearance")}${ck(f.em.stand,`Stand ${f.gate} confirmed`)}
+    <div class="ck">On blocks before the timer runs out. Sending this aircraft around counts as mishandled.</div></div>`;
+}
 function renderDrawer(force){
   const d = $("atcDrawer"); if(!d || !s.atcSel) return;
   const f = FL().find(x=>x.id===s.atcSel);
   if(!f){ select(null); return; }
   const acts = actionList(f);
-  const sig = [f.id,f.call,f.state,f.kind,f.held?1:0,f.readyIn>0?1:0,f.blocked?1:0, acts.map(a=>a.act+(a.ok?1:0)+(a.done?1:0)+a.why).join(",")].join("|");
+  const sig = [f.id,f.call,f.state,f.kind,f.held?1:0,f.readyIn>0?1:0,f.blocked?1:0,f.slow?1:0,f.gate,flags(f).map(x=>x[1]).join("."),
+    f.svc?f.svc.fuel+f.svc.deice:"", f.em?[f.em.rffs,f.em.medic,f.em.stand,f.em.done].join(""):"", f.mx?f.mx.wo+jobStatus(f):"", f.defect?1:0, icing()?1:0,
+    acts.map(a=>a.act+(a.ok?1:0)+(a.done?1:0)+a.why).join(",")].join("|");
   if(!force && sig===lastDrawerSig){
     const live = $("atcDLive"); if(live){ const v=altSpd(f); if(live.textContent!==v) live.textContent=v; }
     const rdy = $("atcDReady"); if(rdy){ const v = f.state==="AT_GATE" ? (f.readyIn>0?fmtMMSS(f.readyIn):"Ready") : fmtMMSS(f.turnIn); if(rdy.textContent!==v) rdy.textContent=v; }
+    const em = $("atcDEm"); if(em && f.em){ const v = fmtMMSS(f.em.t); if(em.textContent!==v) em.textContent=v; }
+    const hot = $("atcDHot"); if(hot && f.svc){ const v = fmtMMSS(f.svc.hot); if(hot.textContent!==v) hot.textContent=v; }
     return;
   }
   lastDrawerSig = sig;
   const nxt = nextAction(f), al = AL(f), g = gateById(f.gate);
-  const btns = acts.map(a=>{
-    const cls = ["atc-db", a.done?"done":"", (nxt && a.act===nxt.act)?"primary":"", a.danger?"danger":""].join(" ");
+  const btn = a=>{
+    const cls = ["atc-db", a.done?"done":"", (nxt && a.act===nxt.act)?"primary":"", a.danger?"danger":"", a.grp==="mx"?"mx":""].join(" ");
     const why = a.done ? "&#10003; issued" : (a.why ? esc(a.why) : "");
     return `<button class="${cls}" data-aact="${a.act}" data-aid="${f.id}" ${a.ok?"":"disabled"}><span>${a.label}</span><span class="why">${why}</span></button>`;
-  }).join("");
+  };
+  const atcBtns = acts.filter(a=>a.grp!=="mx").map(btn).join(""), mxBtns = acts.filter(a=>a.grp==="mx").map(btn).join("");
   const stTxt = f.held ? "Holding position" : (f.state==="AT_GATE" && f.readyIn>0 ? "Boarding at stand" : STATUS[f.state]) + (f.blocked?" &#183; waiting for traffic":"");
+  const cap = CAP[f.type];
+  const mxSec = f.mx
+    ? `<div class="atc-dsec">MRO hand-off</div><div class="atc-di"><span>Work order</span><b>${f.mx.wo}</b></div><div class="atc-di"><span>Package</span><b>${f.mx.kind==="LINE"?"Line fault, at stand":"A-check, MRO hangar"}</b></div><div class="atc-di"><span>Status</span><b>${jobStatus(f)}</b></div><p class="atc-dnote">Work it in the Job Queue tab. The aircraft comes back to the departure flow on its own once the CRS is signed.</p>`
+    : mxBtns ? `<div class="atc-dsec">MRO hand-off</div>${f.defect?`<div class="atc-di"><span>Tech log</span><b>${esc(f.defect.t)}</b></div>`:""}<div class="atc-dacts">${mxBtns}</div>
+       <p class="atc-dnote">${cap?`${f.reg} is a ${cap}, inside our approval. ${s.atcHard?`Pay is scaled by ${esc(al.name)}'s satisfaction.`:""}`:`We hold A320 family and 737 approvals only.`}</p>` : "";
   d.innerHTML = `
-    <div class="atc-dhead"><div class="call">${f.call}</div><div class="rt">${f.rt}</div><div class="airline">${esc(al.name)} &#183; ${f.type}</div>
+    <div class="atc-dhead"><div class="call">${f.call}</div><div class="rt">${f.rt}</div><div class="airline">${esc(al.name)} &#183; ${f.type} &#183; ${f.reg}</div>
       <button class="atc-dclose" data-aclose="1">CLOSE</button><button class="atc-dcenter" data-acenter="${f.id}">LOCATE</button></div>
     <div class="atc-dbody">
-      <div class="atc-dstatus ${f.held?"held":""}">${stTxt}</div>
-      <div class="atc-di"><span>Airline</span><b>${esc(al.name)}</b></div>
-      <div class="atc-di"><span>Aircraft</span><b>${f.type}</b></div>
+      ${emCard(f)}
+      <div class="atc-dstatus ${f.held||(f.em&&!f.em.done)?"held":""}">${stTxt}</div>
+      <div class="atc-di"><span>Registration</span><b>${f.reg}</b></div>
       <div class="atc-di"><span>Origin</span><b>${f.origin} &#183; ${esc(apName(f.origin))}</b></div>
       <div class="atc-di"><span>Destination</span><b>${f.dest} &#183; ${esc(apName(f.dest))}</b></div>
-      <div class="atc-di"><span>Squawk</span><b>${f.squawk}</b></div>
-      <div class="atc-di"><span>Stand</span><b>${g.term} &#183; ${g.id}</b></div>
+      <div class="atc-di"><span>Squawk</span><b ${f.squawk==="7700"?'style="color:var(--bad)"':""}>${f.squawk}</b></div>
+      <div class="atc-di"><span>Stand</span><b>${g.term} &#183; ${g.id}${NO_HYDRANT.has(g.id)?" (no hydrant)":""}</b></div>
       <div class="atc-di"><span>Runway</span><b>${f.rwy}${f.kind==="dep" ? " &#183; hold "+HOLDS[holdFor(f)].name : " &#183; exit "+EXITS[TERMINAL_EXIT[f.term]].name}</b></div>
       <div class="atc-di"><span>Alt / Speed</span><b id="atcDLive">${altSpd(f)}</b></div>
       ${(f.state==="AT_GATE"||f.state==="PARKED")?`<div class="atc-di"><span>${f.state==="PARKED"?"Turnaround":"Ready in"}</span><b id="atcDReady"></b></div>`:""}
-      <div class="atc-dsec">ATC Instructions</div>
-      <div class="atc-dacts">${btns}</div>
+      ${svcRows(f)}
+      ${f.defect && !mxBtns && !f.mx ? `<div class="atc-di"><span>Tech log</span><b>${esc(f.defect.t)}</b></div>`:""}
+      ${atcBtns?`<div class="atc-dsec">ATC Instructions</div><div class="atc-dacts">${atcBtns}</div>`:""}
+      ${mxSec}
     </div>`;
   renderDrawer(false);
 }
@@ -2539,7 +3218,7 @@ function renderDrawer(force){
 /* ---------- tower log ---------- */
 function log(level, call, text){
   s.atcLog.unshift({t:gameClock(), level, call, text});
-  if(s.atcLog.length>80) s.atcLog.length=80;
+  if(s.atcLog.length>120) s.atcLog.length=120;
   if(!logOpen) unread++;
   renderLog();
 }
@@ -2549,8 +3228,47 @@ function renderLog(){
   const p = $("atcLogPanel"); if(!p) return;
   p.classList.toggle("show", logOpen);
   if(!logOpen) return;
-  $("atcLogItems").innerHTML = s.atcLog.slice(0,60).map(e=>
+  $("atcLogItems").innerHTML = s.atcLog.slice(0,80).map(e=>
     `<div class="atc-li ${e.level}"><span class="t">${e.t}</span><b>${esc(e.call)}</b> ${esc(e.text)}</div>`).join("") || `<div class="atc-li">No events yet.</div>`;
+}
+
+/* ---------- ops panel: mode, today, airlines, ground vehicles ---------- */
+function opsHtml(){
+  const d = D(), perMov = d.mov ? Math.round(d.dly/d.mov) : 0;
+  const eff = clamp(1 - (d.mov?d.dly/d.mov:0)/90 - d.inc*0.25 - d.ga*0.06 - d.emFail*0.3, 0, 1);
+  const proj = s.atcHard && d.mov>=6 ? Math.min(3000, Math.round(d.mov*90*eff)) : 0;
+  const sats = Object.entries(s.atcSat).sort((a,b)=>a[1]-b[1]);
+  const vrow = (k,n)=>`<div class="atc-ops-row"><span>${n}</span><b>${freeVeh(k).length} / ${s.atcVeh.filter(v=>v.kind===k).length} free</b></div>`;
+  const st = s.atcSettle;
+  return `<div class="lp-head">Tower Ops</div>
+    <div class="atc-ops-sec"><h5>Mode</h5>
+      <div class="atc-ops-btns"><button data-amode="free" class="${s.atcHard?"":"on"}">FREE PLAY</button><button data-amode="hard" class="${s.atcHard?"on hard":""}">HARDCORE</button></div>
+      <div class="atc-ops-note">${s.atcHard
+        ? "Hardcore: airlines charge for go-arounds, delays and incidents straight away. A clean emergency pays £1,500. At midnight you get a performance bonus of up to £3,000 if the tower ran a full day in Hardcore with 6+ movements."
+        : "Free play: nothing here touches cash or reputation. MRO work you raise from the tower still pays as normal in the Job Queue."}</div></div>
+    <div class="atc-ops-sec"><h5>Today, day ${s.day}</h5>
+      <div class="atc-ops-row"><span>Movements</span><b>${d.mov}</b></div>
+      <div class="atc-ops-row"><span>Average delay</span><b>${perMov}s</b></div>
+      <div class="atc-ops-row"><span>Go-arounds (ours)</span><b>${d.ga}</b></div>
+      <div class="atc-ops-row"><span>Incidents</span><b style="${d.inc?"color:var(--bad)":""}">${d.inc}</b></div>
+      <div class="atc-ops-row"><span>Emergencies handled / mishandled</span><b>${d.emOk} / ${d.emFail}</b></div>
+      <div class="atc-ops-row"><span>Efficiency</span><b>${Math.round(eff*100)}%</b></div>
+      ${s.atcHard?`<div class="atc-ops-row"><span>Projected bonus</span><b>${money(proj)}</b></div>`:""}
+      ${st?`<div class="atc-ops-note" style="margin-top:6px">Day ${st.day}: ${st.mov} mvts, ${st.eff}% efficiency${st.bonus?`, paid ${money(st.bonus)}`:st.note?`, ${esc(st.note.toLowerCase())}`:""}.</div>`:""}</div>
+    <div class="atc-ops-sec"><h5>Airline satisfaction</h5>
+      ${sats.length ? sats.map(([k,v])=>{ const a = ALS.find(x=>x.icao===k); return `<div class="atc-sat"><span>${esc(a?a.name:k)}</span><i><b class="${v<45?"low":v<65?"mid":""}" style="width:${Math.round(v)}%"></b></i><span>${Math.round(v)}</span></div>`; }).join("") : `<div class="atc-ops-note">Builds up as you handle each airline's traffic.</div>`}
+      <div class="atc-ops-note" style="margin-top:4px">In Hardcore, satisfaction scales the pay on MRO work you raise for that airline (x0.80 to x1.25).</div></div>
+    <div class="atc-ops-sec"><h5>Ground vehicles</h5>${vrow("fuel","Fuel bowsers")}${vrow("deice","De-icing rigs")}${vrow("rffs","RFFS appliances")}${vrow("medic","Ambulance")}
+      <div class="atc-ops-note">Stands marked * have no fuel hydrant. De-icing is only needed in the cold months (game day 1 is in November).</div></div>
+    <div class="atc-ops-sec"><h5>Sound</h5><div class="atc-ops-btns"><button data-asnd="1" class="${s.atcSnd?"on":""}">${s.atcSnd?"ALERTS ON":"ALERTS OFF"}</button></div></div>`;
+}
+function renderOps(force){
+  const p = $("atcOps"); if(!p) return;
+  p.classList.toggle("show", opsOpen);
+  if(!opsOpen) return;
+  const sig = JSON.stringify([s.atcHard, s.atcSnd, s.atcDay, s.atcSat, s.atcSettle, s.atcVeh.map(v=>v.ph)]);
+  if(!force && sig===lastOpsSig) return;
+  lastOpsSig = sig; p.innerHTML = opsHtml();
 }
 
 /* ---------- pan / zoom ---------- */
@@ -2605,12 +3323,31 @@ function sizeRoot(){
 }
 window.addEventListener("resize", ()=>{ if($("atcRoot")){ sizeRoot(); } });
 
+
 /* ---------- seed + save migration ---------- */
 function place(f, nodeId, state, hdg){ const n = NODES[nodeId]; f.x=n.x; f.y=n.y; f.node=nodeId; f.state=state; if(hdg!=null) f.hdg=f.tgtHdg=hdg; }
+function initV3(){
+  if(!s.atcWx) s.atcWx = newWx();
+  if(!Array.isArray(s.atcVeh) || !s.atcVeh.length) initVeh();
+  s.atcSat = s.atcSat || {}; s.atcInc = s.atcInc || 0; s.atcHard = !!s.atcHard;
+  if(s.atcSnd===undefined) s.atcSnd = true;
+  s.atcDay = s.atcDay || newDay(); s.atcDayNo = s.atcDayNo || s.day;
+  if(s.atcEmIn==null) s.atcEmIn = rnd(150,260);
+  if(s.atcLastTO==null) s.atcLastTO = -1e9;
+  for(const f of s.atcFlights){
+    if(!f.reg) f.reg = mkReg(AL(f));
+    if(f.baseSpd==null) f.baseSpd = 40;
+    if(f.kind==="dep" && !f.svc) initSvc(f);
+    f.delay = f.delay||0;
+  }
+  s.atcV = 3;
+}
 function ensure(){
-  if(s.atcV===2 && Array.isArray(s.atcFlights)) return;
-  // fresh tower, or an old-format save from the previous radar: start a clean EGLL session
+  if(s.atcV===3 && Array.isArray(s.atcFlights)) return;
+  if(s.atcV===2 && Array.isArray(s.atcFlights)){ initV3(); return; }
+  // fresh tower, or an old-format save from the first radar: start a clean EGLL session
   Object.assign(s, { atcV:2, atcFlights:[], atcSel:null, atcLog:[], atcTime:14*3600, atcMov:0, atcGA:0, atcArrIn:30, atcDepIn:16, atcSeq:1 });
+  initV3();
   els.forEach((e,id)=>removeEl(id));
   const G = id=>gateById(id), A = c=>ALS.find(a=>a.icao===c);
   let f;
@@ -2618,15 +3355,17 @@ function ensure(){
   f = addFlight(newFlight("dep", G("509"), A("BAW"))); f.readyIn=26;
   f = newFlight("dep", G("223"), A("DLH")); f.occGate=false; place(f, "P223", "PUSHED", 180); addFlight(f);
   f = newFlight("dep", G("333"), A("UAE")); f.occGate=false; place(f, "HB", "HOLDING", 90); addFlight(f);
-  f = newFlight("dep", G("401"), A("KLM")); f.occGate=false; place(f, "P401", "TAXI_OUT", 0); f.cruise=TAXI_SPD; setPath(f, route("P401","HK").slice(1)); addFlight(f);
+  f = newFlight("dep", G("401"), A("KLM")); f.occGate=false; f.svc.fuel="done"; place(f, "P401", "TAXI_OUT", 0); f.cruise=TAXI_SPD; setPath(f, route("P401","HK").slice(1)); addFlight(f);
   f = newFlight("arr", G("403"), A("AFR")); place(f, "A3", "VACATED", 135); f.crossNeeded=true; addFlight(f);
+  f = newFlight("arr", G("513"), A("BAW")); f.type = "A320"; f.state="PARKED"; f.turnIn = 120; f.defect = { z:"GEAR", t:DEFECT_TXT.GEAR }; addFlight(f);
   f = addFlight(newFlight("dep", G("331"), A("VIR"))); f.readyIn=40;
   spawnArrival(3150);
   s.atcLog = []; unread = 0;
-  log("info","EGLL TWR","position open. Westerly ops, 27R arrivals, 27L departures. Wind 250/10, QNH 1016.");
+  log("info","EGLL TWR",`position open. Westerly ops, 27R arrivals, 27L departures. ${windStr()}, QNH ${s.atcWx.qnh}${lvp()?". LOW VISIBILITY PROCEDURES IN FORCE":""}.`);
+  log("warn","EGLL TWR","stand 513: a BA A320 came in with a tech log entry. Select it to hand it to our MRO.");
 }
 
-/* ---------- public hooks used by render(), loop(), click handler, dev panel ---------- */
+/* ---------- public hooks used by render(), loop(), tick(), the click handler and the MRO module ---------- */
 window.renderAtc = function(){
   ensure();
   return `<div class="atcx" id="atcRoot">
@@ -2634,39 +3373,48 @@ window.renderAtc = function(){
       <div class="atc-brand">EGLL<span> TOWER</span></div>
       <div class="atc-sub">LONDON HEATHROW &#183; GROUND RADAR</div>
       <div class="atc-clock" id="atcClock">${gameClock()}</div>
-      <div class="atc-rb" title="NATS runs Heathrow. This tower is a free-play mini-game: no money or reputation."><span>FREE PLAY</span></div>
+      <button class="atc-mode ${s.atcHard?"hard":""}" id="atcMode" data-aops="1" title="Tower ops: mode, airline satisfaction, vehicles">${s.atcHard?"HARDCORE":"FREE PLAY"}</button>
       <div class="atc-rb dep" id="atcBadgeDep"><span class="dot"></span><span id="atcBadgeDepTxt">27L &#183; DEPARTURES ACTIVE</span></div>
       <div class="atc-rb arr" id="atcBadgeArr"><span class="dot"></span><span id="atcBadgeArrTxt">27R &#183; ARRIVALS ACTIVE</span></div>
       <div class="atc-stats" id="atcStats"></div>
       <div class="atc-spacer"></div>
+      <button class="atc-logbtn" data-aops="1">OPS</button>
       <button class="atc-logbtn" id="atcLogBtn">LOG<span class="dot" id="atcLogDot" style="display:none">0</span></button>
     </div>
+    <div class="atc-wx"><span class="atc-wxlbl" id="atcAtis">ATIS</span><span class="atc-metar" id="atcMetar"></span>
+      <span class="atc-chip" id="atcChipLvp"></span><span class="atc-chip" id="atcChipIce"></span><span class="atc-chip" id="atcChipMon"></span></div>
     <div class="atc-body">
       <div class="atc-left">
+        <h4 class="em" id="atcEmHead" style="display:none">Emergency</h4><div id="atcEmList"></div>
         <h4>Inbound Arrivals <span class="cnt" id="atcArrCnt">0</span></h4><div id="atcArrList"></div>
         <h4>Outbound Departures <span class="cnt" id="atcDepCnt">0</span></h4><div id="atcDepList"></div>
+        <h4 class="mx">MRO Hand-offs <span class="cnt" id="atcMxCnt">0</span></h4><div id="atcMxList"></div>
       </div>
-      <div class="atc-stage">
+      <div class="atc-stage" id="atcStage">
         <div class="atc-radar" id="atcRadar">
-          <div class="atc-inner" id="atcInner"><svg viewBox="0 0 ${VB_W} ${VB_H}" width="${VB_W}" height="${VB_H}" xmlns="${SVGNS}"><g>${mapSvg()}</g><g id="atcAcLayer"></g></svg></div>
+          <div class="atc-inner" id="atcInner"><svg viewBox="0 0 ${VB_W} ${VB_H}" width="${VB_W}" height="${VB_H}" xmlns="${SVGNS}"><g>${mapSvg()}</g><g id="atcVehLayer"></g><g id="atcAcLayer"></g></svg></div>
+          <div class="atc-fx" id="atcFx"></div>
           <div class="atc-sweep"></div>
         </div>
+        <div class="atc-embar" id="atcEmBar"></div>
+        <div class="atc-alert" id="atcAlert"></div>
         <div class="atc-zoom"><button id="atcZin" title="Zoom in">+</button><button id="atcZfit" title="Fit airport">&#8962;</button><button id="atcZout" title="Zoom out">&minus;</button></div>
         <div class="atc-drawer" id="atcDrawer"></div>
         <div class="atc-logpanel" id="atcLogPanel"><div class="lp-head">Tower Log</div><div id="atcLogItems"></div></div>
+        <div class="atc-opspanel" id="atcOps"></div>
       </div>
     </div>
   </div>`;
 };
 window.atcMount = function(){
-  els.clear(); lastListSig = ""; lastDrawerSig = "";
+  els.clear(); vels.clear(); lastListSig = ""; lastDrawerSig = ""; lastOpsSig = ""; lastEmSig = "";
   sizeRoot();
   if(!viewInited){ view = fitTarget(); viewInited = true; }
   applyView();
   for(const f of FL()) makeEl(f);
   if(s.atcSel && !FL().some(f=>f.id===s.atcSel)) s.atcSel = null;
   select(s.atcSel);
-  renderLog();
+  renderLog(); renderOps(true);
   lastSlow = 0;
   window.atcPaint(performance.now());
 };
@@ -2676,31 +3424,69 @@ window.atcSim = function(dt){
   const n = Math.max(1, Math.ceil(dt/0.04));
   for(let i=0;i<n;i++) simStep(dt/n);
 };
+window.atcHourly = function(){
+  ensure();
+  wxHour();
+  for(const f of FL()){
+    if(f.mx && !f.mx.release && ["MX_STAND","IN_MRO"].includes(f.state) && window.mxJobById && !window.mxJobById(f.mx.jobId))
+      window.atcJobDone({ atcId:f.id, wo:f.mx.wo }, false);
+  }
+  if(s.atcDayNo!==s.day){ settleDay(s.atcDayNo); s.atcDayNo = s.day; s.atcDay = newDay(); }
+};
+function paintSlow(){
+  const w = s.atcWx;
+  $("atcClock").textContent = gameClock();
+  $("atcStats").innerHTML = `MVTS <b>${s.atcMov}</b> &#183; GA <b>${s.atcGA}</b> &#183; INC <b style="${s.atcInc?"color:var(--bad)":""}">${s.atcInc||0}</b>`;
+  const depBusy = FL().some(o=>o.state==="TAKEOFF_ROLL"||o.state==="CROSSING"||(o.state==="LINEUP"&&o.autoRoll)||RWY_BLOCK.has(o.state));
+  const luw = FL().some(o=>o.state==="LINED_UP");
+  const arrBusy = FL().some(o=>o.state==="LANDING_ROLL"||o.state==="VACATING");
+  $("atcBadgeDep").classList.toggle("busy", depBusy); $("atcBadgeArr").classList.toggle("busy", arrBusy);
+  $("atcBadgeDepTxt").textContent = "27L · DEPARTURES " + (depBusy ? "OCCUPIED" : luw ? "LUW" : "ACTIVE");
+  $("atcBadgeArrTxt").textContent = "27R · ARRIVALS " + (arrBusy ? "OCCUPIED" : "ACTIVE");
+  const m = $("atcMode"); m.textContent = s.atcHard ? "HARDCORE" : "FREE PLAY"; m.classList.toggle("hard", s.atcHard);
+  const mt = metar(); if($("atcMetar").textContent!==mt) $("atcMetar").textContent = mt;
+  $("atcAtis").textContent = "ATIS " + atisL();
+  const chip = (id, txt, cls)=>{ const e = $(id); if(e.textContent!==txt) e.textContent = txt; e.className = "atc-chip "+(cls||""); };
+  chip("atcChipLvp", w.lvp ? `LVP · RVR ${rvr()}M` : "", "bad");
+  chip("atcChipIce", icing() ? "DE-ICING REQUIRED" : "", "info");
+  chip("atcChipMon", `${MON[gMonth()]} · ${w.temp}°C`, "");
+  const fx = $("atcFx"), cls = (w.phen==="FG"||w.phen==="BR") ? "fog" : w.phen==="SN" ? "snow" : /RA/.test(w.phen) ? "rain" : "";
+  if(fx.dataset.c!==cls){ fx.dataset.c = cls; fx.className = "atc-fx "+cls; }
+  fx.style.opacity = cls==="fog" ? clamp((3500-w.vis)/3500, 0.15, 0.9).toFixed(2) : cls ? (w.phen==="+RA"?"0.9":"0.55") : "0";
+  const em = FL().filter(f=>f.em && !f.em.done), bar = $("atcEmBar"), esig = em.map(f=>f.id).join(",");
+  if(esig!==lastEmSig){ lastEmSig = esig; bar.innerHTML = em.map(f=>`<button class="atc-emb" data-arow="${f.id}">${EMS[f.em.k].code} · ${f.call} · ${esc(EMS[f.em.k].label.toUpperCase())} · <span id="atcEmT-${f.id}"></span></button>`).join(""); }
+  for(const f of em){ const e = $("atcEmT-"+f.id); if(e) e.textContent = f.em.t>0 ? fmtMMSS(f.em.t) : "OVERDUE"; }
+  renderOps(false);
+}
 window.atcPaint = function(now){
   if(!$("atcRoot")) return;
   stepAnim(now);
   patchAircraft();
+  patchVeh();
   renderLists(false);
   renderDrawer(false);
-  if(now-lastSlow > 250){
-    lastSlow = now;
-    $("atcClock").textContent = gameClock();
-    $("atcStats").innerHTML = `MVTS <b>${s.atcMov}</b> &#183; GA <b>${s.atcGA}</b>`;
-    const depBusy = FL().some(o=>o.state==="TAKEOFF_ROLL"||o.state==="CROSSING"||(o.state==="LINEUP"&&o.autoRoll));
-    const luw = FL().some(o=>o.state==="LINED_UP");
-    const arrBusy = FL().some(o=>o.state==="LANDING_ROLL"||o.state==="VACATING");
-    $("atcBadgeDep").classList.toggle("busy", depBusy); $("atcBadgeArr").classList.toggle("busy", arrBusy);
-    $("atcBadgeDepTxt").textContent = "27L · DEPARTURES " + (depBusy ? "OCCUPIED" : luw ? "LUW" : "ACTIVE");
-    $("atcBadgeArrTxt").textContent = "27R · ARRIVALS " + (arrBusy ? "OCCUPIED" : "ACTIVE");
-  }
+  if(alertUntil && now>alertUntil){ alertUntil = 0; const a = $("atcAlert"); if(a) a.className = "atc-alert"; }
+  if(now-lastSlow > 250){ lastSlow = now; paintSlow(); }
 };
 window.atcClick = function(t){
+  audioInit();
   const act = t.closest("[data-aact]");
   if(act){ if(!act.disabled) doAction(act.dataset.aid, act.dataset.aact); lastDrawerSig=""; renderDrawer(true); renderLists(true); return; }
   if(t.closest("#atcZin")){ const r=radarRect(); return zoomAt(r.width/2,r.height/2,1.25); }
   if(t.closest("#atcZout")){ const r=radarRect(); return zoomAt(r.width/2,r.height/2,0.8); }
   if(t.closest("#atcZfit")) return animateTo(fitTarget());
-  if(t.closest("#atcLogBtn")){ logOpen = !logOpen; unread = 0; return renderLog(); }
+  if(t.closest("#atcLogBtn")){ logOpen = !logOpen; unread = 0; if(logOpen){ opsOpen = false; renderOps(true); } return renderLog(); }
+  if(t.closest("[data-aops]")){ opsOpen = !opsOpen; if(opsOpen){ logOpen = false; renderLog(); } return renderOps(true); }
+  const md = t.closest("[data-amode]");
+  if(md){
+    const hard = md.dataset.amode==="hard";
+    if(hard!==s.atcHard){
+      s.atcHard = hard; if(hard) s.atcHardDay = s.day;
+      log(hard?"warn":"info", "EGLL TWR", hard ? "Hardcore on. Airline penalties and the performance bonus are live. The daily bonus starts from tomorrow's ops." : "Back to free play. No cash or reputation from the tower.");
+    }
+    return renderOps(true);
+  }
+  if(t.closest("[data-asnd]")){ s.atcSnd = !s.atcSnd; if(s.atcSnd) beep("warn"); return renderOps(true); }
   if(t.closest("[data-aclose]")) return select(null);
   const ctr = t.closest("[data-acenter]");
   if(ctr){ const f=FL().find(x=>x.id===ctr.dataset.acenter); if(f) flyTo(f); return; }
@@ -2715,6 +3501,8 @@ window.atcDevSpawn = function(){
   if(d) d.readyIn = 0;
   toast(a||d ? "good" : "bad", a||d ? "Heathrow traffic spawned." : "No free stands at Heathrow.");
 };
+window.atcDevEmergency = function(k){ ensure(); return spawnEmergency(k); };
+window.atcDevWx = function(r){ ensure(); setRegime(s.atcWx, r); s.atcWx.vis = s.atcWx.tv; s.atcWx.cl = s.atcWx.tc; wxDerive(s.atcWx); lvpCheck(); };
 })();
 
 /* =========================================================
@@ -2945,7 +3733,7 @@ function diagFor(comp){
 /* ---------- tools and per-family procedures (step h = game hours) ---------- */
 const TOOLS = ["CB collars and tags","Panel removal kit","Gear safety pins","ESD wrist strap","Hand-tight (no tool)","Connector pliers",
   "Socket set","Torque wrench","Safety wire pliers","Hydraulic ground cart","Jacks (axle / aircraft)","Oil service cart",
-  "Rigging pins and protractor","Pitot-static test set","Feeler gauges","Engine run (idle)","MCDU (Airbus CFDS)","CDU BITE (737)"];
+  "Rigging pins and protractor","Pitot-static test set","Feeler gauges","Engine run (idle)","Grease gun","MCDU (Airbus CFDS)","CDU BITE (737)"];
 const TOOL_HINT_COST = 75, INSPECTOR_FEE = 650;
 const TORQUE = { lru:3.4, pump:26, valve:14, actuator:85, sensor:4, probe:6, wear:60, gen:13, chip:34, accum:120 };
 const RACK_KEYS = ["GEARIND","BRAKECOMP","FLAPCOMP"];
@@ -3192,7 +3980,7 @@ function allJobs(){ return s.queue.concat(s.bays.filter(b=>b.job).map(b=>b.job))
 function bayOf(job){ return s.bays.find(b=>b.job && b.job.id===job.id) || null; }
 function mechOf(bay){ return bay && s.mechanics.find(m=>m.id===bay.mech) || null; }
 function findJob(id){ return allJobs().find(j=>j.id===id) || null; }
-function openTails(){ const m = {}; for(const j of allJobs()) m[j.tail] = j; return m; }
+function openTails(){ const m = {}; for(const j of allJobs()) if(!j.ext) m[j.tail] = j; return m; }
 function availability(extraClosed){
   const open = openTails(); if(extraClosed) delete open[extraClosed];
   return Math.round((FLEET.length-Object.keys(open).length)/FLEET.length*100);
@@ -3230,10 +4018,10 @@ function tierFor(zone, comp){
   if(["probe","sensor","wear"].includes(comp.kind)) return "LINE";
   return "A";
 }
-function buildJob(tierOverride, payMult, zoneOverride){
+function buildJob(tierOverride, payMult, zoneOverride, forced){
   payMult = payMult || 1;
   const open = openTails();
-  const free = FLEET.filter(f=>!open[f[0]]);
+  const free = forced ? [[forced.tail, forced.model, forced.airline]] : FLEET.filter(f=>!open[f[0]]);
   if(!free.length) return null;
   const allowed = t => { const meta = TIER_META[t]; return !meta || !meta.cert || s.certs[meta.cert]; };
   for(let attempt=0; attempt<40; attempt++){
@@ -3244,10 +4032,11 @@ function buildJob(tierOverride, payMult, zoneOverride){
     const tier = tierFor(zone, comp);
     if(tierOverride && tierOverride!=="AOG" && tier!==tierOverride) continue;
     if(!allowed(tier)) continue;
-    const aog = tierOverride==="AOG" || (!tierOverride && Math.random()<0.08);
+    const aog = !forced && (tierOverride==="AOG" || (!tierOverride && Math.random()<0.08));
     const M = MODELS[model];
     let locMult = 1, locLabel = "home station";
-    if(s.bases.length && Math.random()<0.7){
+    if(forced){ locLabel = forced.loc || "EGLL"; }
+    else if(s.bases.length && Math.random()<0.7){
       const b = s.bases[Math.floor(Math.random()*s.bases.length)];
       const a = AIRPORTS.find(x=>x.code===b.code);
       if(a){ locMult = mapRateOf(a.code); locLabel = a.code; }
@@ -3274,6 +4063,28 @@ function buildJob(tierOverride, payMult, zoneOverride){
       prog:{ stage:"diagnose", stepIdx:0, stepT:0, running:false, pnOn:null, snOn:null, errors:0, finding:null, hint:-1, inspector:null }
     };
     fillJob(job, comp, zd);
+    if(forced){
+      Object.assign(job, { ext:true, atcId:forced.atcId, location:forced.loc, aircraft:`${model} ${tail} · ${airline} · ${forced.loc}` });
+      if(forced.deadlineH) job.deadline = s.day*24+s.hour+forced.deadlineH;
+      if(forced.kind==="ACHECK"){
+        const A = M.family==="AIRBUS";
+        job.acheck = true; job.name = `A-check, finding: ${comp.name}`;
+        job.desc = `A-check work pack on ${tail}. Finding raised during the zonal inspection: ${comp.msg}. Rectify it, then close the work pack.`;
+        job.proc = job.proc.concat([
+          { ph:"A-check", tool:"Panel removal kit", h:1.0, dur:6, text:"Open the A-check access panels and do the zonal general visual inspection on the work pack" },
+          { ph:"A-check", tool:"Grease gun", h:0.8, dur:4.8, text:"Lubricate the landing gear and flight control hinge points called up in the work pack" },
+          { ph:"A-check", tool:"Oil service cart", h:0.6, dur:3.6, text:`Check and service the engine and ${A?"IDG":"IDG"} oil, record the uplift in the tech log` },
+          { ph:"A-check", tool:A?"MCDU (Airbus CFDS)":"CDU BITE (737)", h:0.4, dur:2.4, text:`Read out the ${A?"CFDS post-flight report":"CDU fault history"}, close the panels and stamp the work pack` }
+        ]);
+        job.hours = procHours(job.proc);
+        job.pay += Math.round(5200*(forced.payMult||1));
+      } else if(forced.kind==="LINE"){
+        job.name = `Tech log defect: ${comp.name}`;
+        job.desc = `Crew tech log entry on arrival: ${forced.defect||comp.msg}. Aircraft is at the stand and due out. ${comp.msg}.`;
+        job.pay = Math.round(job.pay*(forced.payMult||1)*1.15);
+      }
+      return job;
+    }
     seedForJob(job, comp);
     return job;
   }
@@ -3285,7 +4096,7 @@ function integrity(job){
   if(!M) return `Work order ${job.wo} names model "${job.model}", which has no airframe data. Load refused.`;
   if(M.family!==job.family) return `${job.wo} is filed as ${FAM_NAME[job.family]} but ${job.tail} is ${an(M.variant)}. Load refused.`;
   const fleet = FLEET.find(f=>f[0]===job.tail);
-  if(!fleet || fleet[1]!==job.model) return `${job.tail} is not a ${job.model} in the fleet register. Load refused.`;
+  if(!job.ext && (!fleet || fleet[1]!==job.model)) return `${job.tail} is not a ${job.model} in the fleet register. Load refused.`;
   const comp = compOf(job.model, job.zone, job.comp);
   if(!comp) return `Component ${job.comp} does not exist on the ${M.variant} ${ZONE_LABEL[job.zone]}. Load refused.`;
   if(groupOf(job.model, comp)!==job.grp) return `Effectivity group ${job.grp} does not match ${job.tail} (${M.variant}, ${M.engine}). Load refused.`;
@@ -3853,6 +4664,18 @@ function doSign(){
 
 /* ---------- public hooks ---------- */
 window.buildJob = function(tierOverride, payMult){ ensure(); return buildJob(tierOverride, payMult); };
+/* ATC -> MRO pipeline: induct a third-party aircraft from the EGLL tower as a live work order */
+window.mxInduct = function(o){
+  ensure();
+  if(!MODELS[o.model]) return null;
+  const zones = o.zone ? [o.zone] : ZONES.slice().sort(()=>Math.random()-0.5);
+  for(const z of zones){
+    const j = buildJob(null, 1, z, o);
+    if(j){ s.queue.push(j); seedForJob(j, compOf(j.model, j.zone, j.comp)); return j; }
+  }
+  return null;
+};
+window.mxJobById = function(id){ return findJob(id); };
 window.mxEnsure = ensure;
 window.renderJobs = function(){
   ensure(); lastSig = {};
